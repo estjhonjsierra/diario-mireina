@@ -234,7 +234,7 @@ html, body, [class*="css"], .stMarkdown, p, div, label, span {{
 }}
 
 .daily-card {{
-    background: linear-gradient(135deg, #ffffff 0%, #fff0f5 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #fff0f3 100%);
     border: 2.5px solid {theme_cfg['border']};
     border-radius: 26px;
     padding: 28px;
@@ -488,7 +488,7 @@ MENSAJES_DIARIOS = {
         "fecha_str": "Domingo, 26 de Julio",
         "titulo": "Un rincón creado con el corazón 🦋🧸🌸",
         "poema": """Mi reina hermosa,
-Hoy empieza un detalle hecho a la medida de tu luz. Quería que tuvieras un espacio que te recuerde lo increíble que eres, incluso cuando la rutina presione. Gracias por ser mi lugar seguro, por tu dedicación en TQ y por construir con tanta valentía tu futuro profesional en Administración. Hoy domingo te deseo calma y que recuerdes que mi admiración por ti no tiene límites. Te quiero infinitamente."""
+Hoy empieza un detalle hecho a la medida de tu luz. Quería que tuvieras un espacio que te recuerde lo increíble que eres, en todo momento, de día o de noche, incluso cuando la rutina presione. Gracias por ser mi lugar seguro, por tu dedicación impecable en TQ y por construir con tanta valentía tu futuro profesional en Administración. Hoy domingo te deseo calma, alegría y que recuerdes que mi admiración por ti no tiene límites. Te quiero infinitamente."""
     },
     "2026-07-27": {
         "fecha_str": "Lunes, 27 de Julio",
@@ -514,15 +514,15 @@ Tu sonrisa tiene la magia de iluminar hasta el día más gris. Gracias por tu te
     },
     "2026-07-31": {
         "fecha_str": "Viernes, 31 de Julio",
-        "titulo": "Rumbo al descanso y la finca 🏡🌳",
+        "titulo": "Rumbo al descanso y tus momentos alegres 💖✨",
         "poema": """¡Llegó el viernes y se cierra Julio!
-Sé lo mucho que anhelas el fin de semana para desconectarte, respirar aire puro en la finca y disfrutar de esos momentos invaluables con tu hijita. Que hoy el tiempo se pase volando en el trabajo para que comiences a disfrutar de tu espacio de paz. ¡Te mereces todo el descanso del mundo! Te quiero mucho."""
+Sé lo mucho que anhelas el fin de semana para desconectarte, relajarte en tus momentos libres y disfrutar de esos instantes invaluables de felicidad con tu hijita. Que hoy el tiempo se pase volando en el trabajo para que comiences a disfrutar de tu tiempo de paz. ¡Te mereces todo el descanso del mundo! Te quiero mucho."""
     },
     "2026-08-01": {
         "fecha_str": "Sábado, 01 de Agosto",
         "titulo": "Bienvenido Agosto 🌻🧸",
         "poema": """Iniciamos un nuevo mes, mi reina.
-Sábado de tranquilidad, de aire fresco en la finca y de regalarte el tiempo que tanto trabajas en la semana. Deseo que tu corazón se llene de risas, de desconexión y de esa paz pura de hogar. Disfruta tu fin de semana mi reina bella, te quiero y te pienso donde estés."""
+Sábado de tranquilidad, de sonreír sin afanes y de regalarte el tiempo libre que tanto trabajas en la semana. Deseo que tu corazón se llene de risas, de desconexión y de esa paz pura de hogar. Disfruta tu fin de semana mi reina bella, te quiero y te pienso a cada segundo."""
     }
 }
 
@@ -559,9 +559,9 @@ LINEA_DEL_TIEMPO_RECUERDOS = [
     },
     {
         "fecha": "Junio 2026",
-        "titulo": "🏡 Tarde soñada en la finca",
-        "desc": "Verte sonreír rodeada de naturaleza y tranquilidad con los tuyos fue de los regalos más lindos de mitad de año.",
-        "icono": "🏡"
+        "titulo": "✨ Una tarde soñada de desconexión",
+        "desc": "Verte sonreír alegre, descansando y compartiendo tiempo de calidad con los tuyos fue de los regalos más lindos de mitad de año.",
+        "icono": "✨"
     },
     {
         "fecha": "Julio 2026",
@@ -575,13 +575,13 @@ FRASES_ESCRITAS_POR_TI = [
     "\"Hoy solo quería recordarte que estoy profundamente orgulloso de ti.\"",
     "\"Eres una mujer extraordinaria, madre amorosa y profesional impecable.\"",
     "\"Nunca olvides que tu inteligencia y tenacidad no tienen techo.\"",
-    "\"Si el día se pone pesado, respira profundo: aquí estoy pensándote.\"",
+    "\"Si el día se pone pesado, respira profundo: aquí estoy pensándote día y noche.\"",
     "\"Tu sonrisa tiene el poder exacto de arreglarme cualquier mal día.\"",
     "\"De Medellín a Bucaramanga hay muchos kilómetros, pero estás aquí en mi pecho.\"",
     "\"Vas a ser una Administradora de Empresas fabulosa. ¡Confío en ti!\""
 ]
 
-COMBOS_ICONOS = ["🧸🦋💖", "⭐🌸✨", "☕🏡🌳", "👑🎉💖", "🎀🧸✨", "🕊️🌷🌸", "🌈✨🎈", "🎆👑💖"]
+COMBOS_ICONOS = ["🧸🦋💖", "⭐🌸✨", "☕✨🌷", "👑🎉💖", "🎀🧸✨", "🕊️🌷🌸", "🌈✨🎈", "🎆👑💖"]
 
 PREGUNTAS_TRIVIA = [
     {
@@ -597,10 +597,10 @@ PREGUNTAS_TRIVIA = [
         "explicacion": "¡Sí! Futura Administradora de Empresas brillante. 🎓👑"
     },
     {
-        "pregunta": "¿Cuál es su lugar favorito para desconectarse los fines de semana?",
-        "opciones": ["La Finca", "El Centro Comercial", "La Oficina", "El Cine"],
-        "correcta": "La Finca",
-        "explicacion": "¡Amo ver lo feliz y en paz que te pones en la finca con tu hijita! 🌿🏡"
+        "pregunta": "¿Cuál es su plan favorito en sus momentos libres para relajarse?",
+        "opciones": ["Compartir en familia y descansar", "Trabajar horas extra", "Hacer fila en el banco", "Estar en tráfico"],
+        "correcta": "Compartir en familia y descansar",
+        "explicacion": "¡Amo ver lo feliz, libre y en paz que te pones disfrutando con tu hijita! 💖✨"
     },
     {
         "pregunta": "¿Qué dos ciudades conectan este lazo y cariño gigante?",
@@ -612,10 +612,10 @@ PREGUNTAS_TRIVIA = [
 
 FORTUNAS = [
     "🥠 Fortuna de Hoy: 'El esfuerzo de hoy en tus estudios de Administración se convertirá en el éxito gigante de mañana.'",
-    "🥠 Fortuna de Hoy: 'Alguien a la distancia te está pensando en este preciso instante con una sonrisa enorme.'",
-    "🥠 Fortuna de Hoy: 'Un fin de semana lleno de paz, naturaleza y abrazos te espera muy pronto.'",
+    "🥠 Fortuna de Hoy: 'Alguien a la distancia te está pensando en este preciso instante, de día y de noche, con una sonrisa enorme.'",
+    "🥠 Fortuna de Hoy: 'Un momento libre lleno de paz, risas y abrazos reconfortantes te espera muy pronto.'",
     "🥠 Fortuna de Hoy: 'Tu ternura y elegancia abrirán las puertas a todas las metas que te propongas.'",
-    "🥠 Fortuna de Hoy: 'Hoy es un día perfecto para regalarte un antojo y tomarte un delicioso café caliente.'",
+    "🥠 Fortuna de Hoy: 'Hoy es un día perfecto para regalarte un antojo y tomarte un delicioso café caliente en tu tiempo libre.'",
     "🥠 Fortuna de Hoy: 'La vida te devolverá duplicada toda la luz y amor que le entregas a tu hijita.'"
 ]
 
@@ -692,7 +692,7 @@ def generar_pdf_carta(titulo, remitente, contenido, fecha_hora_str):
 # 8. ENCABEZADO PRINCIPAL, BARRA DE MÚSICA & BANNER SORPRESA
 # ==============================================================================
 st.markdown("<h1 class='main-header'>👑 El Diario de Mi Reina 💖🧸🦋</h1>", unsafe_allow_html=True)
-st.markdown("<p class='sub-header'>De Medellín a Bucaramanga 🏔️✈️🌳 | Un espacio lleno de magia, recuerdos y momentos especiales</p>", unsafe_allow_html=True)
+st.markdown("<p class='sub-header'>De Medellín a Bucaramanga 🏔️✈️✨ | Un espacio lleno de magia, recuerdos y momentos especiales</p>", unsafe_allow_html=True)
 st.markdown(f"<div class='theme-badge'>🎨 Tema Activo: {st.session_state['user_theme']} | Tipografía: {st.session_state['user_font']}</div>", unsafe_allow_html=True)
 
 # Ejecución de efectos si se solicitaron
@@ -754,8 +754,9 @@ with tab1:
                 ¡Bienvenida a tu espacio consentido, Mi Reina! <span class='floating-badge'>👑🧸🦋</span>
             </h3>
             <p style='color: #222; font-size: 1.1em; line-height: 1.8;'>
-                Este diario interactivo fue diseñado con todo el cariño para acompañarte durante tus metas en 
-                <b>TQ</b>, tus jornadas de estudio en <b>Administración de Empresas</b> y tus momentos de descanso en la finca.
+                Este diario interactivo fue diseñado con todo el amor del mundo para acompañarte en tus metas en 
+                <b>TQ</b>, tus jornadas de estudio en <b>Administración de Empresas</b> y en cada uno de tus momentos libres, 
+                alegres y especiales. ¡Un rincón mágico para recordarte lo mucho que vales, en todo momento, de día y de noche! ✨💖
             </p>
         </div>
         """, unsafe_allow_html=True)
@@ -775,7 +776,7 @@ with tab1:
         mensaje_hoy = MENSAJES_DIARIOS.get(fecha_hoy_key, {
             "fecha_str": fecha_colombia.strftime("%A, %d de %B"),
             "titulo": "✨ Un mensaje especial para ti",
-            "poema": "Mi reina hermosa, recuerda siempre lo increíble, inteligente y hermosa que eres. Cada día es una nueva oportunidad para acercarte a tus sueños. ¡Te quiero con todo mi corazón!"
+            "poema": "Mi reina hermosa, recuerda siempre lo increíble, inteligente y hermosa que eres. Cada día y cada noche es una nueva oportunidad para acercarte a tus sueños. ¡Te quiero con todo mi corazón!"
         })
 
         st.markdown(f"""
@@ -1049,7 +1050,7 @@ with tab5:
 # ------------------------------------------------------------------------------
 with tab6:
     st.markdown("<h3 style='color: #d63384;'>📝 Mi Diario Personal e Interactivo</h3>", unsafe_allow_html=True)
-    st.write("Escribe lo que viviste hoy, desahógate o guarda un lindo recuerdo.")
+    st.write("Escribe lo que viviste hoy, desahógate o guarda un lindo recuerdo de tu día o de tu noche.")
     fecha_hoy = datetime.now(tz_colombia).strftime("%d/%m/%Y %I:%M%p")
     
     st.write("---")
@@ -1065,12 +1066,12 @@ with tab6:
     )
 
     respuestas_animo = {
-        "😴 Cansada": "😴 **Mi vida hermosa:** Sé que has tenido un día largo entre la oficina de TQ, tareas o la rutina. Te has esforzado un montón. Por favor regálate una ducha tibia, ponte ropa cómoda y permite que tu mente descanse. ¡Hiciste un trabajo fabuloso hoy!",
-        "🌿 Tranquila": "🌿 **Paz para tu corazón:** Qué dicha saber que estás disfrutando de un momento de calma. Tómate un café o té, escucha una bonita canción y disfruta esta serenidad. Te mereces cada segundo de tranquilidad, mi reina.",
+        "😴 Cansada": "😴 **Mi vida hermosa:** Sé que has tenido una jornada larga entre la oficina de TQ, tareas o tus pendientes. Te has esforzado un montón. Por favor regálate un baño tibio, ponte ropa cómoda y permite que tu mente descanse. ¡Hiciste un trabajo fabuloso hoy!",
+        "🌿 Tranquila": "🌿 **Paz para tu corazón:** Qué dicha saber que estás disfrutando de tus momentos libres y de calma. Tómate un café o té, escucha una bonita canción y disfruta esta serenidad. Te mereces cada segundo de tranquilidad, mi reina.",
         "🔥 Motivada": "🔥 **¡Esa es la actitud, mi reina!**: Tu energía positiva contagia y mueve montañas. Aprovecha este impulso para avanzar en tus metas de Administración o proyectos personales. ¡Vas con toda!",
         "✨ Excelente": "✨ **¡Qué felicidad verte así!**: Tu alegría ilumina todo a tu alrededor y llena el aire de mariposas y estrellas. Guarda este momento de satisfacción en tu diario y celebra cada logro.",
         "🚀 Imparable": "🚀 **¡Eres una mujer poderosa e invencible!**: No hay reto laboral ni examen de universidad que pueda contigo. Tienes la berraquera e inteligencia para devorarte el mundo.",
-        "🤯 Abrumada / Estresada": "🤯 **Respira profundo, mi cielo:** Cierra los ojos 5 segundos. No tienes que resolver todo en un solo día. Ve paso a paso. Recuerda que aquí estoy siempre para escucharte y apoyarte."
+        "🤯 Abrumada / Estresada": "🤯 **Respira profundo, mi cielo:** Cierra los ojos 5 segundos. No tienes que resolver todo en un solo día. Ve paso a paso. Recuerda que aquí estoy siempre para escucharte y apoyarte, de día y de noche."
     }
 
     st.markdown(f"""
@@ -1082,11 +1083,11 @@ with tab6:
     st.write("")
     col_input1, col_input2 = st.columns([1.2, 0.8])
     with col_input1:
-        titulo_entrada = st.text_input("Título para tu nota de hoy:", placeholder="Ej: Avances en TQ / Tarde bonita en la finca...")
+        titulo_entrada = st.text_input("Título para tu nota de hoy:", placeholder="Ej: Avances en TQ / Una noche tranquila / Tiempo libre en familia...")
     with col_input2:
-        etiqueta_entrada = st.selectbox("Categoría:", ["💼 Trabajo TQ", "🎓 Universidad / Administración", "🏡 Finca / Familia", "💭 Pensamientos", "☕ Descanso"])
+        etiqueta_entrada = st.selectbox("Categoría:", ["💼 Trabajo TQ", "🎓 Universidad / Administración", "🏡 Hogar / Familia", "💭 Pensamientos", "☕ Tiempo Libre / Descanso"])
 
-    contenido_entrada = st.text_area("Escribe aquí tus pensamientos del día:", height=180, placeholder="Hoy me sentí... logré terminar mis pendientes y compartí tiempo con...")
+    contenido_entrada = st.text_area("Escribe aquí tus pensamientos del día:", height=180, placeholder="Hoy me sentí... logré terminar mis pendientes y compartí un tiempo muy especial con...")
 
     if st.button("💾 Guardar Entrada en mi Diario"):
         if titulo_entrada.strip() and contenido_entrada.strip():
@@ -1170,7 +1171,7 @@ with tab8:
         st.markdown("<h4 style='color: #c2185b;'>🌸 Bienestar & Autocuidado</h4>", unsafe_allow_html=True)
         h1 = st.checkbox("Tomar al menos 2 litros de agua 💧")
         h2 = st.checkbox("Hacer una pausa activa y estirar la espalda 🧘‍♀️")
-        h3 = st.checkbox("Disfrutar un café/té con tranquilidad ☕")
+        h3 = st.checkbox("Disfrutar un café/té con tranquilidad en tu tiempo libre ☕")
         h4 = st.checkbox("Dormir al menos 7 horas hoy 😴")
 
     with col_hab2:
@@ -1199,7 +1200,7 @@ with tab8:
 # ------------------------------------------------------------------------------
 with tab9:
     st.markdown("<h3 style='color: #d63384;'>🎟️ Antojitos, Gustos & Cupones Especiales</h3>", unsafe_allow_html=True)
-    st.write("¡Canjea tus cupones simbólicos cuando quieras consentirte!")
+    st.write("¡Canjea tus cupones simbólicos cuando quieras consentirte en tus momentos libres!")
     
     col_c1, col_c2 = st.columns(2, gap="large")
     
@@ -1218,7 +1219,7 @@ with tab9:
         st.markdown("""
         <div style='background: #ffffff; border: 3px dashed #ff85a1; border-radius: 22px; padding: 22px; text-align: center; margin-bottom: 18px;'>
             <h4 style='color: #c2185b; margin-bottom: 5px;'>🎬 Cupón: Peli de Terror & Popcorn</h4>
-            <p style='color: #555; font-size: 0.95em;'>Válido para una maratón espeluznante y llena de descanso.</p>
+            <p style='color: #555; font-size: 0.95em;'>Válido para una maratón espeluznante y llena de descanso en tu noche libre.</p>
         </div>
         """, unsafe_allow_html=True)
         if st.button("🍿 Canjear Cupón Película"):
@@ -1228,19 +1229,19 @@ with tab9:
     with col_c2:
         st.markdown("""
         <div style='background: #ffffff; border: 3px dashed #ff85a1; border-radius: 22px; padding: 22px; text-align: center; margin-bottom: 18px;'>
-            <h4 style='color: #c2185b; margin-bottom: 5px;'>🏡 Cupón: Fin de Semana en la Finca</h4>
-            <p style='color: #555; font-size: 0.95em;'>Válido para desconectarte del trabajo de TQ y respirar aire puro.</p>
+            <h4 style='color: #c2185b; margin-bottom: 5px;'>✨ Cupón: Tarde Alegre de Desconexión</h4>
+            <p style='color: #555; font-size: 0.95em;'>Válido para soltar la rutina de TQ, reírte mucho y respirar aire puro.</p>
         </div>
         """, unsafe_allow_html=True)
-        if st.button("🌿 Canjear Cupón Finca"):
+        if st.button("🌿 Canjear Tarde Alegre"):
             st.balloons()
             lanzar_efecto_fiesta_js("lluvia_emojis")
-            st.success("¡Cupón Canjeado! Modo paz y naturaleza activado. 🌳✨")
+            st.success("¡Cupón Canjeado! Modo paz y felicidad activado. ✨🌷")
 
         st.markdown("""
         <div style='background: #ffffff; border: 3px dashed #ff85a1; border-radius: 22px; padding: 22px; text-align: center; margin-bottom: 18px;'>
-            <h4 style='color: #c2185b; margin-bottom: 5px;'>🛋️ Cupón: Tarde de Cero Estrés</h4>
-            <p style='color: #555; font-size: 0.95em;'>Válido para soltar los pendientes y descansar profundamente.</p>
+            <h4 style='color: #c2185b; margin-bottom: 5px;'>🛋️ Cupón: Momento de Cero Estrés</h4>
+            <p style='color: #555; font-size: 0.95em;'>Válido para soltar los pendientes a cualquier hora y descansar profundamente.</p>
         </div>
         """, unsafe_allow_html=True)
         if st.button("💖 Canjear Cupón Cero Estrés"):
@@ -1283,18 +1284,18 @@ with tab10:
 # ------------------------------------------------------------------------------
 with tab11:
     st.markdown("<h3 style='color: #d63384;'>🏺 Frasco de Recuerdos & Galleta de la Fortuna</h3>", unsafe_allow_html=True)
-    st.write("Saca una notita del frasco virtual o abre una galleta de la fortuna para recargar tu día.")
+    st.write("Saca una notita del frasco virtual o abre una galleta de la fortuna para recargar tu día o noche.")
 
     col_f1, col_f2 = st.columns(2, gap="large")
 
     with col_f1:
         st.markdown("<h4 style='color: #c2185b;'>🏺 Notita del Frasco</h4>", unsafe_allow_html=True)
         razones = [
-            "Por tu sonrisa que ilumina mis días a la distancia.",
+            "Por tu sonrisa que ilumina mis días y mis noches a la distancia.",
             "Por la admiración gigante que siento al verte estudiar Administración.",
             "Por tu profesionalismo y entrega impecable en TQ.",
             "Por el cariño tan hermoso con el que cuidas a tu hijita y a tu hogar.",
-            "Por tu dulzura, tus chistes y cada conversación compartida.",
+            "Por tu dulzura, tus chistes y cada conversación compartida en tus momentos libres.",
             "Por la magia que le transmites a todo lo que haces.",
             "Por ser mi lugar seguro y mi reina consentida.",
             "Por lo lindo que es tenerte en mi vida y compartir estos detalles."
