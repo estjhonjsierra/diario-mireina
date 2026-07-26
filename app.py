@@ -4,6 +4,7 @@ import os
 from datetime import datetime
 import pytz
 import io
+import random
 
 # Librerías para generar el PDF bonito
 from reportlab.lib.pagesizes import letter
@@ -23,55 +24,122 @@ if "bienvenida" not in st.session_state:
     st.balloons()
     st.session_state["bienvenida"] = True
 
-# Estilos CSS Avanzados
+# CSS Avanzado con letras más grandes, animaciones de corazones flotantes y diseño elegante
 st.markdown("""
     <style>
-    .stApp {
-        background: linear-gradient(135deg, #fff5f7 0%, #ffe6ee 100%);
+    /* Tipografía general más grande y legible */
+    html, body, [class*="css"] {
+        font-size: 18px !important;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     
-    @keyframes pulse {
+    .stApp {
+        background: linear-gradient(135deg, #fff0f3 0%, #ffe3ec 100%);
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    /* Animación de corazones y estrellas flotando en el fondo */
+    @keyframes floatingElements {
+        0% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
+        50% { transform: translateY(-20px) rotate(10deg); opacity: 1; }
+        100% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
+    }
+
+    .floating-heart-1 {
+        position: fixed;
+        top: 15%;
+        left: 3%;
+        font-size: 32px;
+        animation: floatingElements 4s ease-in-out infinite;
+        z-index: 0;
+        pointer-events: none;
+    }
+    .floating-heart-2 {
+        position: fixed;
+        top: 60%;
+        right: 4%;
+        font-size: 38px;
+        animation: floatingElements 5s ease-in-out infinite;
+        z-index: 0;
+        pointer-events: none;
+    }
+    .floating-star-1 {
+        position: fixed;
+        bottom: 10%;
+        left: 5%;
+        font-size: 30px;
+        animation: floatingElements 3.5s ease-in-out infinite;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    @keyframes pulseHeader {
         0% { transform: scale(1); }
         50% { transform: scale(1.02); }
         100% { transform: scale(1); }
     }
-    
+
     .main-header {
         text-align: center;
         color: #d63384;
-        font-family: 'Poppins', cursive, sans-serif;
-        animation: pulse 3s infinite ease-in-out;
-        font-weight: bold;
+        font-size: 2.5em !important;
+        font-weight: 800;
+        animation: pulseHeader 3s infinite ease-in-out;
         margin-bottom: 5px;
     }
     
     .photo-card {
-        border: 3px solid #ff85a1;
+        border: 4px solid #ff85a1;
         border-radius: 20px;
-        padding: 8px;
+        padding: 10px;
         background: white;
-        box-shadow: 0px 8px 20px rgba(255, 133, 161, 0.25);
+        box-shadow: 0px 10px 25px rgba(255, 133, 161, 0.3);
         text-align: center;
+        font-size: 1.1em;
     }
-    
+
     .card {
         background: rgba(255, 255, 255, 0.95);
-        border-radius: 18px;
-        padding: 22px;
-        border-left: 6px solid #ff4d6d;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-        margin-bottom: 15px;
+        border-radius: 20px;
+        padding: 24px;
+        border-left: 8px solid #ff4d6d;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+        margin-bottom: 20px;
+        font-size: 1.05em;
     }
 
     .daily-card {
         background: linear-gradient(135deg, #ffffff 0%, #fff0f5 100%);
         border: 2px solid #ffb6c1;
-        border-radius: 18px;
-        padding: 20px;
-        box-shadow: 0 6px 18px rgba(214, 51, 132, 0.12);
-        margin-top: 10px;
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: 0 8px 22px rgba(214, 51, 132, 0.15);
+        margin-top: 15px;
+    }
+
+    .mood-box {
+        background: white;
+        border-radius: 16px;
+        padding: 18px;
+        border: 2px solid #ff85a1;
+        margin-top: 15px;
+        box-shadow: 0 4px 12px rgba(255, 133, 161, 0.15);
+    }
+    
+    /* Botones más llamativos y grandes */
+    .stButton>button {
+        font-size: 1.05em !important;
+        border-radius: 14px !important;
+        padding: 10px 22px !important;
+        font-weight: 600 !important;
     }
     </style>
+    
+    <!-- Elementos flotantes decorativos -->
+    <div class="floating-heart-1">💖</div>
+    <div class="floating-heart-2">✨</div>
+    <div class="floating-star-1">🌸</div>
 """, unsafe_allow_html=True)
 
 # Diccionario con mensajes y poemas diarios
@@ -161,100 +229,19 @@ Recuerda que en cada reto laboral en TQ demuestra la mujer capaz, inteligente y 
         "fecha_str": "Lunes, 10 de Agosto",
         "titulo": "💎 Eres invencible",
         "poema": """Empieza otra semana para brillar. A veces se nos olvida lo fuertes que somos hasta que nos toca demostrarlo, y tú, mi reina, has demostrado una y otra vez que no hay meta que te quede grande. ¡Con toda hoy en TQ!"""
-    },
-    "2026-08-11": {
-        "fecha_str": "Martes, 11 de Agosto",
-        "titulo": "✨ La ternura de tu voz",
-        "poema": """Escuchar tu voz me cambia el día. Tienes esa calidez que contagia alegría y paz. Deseo que hoy en tu entorno laboral todo fluya con armonía y que encuentres motivos para sonreír a cada rato."""
-    },
-    "2026-08-12": {
-        "fecha_str": "Miércoles, 12 de Agosto",
-        "titulo": "🇳🇴 El espíritu competitivo",
-        "poema": """Mitad de semana... ¿Se vale apostar hoy? 😄 Siempre me hace sonreír recordar tus gustos y hasta tu apoyo a Noruega. Me encanta descubrir cada faceta tuya. Que tengas un día excelente, mi administradora estrella."""
-    },
-    "2026-08-13": {
-        "fecha_str": "Jueves, 13 de Agosto",
-        "titulo": "🌷 Pequeños detalles",
-        "poema": """Las grandes historias se construyen de pequeños momentos diarios. Gracias por dejarme acompañar tus días a través de este rinconcito virtual. Nunca olvides lo valiosa e importante que eres para mí."""
-    },
-    "2026-08-14": {
-        "fecha_str": "Viernes, 14 de Agosto",
-        "titulo": "🎉 ¡Fin de semana a la vista!",
-        "poema": """Cerrando otra semana de victorias. Cumpliste con tus deberes, avanzaste en tus materias y diste lo mejor en el trabajo. Ahora es momento de cambiar la mente a modo descanso. ¡Te mando un beso enorme!"""
-    },
-    "2026-08-15": {
-        "fecha_str": "Sábado, 15 de Agosto",
-        "titulo": "🏡 El lugar donde eres feliz",
-        "poema": """Nada se compara a ver la paz que sientes cuando estás en la finca. Que este sábado sea para disfrutar de los tuyos, tomar el sol y olvidar cualquier pendiente de trabajo. Disfrútalo al máximo."""
-    },
-    "2026-08-16": {
-        "fecha_str": "Domingo, 16 de Agosto",
-        "titulo": "👑 Reina de tu propio destino",
-        "poema": """Estás construyendo exactamente la vida que sueñas a base de esfuerzo propio y constancia. Esa independencia y berraquera tuya me enamoran cada día más. Que tengas un domingo hermoso y sereno."""
-    },
-    "2026-08-17": {
-        "fecha_str": "Lunes, 17 de Agosto",
-        "titulo": "⚡ Energía renovada",
-        "poema": """Un lunes más para conquistar objetivos. Que no te falte la paciencia ni el entusiasmo hoy en la oficina. Recuerda que cada paso te acerca a tus metas profesionales. ¡Te amo mucho!"""
-    },
-    "2026-08-18": {
-        "fecha_str": "Martes, 18 de Agosto",
-        "titulo": "🌸 Dulzura que enamora",
-        "poema": """Incluso en los días más acelerados, tu esencia dulce se mantiene intacta. Gracias por ser esa mujer tan especial, por cuidar con tanto amor de tu hijita y por regalarme tu compañía. Que hoy sea un día brillante."""
-    },
-    "2026-08-19": {
-        "fecha_str": "Miércoles, 19 de Agosto",
-        "titulo": "📈 Paso a paso",
-        "poema": """Llegamos al ombligo de la semana. Visualiza tus metas de la universidad y del trabajo, pero disfruta también el proceso. Vas por un camino impecable mi reina. ¡Sigue así!"""
-    },
-    "2026-08-20": {
-        "fecha_str": "Jueves, 20 de Agosto",
-        "titulo": "💖 Siempre en mi corazón",
-        "poema": """No importa cuántos correos o tareas tengas hoy en TQ, tómate un minuto para respirar y sentir que desde Medellín te estoy enviando todo mi amor y la mejor energía. Eres maravillosa."""
-    },
-    "2026-08-21": {
-        "fecha_str": "Viernes, 21 de Agosto",
-        "titulo": "🌭 Un perrito caliente de recompensa",
-        "poema": """¡Llegó el viernes mi niña! Te mereces consentirte hoy con algo delicioso, quizás ese perrito caliente nocturno que tanto nos gusta. Disfruta la tarde y la satisfacción del deber cumplido."""
-    },
-    "2026-08-22": {
-        "fecha_str": "Sábado, 22 de Agosto",
-        "titulo": "🌿 Magia en lo simple",
-        "poema": """Un paseo, una conversación sincera, la naturaleza... Ahí está la verdadera magia. Deseo que tu sábado esté lleno de estos instantes bonitos que recargan el corazón."""
-    },
-    "2026-08-23": {
-        "fecha_str": "Domingo, 23 de Agosto",
-        "titulo": "✨ La bendición de tenerte",
-        "poema": """Agradezco infinitamente por haber cruzado nuestros caminos. Eres una luz inmensa en mi vida. Que este domingo sea tranquilo, reparador y lleno de amor familiar."""
-    },
-    "2026-08-24": {
-        "fecha_str": "Lunes, 24 de Agosto",
-        "titulo": "🔥 Imparable en tus metas",
-        "poema": """Última semana completa de Agosto. Entra con toda la actitud ganadora. Tu determinación es capaz de mover montañas. ¡Que tengas un inicio de semana fenomenal!"""
-    },
-    "2026-08-25": {
-        "fecha_str": "Martes, 25 de Agosto",
-        "titulo": "🎓 Futura Administradora brillante",
-        "poema": """Falta cada vez menos para que celebres el título que tanto has sudado. Nunca pierdas de vista la gran profesional que eres y en la que te estás convirtiendo. Orgulloso de ti siempre."""
-    },
-    "2026-08-26": {
-        "fecha_str": "Miércoles, 26 de Agosto",
-        "titulo": "💖 Un mes juntos en este diario y siempre",
-        "poema": """Mi reina hermosa, hoy cumplimos un mes desde que abrimos este rinconcito especial. Gracias por permitirme estar a tu lado en la distancia, apoyarte y recordarte a diario lo infinitamente especial que eres para mí. ¡Te amo con el alma, hoy y siempre!"""
     }
 }
 
 # Encabezado Principal
 st.markdown("<h1 class='main-header'>✨ El Diario de Laura Sofía 💖</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #666; font-size: 1.05em;'>De Medellín a Bucaramanga 🏔️✈️🌳 | Un rincón hecho con mucho cariño</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #555; font-size: 1.15em; font-weight: 500;'>De Medellín a Bucaramanga 🏔️✈️🌳 | Un rincón hecho con mucho cariño</p>", unsafe_allow_html=True)
 st.write("---")
 
-# Menú por pestañas (Con la nueva pestaña de Cartas PDF)
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
+# Menú simplificado por 4 pestañas (Sorpresas integrado en la portada)
+tab1, tab2, tab3, tab4 = st.tabs([
     "👑 Bienvenida & Portada", 
     "✍️ Mi Diario", 
     "🍕 Nuestros Detalles", 
-    "🌟 Sorpresas & Ánimo",
     "📜 Carta en PDF ✨"
 ])
 
@@ -270,22 +257,21 @@ def guardar_entradas(entradas):
     with open(DB_FILE, "w", encoding="utf-8") as f:
         json.dump(entradas, f, ensure_ascii=False, indent=4)
 
-# Función para construir el PDF bonitamente decorado
+# Generador de PDF
 def generar_pdf_carta(titulo, remitente, contenido, fecha_hora_str):
     buffer = io.BytesIO()
     doc = SimpleDocTemplate(buffer, pagesize=letter, rightMargin=40, leftMargin=40, topMargin=40, bottomMargin=40)
     story = []
     
-    # Estilos
     styles = getSampleStyleSheet()
     
     title_style = ParagraphStyle(
         'TitleStyle',
         parent=styles['Heading1'],
         fontName='Helvetica-Bold',
-        fontSize=20,
+        fontSize=22,
         textColor=colors.HexColor("#d63384"),
-        alignment=1, # Centrado
+        alignment=1,
         spaceAfter=15
     )
     
@@ -293,8 +279,8 @@ def generar_pdf_carta(titulo, remitente, contenido, fecha_hora_str):
         'MetaStyle',
         parent=styles['Normal'],
         fontName='Helvetica-Oblique',
-        fontSize=10,
-        textColor=colors.HexColor("#888888"),
+        fontSize=11,
+        textColor=colors.HexColor("#666666"),
         alignment=1,
         spaceAfter=20
     )
@@ -303,9 +289,9 @@ def generar_pdf_carta(titulo, remitente, contenido, fecha_hora_str):
         'BodyStyle',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=12,
+        fontSize=13,
         textColor=colors.HexColor("#222222"),
-        leading=18,
+        leading=20,
         spaceAfter=15
     )
 
@@ -313,40 +299,37 @@ def generar_pdf_carta(titulo, remitente, contenido, fecha_hora_str):
         'FooterStyle',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=12,
+        fontSize=13,
         textColor=colors.HexColor("#ff4d6d"),
-        alignment=2, # Derecha
-        spaceBefore=20
+        alignment=2,
+        spaceBefore=25
     )
 
-    # Elementos del PDF
     story.append(Paragraph("💖 CARTA DE PENSAMIENTOS 💖", title_style))
-    story.append(Paragraph(f"🌸 ✨ 🌸 ✨ 🌸", title_style))
-    story.append(Paragraph(f"<b>Fecha y Hora de Creación:</b> {fecha_hora_str} (Hora Colombia)", meta_style))
-    story.append(Paragraph(f"<b>Asunto:</b> {titulo}", ParagraphStyle('Sub', parent=title_style, fontSize=14, textColor=colors.HexColor("#ff85a1"))))
+    story.append(Paragraph("🌸 ✨ 🌸 ✨ 🌸", title_style))
+    story.append(Paragraph(f"<b>Fecha y Hora:</b> {fecha_hora_str} (Hora Colombia)", meta_style))
+    story.append(Paragraph(f"<b>Asunto:</b> {titulo}", ParagraphStyle('Sub', parent=title_style, fontSize=15, textColor=colors.HexColor("#ff85a1"))))
     story.append(Spacer(1, 10))
     
-    # Formatear saltos de línea para el PDF
     contenido_formateado = contenido.replace('\n', '<br/>')
     story.append(Paragraph(contenido_formateado, body_style))
     story.append(Spacer(1, 20))
     story.append(Paragraph(f"Con todo el amor,<br/><b>{remitente}</b> ✨", footer_style))
     story.append(Paragraph("🌸 ✨ 🌸 ✨ 🌸", title_style))
 
-    # Generar el documento
     doc.build(story)
     buffer.seek(0)
     return buffer
 
-# TAB 1: BIENVENIDA Y PORTADA
+# TAB 1: BIENVENIDA Y PORTADA (CON SORPRESAS INCLUIDO)
 with tab1:
     col_texto, col_foto = st.columns([1.1, 0.9], gap="large")
     
     with col_texto:
         st.markdown("""
         <div class='card'>
-            <h3 style='color: #d63384; margin-bottom: 8px;'>¡Bienvenida, mi Reina! 👋✨</h3>
-            <p style='color: #444; font-size: 1em;'>Este espacio fue diseñado especialmente para ti, para acompañarte en tus jornadas de trabajo en <b>TQ</b>, tus estudios de <b>Administración</b> y tus momentos de relax.</p>
+            <h3 style='color: #d63384; margin-bottom: 8px; font-size: 1.4em;'>¡Bienvenida, mi Reina! 👋✨</h3>
+            <p style='color: #333; font-size: 1.05em; line-height: 1.6;'>Este espacio fue diseñado especialmente para ti, para acompañarte en tus jornadas de trabajo en <b>TQ</b>, tus estudios de <b>Administración</b> y tus momentos de relax.</p>
         </div>
         """, unsafe_allow_html=True)
         
@@ -362,30 +345,47 @@ with tab1:
         
         st.markdown(f"""
         <div class='daily-card'>
-            <span style='background-color: #ff85a1; color: white; padding: 4px 12px; border-radius: 12px; font-weight: bold; font-size: 0.85em;'>
+            <span style='background-color: #ff85a1; color: white; padding: 6px 14px; border-radius: 12px; font-weight: bold; font-size: 0.95em;'>
                 📅 {mensaje_hoy['fecha_str']}
             </span>
-            <h4 style='color: #c2185b; margin-top: 12px; margin-bottom: 8px;'>{mensaje_hoy['titulo']}</h4>
-            <p style='color: #333; font-size: 0.96em; line-height: 1.6; white-space: pre-line;'>
+            <h3 style='color: #c2185b; margin-top: 14px; margin-bottom: 10px; font-size: 1.3em;'>{mensaje_hoy['titulo']}</h3>
+            <p style='color: #222; font-size: 1.05em; line-height: 1.7; white-space: pre-line;'>
                 {mensaje_hoy['poema']}
             </p>
         </div>
         """, unsafe_allow_html=True)
         
         st.write("")
-        if st.button("🎉 ¡Lanzar animación de celebración!"):
-            st.balloons()
+        st.markdown("### 🌟 Rinconcito de Alegría & Sorpresas")
+        col_btn1, col_btn2 = st.columns(2)
+        
+        with col_btn1:
+            if st.button("🎉 Lanzar animación"):
+                st.balloons()
+                
+        with col_btn2:
+            if st.button("🎲 Mensaje Sorpresa"):
+                st.balloons()
+                frases = [
+                    "Recordatorio: Tienes una sonrisa preciosa que me devuelve la paz. 😊✨",
+                    "Vas a ser una Administradora de Empresas brillante. ¡Orgullo total! 🎓💪",
+                    "Disfruta cada segundo del fin de semana en la finca con tu hijita. 🏡💖",
+                    "¡Muchos éxitos hoy en TQ! Que tengas una jornada fenomenal. 💼🌟",
+                    "Desde Medellín te mando toda la buena energía del mundo. 🏔️✈️",
+                    "No olvides regalarte una pausa y tomar agua hoy, mi reina. ☕🌸"
+                ]
+                st.info(random.choice(frases))
 
     with col_foto:
         st.markdown("<div class='photo-card'><b>📸 Nuestro Rincón Especial</b></div>", unsafe_allow_html=True)
         st.write("")
         
         if os.path.exists("portada.jpg"):
-            st.image("portada.jpg", caption="¡Siempre contigo, mi reina! ✨💖", use_container_width=True)
+            st.image("portada.jpg", caption="¡Siempre juntos mi reina hermosa! ✨💖", use_container_width=True)
         elif os.path.exists("portada.jpeg"):
-            st.image("portada.jpeg", caption="¡Siempre contigo, mi reina! ✨💖", use_container_width=True)
+            st.image("portada.jpeg", caption="¡Siempre juntos mi reina hermosa! ✨💖", use_container_width=True)
         elif os.path.exists("portada.png"):
-            st.image("portada.png", caption="¡Siempre contigo, mi reina! ✨💖", use_container_width=True)
+            st.image("portada.png", caption="¡Siempre juntos mi reina hermosa! ✨💖", use_container_width=True)
         else:
             st.image(
                 "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
@@ -393,22 +393,42 @@ with tab1:
                 use_container_width=True
             )
 
-# TAB 2: MI DIARIO INTERACTIVO
+# TAB 2: MI DIARIO INTERACTIVO (CON SELECTOR MEJORADO Y RESPUESTA DINÁMICA)
 with tab2:
     st.subheader("✍️ Escribe cómo estuvo tu día")
     
     tz_colombia = pytz.timezone("America/Bogota")
     fecha_hoy = datetime.now(tz_colombia).strftime("%d/%m/%Y %I:%M %p")
     
-    estado_animo = st.select_slider(
-        "¿Cómo te sentiste hoy?",
-        options=["😴 Cansada", "🙂 Tranquila", "😊 Motivada", "⭐ Excelente", "💖 Imparable"]
+    st.markdown("**¿Cómo te sientes hoy?** (Selecciona una opción para recibir un mensaje especial)")
+    
+    # Selector claro y fácil de seleccionar
+    estado_animo = st.radio(
+        "",
+        options=["😴 Cansada", "🙂 Tranquila", "😊 Motivada", "⭐ Excelente", "💖 Imparable"],
+        horizontal=True
     )
     
-    titulo = st.text_input("Título del día:", placeholder="Ej: Un gran día en el trabajo / Finde en la finca...")
-    contenido = st.text_area("Tus pensamientos:", height=150, placeholder="Hoy logré avanzar en el trabajo, compartí tiempo especial...")
+    # Respuestas personalizadas e inmediatas según el estado de ánimo elegido
+    mensajes_animo = {
+        "😴 Cansada": "💆‍♀️ **Mi vida:** Te has esforzado mucho hoy. Recuerda descansar la mente, tomar una ducha tibia y regalarte un espacio de paz. ¡Hiciste un trabajo excelente!",
+        "🙂 Tranquila": "☕ **Que la paz te acompañe:** Disfruta esta calma tan bonita. Un té, una conversación tranquila o un respiro profundo para mantener el equilibrio.",
+        "😊 Motivada": "🚀 **¡Aprovecha esa chispa!**: Tu energía contagia. Cada paso que das te acerca más a tu título de Administradora y a tus metas.",
+        "⭐ Excelente": "🌟 **¡Qué alegría verte así!**: Me llena el corazón saber que tu día va genial. Disfruta cada instante y celebra tus logros.",
+        "💖 Imparable": "👑 **¡Eres una reina poderosa!**: No hay meta que te quede grande ni reto que no puedas superar. ¡A devorarse el mundo!"
+    }
     
-    if st.button("💾 Guardar en mi Diario"):
+    st.markdown(f"""
+    <div class='mood-box'>
+        {mensajes_animo[estado_animo]}
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.write("")
+    titulo = st.text_input("Título del día:", placeholder="Ej: Avances en TQ / Finde relajante en la finca...")
+    contenido = st.text_area("Tus pensamientos:", height=160, placeholder="Escribe aquí lo que desees recordar o desahogar...")
+    
+    if st.button("💾 Guardar entrada en mi Diario"):
         if titulo and contenido:
             entradas = cargar_entradas()
             nueva = {
@@ -422,7 +442,7 @@ with tab2:
             st.success("¡Entrada guardada con éxito! 📖✨")
             st.balloons()
         else:
-            st.warning("Escribe un título y contenido antes de guardar.")
+            st.warning("Escribe un título y el contenido antes de guardar.")
 
     st.write("---")
     st.subheader("📚 Tus Notas Guardadas")
@@ -452,25 +472,10 @@ with tab3:
         * **Lugar de paz:** La finca los fines de semana 🏡
         """)
 
-# TAB 4: MENSAJES DE ÁNIMO
+# TAB 4: CREADOR DE CARTAS EN PDF
 with tab4:
-    st.subheader("🌟 Un mensaje sorpresivo para ti")
-    import random
-    frases = [
-        "Recordatorio: Tienes una sonrisa preciosa que transmite muchísima tranquilidad. 😊✨",
-        "Vas a ser una Administradora de Empresas brillante. ¡Orgullo total de tu disciplina! 🎓💪",
-        "Disfruta cada segundo del fin de semana en la finca con tu hijita. 🏡💖",
-        "¡Muchos éxitos hoy en TQ! Que tengas una jornada genial. 💼🌟",
-        "Desde Medellín te mando toda la buena energía del mundo. 🏔️✈️"
-    ]
-    if st.button("🎲 Recibir mensaje aleatorio"):
-        st.balloons()
-        st.info(random.choice(frases))
-
-# TAB 5: CREADOR DE CARTAS EN PDF
-with tab5:
     st.subheader("📜 Escribe una Carta o Pensamiento y Descárgalo en PDF")
-    st.write("Un espacio hermoso para redactar reflexiones o cartas con formato elegante, figuras y sello de fecha/hora de Colombia.")
+    st.write("Redacta tus reflexiones o notas importantes con formato de carta elegante, firmas y sello de fecha/hora colombiana.")
     
     col_pdf1, col_pdf2 = st.columns(2)
     with col_pdf1:
@@ -478,9 +483,9 @@ with tab5:
         remitente_carta = st.text_input("Firma / De parte de:", "Laura Sofía 💖")
     
     contenido_carta = st.text_area(
-        "Escribe aquí lo que desees expresar:", 
-        height=200, 
-        placeholder="Hoy quiero plasmar en este documento mis agradecimientos, aprendizajes y metas..."
+        "Escribe aquí lo que desees plasmar:", 
+        height=220, 
+        placeholder="Hoy quiero expresar..."
     )
     
     tz_colombia = pytz.timezone("America/Bogota")
