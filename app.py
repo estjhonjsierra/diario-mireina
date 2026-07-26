@@ -444,8 +444,8 @@ def generar_pdf_carta(titulo, remitente, contenido, fecha_hora_str):
     story.append(Paragraph(f"<b>Asunto:</b> {titulo}", ParagraphStyle('Sub', parent=title_style, fontSize=18, textColor=colors.HexColor("#ff85a1"))))
     story.append(Spacer(1, 14))
     
-    contenido_formateado = contenido.replace('
-', '<br/>')
+    # Sintaxis de salto de línea corregida aquí
+    contenido_formateado = contenido.replace('\n', '<br/>')
     story.append(Paragraph(contenido_formateado, body_style))
     story.append(Spacer(1, 20))
     story.append(Paragraph(f"Con todo mi amor y admiración,<br/><b>{remitente}</b> ✨🦋", footer_style))
@@ -716,150 +716,88 @@ with tab3:
     with col1:
         st.markdown("""
         <div class='card'>
-            <h3 style='color: #d63384;'>🍕 Antojitos & Comidas Favoritas</h3>
+            <h4 style='color: #c2185b;'>🍕 Tus Antojitos & Gustos Favoritos 💖</h4>
             <ul>
-                <li><b>Plato estrella:</b> Lasaña caliente y pastas 🍝</li>
-                <li><b>El infaltable nocturno:</b> Perro caliente de medianoche 🌭</li>
-                <li><b>Noche de pelis:</b> Crispeticas y chocolates 🍿🍫</li>
-                <li><b>Bebida de paz:</b> Un buen café por la mañana ☕</li>
+                <li><b>Comida preferida:</b> Lasaña y pastas deliciosas 🍝</li>
+                <li><b>Pelis preferidas:</b> ¡Películas de terror! 👻🍿</li>
+                <li><b>Lugar favorito para desconectar:</b> La finca con tu familia y tu hijita 🏡🌱</li>
+                <li><b>Tu pasión profesional:</b> Administradora de Empresas en potencia 🎓💼</li>
+                <li><b>Empresa:</b> TQ (Tecnoquímicas) 🏢✨</li>
             </ul>
         </div>
         """, unsafe_allow_html=True)
         
-        st.markdown("""
-        <div class='card'>
-            <h3 style='color: #d63384;'>⚽ La Famosa Apuesta</h3>
-            <ul>
-                <li><b>Tu equipo de corazón:</b> ¡Noruega! 🇳🇴</li>
-                <li><b>Mi equipo:</b> Francia / Argentina 🇫🇷🇦🇷</li>
-                <li><b>Premio acordado:</b> Una cena deliciosa pagada por el perdedor 😉🥂</li>
-            </ul>
-        </div>
-        """, unsafe_allow_html=True)
-
     with col2:
         st.markdown("""
         <div class='card'>
-            <h3 style='color: #d63384;'>🍿 Lista de Películas de Terror (Por Ver)</h3>
-            <p>Checklist para nuestras maratones:</p>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        peli1 = st.checkbox("👻 Evil Dead Rise (La favorita para asustarse)", value=True)
-        peli2 = st.checkbox("🕯️ El Conjuro 3", value=False)
-        peli3 = st.checkbox("🎈 It (Eso)", value=False)
-        peli4 = st.checkbox("🚪 Un Lugar en Silencio", value=True)
-        
-        if peli1 and peli2 and peli3 and peli4:
-            st.success("¡Listos para una maratón completa con luces apagadas! 🍿🎃")
-
-        st.markdown("""
-        <div class='card' style='margin-top: 15px;'>
-            <h3 style='color: #d63384;'>🏡 El Lugar Sagrado</h3>
-            <p><b>La Finca los fines de semana:</b> El espacio perfecto para desconectar del trabajo de TQ, respirar aire puro, recargar energías y compartir risas con tu hijita. ✨🌳🦋</p>
+            <h4 style='color: #c2185b;'>🏔️ Nuestra Conexión en la Distancia ✈️</h4>
+            <p>
+                Aunque nos separen los kilómetros entre <b>Medellín</b> y <b>Bucaramanga</b>, 
+                cada pensamiento y cada detalle nos mantiene más cerca que nunca.
+            </p>
+            <p style='font-weight: bold; color: #ff4d6d;'>
+                ¡Recuerda que siempre cuentas conmigo en cada paso de tu camino! 💖🦋
+            </p>
         </div>
         """, unsafe_allow_html=True)
 
 # ------------------------------------------
-# TAB 4: GENERADOR DE CARTAS EN PDF
+# TAB 4: GENERADOR DE CARTAS PDF
 # ------------------------------------------
 with tab4:
-    st.markdown("<h3 style='color: #d63384;'>📜 Redactar y Generar Carta Elegante en PDF 🦋</h3>", unsafe_allow_html=True)
-    st.write("Escribe una reflexión, carta o nota importante para descargarla en formato PDF profesional con sellos de fecha y hora.")
+    st.markdown("<h3 style='color: #d63384;'>📜 Generador de Cartas en PDF ✨</h3>", unsafe_allow_html=True)
+    st.write("Crea y descarga cartas elegantes en formato PDF para guardar tus momentos o imprimirlos.")
     
-    col_pdf1, col_pdf2 = st.columns(2)
-    with col_pdf1:
-        titulo_carta = st.text_input("Título o Asunto de la carta:", "Mis reflexiones y metas ✨")
-        remitente_carta = st.text_input("Firma / Remitente:", "Laura Sofía 💖")
-    
+    col_p1, col_p2 = st.columns(2)
+    with col_p1:
+        titulo_carta = st.text_input("Asunto o Título de la Carta:", value="Un mensaje especial para mi reina 💖")
+    with col_p2:
+        remitente_carta = st.text_input("Remitente:", value="Tu enamorado desde Medellín 🏔️")
+
     contenido_carta = st.text_area(
-        "Escribe aquí el cuerpo de tu carta:", 
-        height=250, 
-        placeholder="Hoy quiero dejar por escrito lo agradecida que me siento por los avances en mi vida profesional y personal..."
+        "Escribe el mensaje de la carta:", 
+        height=220,
+        value="Mi reina hermosa, te escribo este mensaje para recordarte lo mucho que te amo y lo orgulloso que me siento de ver todo tu esfuerzo en TQ y en la Universidad. Eres una mujer simplemente extraordinaria..."
     )
     
-    tz_colombia = pytz.timezone("America/Bogota")
-    fecha_hora_actual = datetime.now(tz_colombia).strftime("%d/%m/%Y a las %I:%M %p")
-    
-    st.caption(f"🕒 **Sello de fecha y hora automática:** {fecha_hora_actual} (Hora oficial de Colombia)")
-    
-    if st.button("🎨 Generar y Preparar Archivo PDF 📄"):
-        if contenido_carta.strip():
-            pdf_bytes = generar_pdf_carta(titulo_carta, remitente_carta, contenido_carta, fecha_hora_actual)
-            st.success("¡Tu carta PDF se ha generado correctamente con un diseño elegante! 💖🦋")
-            
-            st.download_button(
-                label="📥 Descargar Carta en Formato PDF",
-                data=pdf_bytes,
-                file_name=f"Carta_LauraSofia_{datetime.now().strftime('%d_%m_%Y')}.pdf",
-                mime="application/pdf"
-            )
-            st.balloons()
-        else:
-            st.warning("Escribe algo en el campo de texto antes de generar el documento PDF.")
+    if st.button("📄 Generar PDF Elegante ✨"):
+        tz_colombia = pytz.timezone("America/Bogota")
+        fecha_hora_actual = datetime.now(tz_colombia).strftime("%d/%m/%Y %I:%M %p")
+        
+        pdf_bytes = generar_pdf_carta(titulo_carta, remitente_carta, contenido_carta, fecha_hora_actual)
+        
+        st.success("¡Tu carta PDF ha sido creada exitosamente! 📜💖")
+        
+        st.download_button(
+            label="⬇️ Descargar Carta en PDF 🦋",
+            data=pdf_bytes,
+            file_name=f"Carta_Laura_Sofia_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf",
+            mime="application/pdf"
+        )
 
 # ------------------------------------------
-# TAB 5: FRASCO DE RECUERDOS & FUNCIONES ADICIONALES (CORTESÍA ESPECIAL)
+# TAB 5: FRASCO DE RECUERDOS & EXTRA
 # ------------------------------------------
 with tab5:
-    st.markdown("<h3 style='color: #d63384;'>🌟 El Frasco de los Recuerdos & Deseos 🏺✨</h3>", unsafe_allow_html=True)
-    st.write("¡Un extra especial interactivo creado para regalarte momentos de amor y alegría!")
+    st.markdown("<h3 style='color: #d63384;'>🌟 Frasco de Recuerdos & Motivos de Amor 💕</h3>", unsafe_allow_html=True)
+    st.write("Saca una notita del frasco virtual cada vez que quieras sonreír.")
     
-    col_extra1, col_extra2 = st.columns([1.1, 0.9], gap="large")
+    razones = [
+        "🌸 Por tu sonrisa que ilumina mis días a la distancia.",
+        "🎓 Por la admiración gigante que siento al verte estudiar Administración.",
+        "💼 Por tu profesionalismo y entrega impecable en TQ.",
+        "🏡 Por ver el amor tan hermoso con el que cuidas a tu hijita y a tu hogar.",
+        "✨ Por tu dulzura, tus chistes y cada conversación compartida.",
+        "🦋 Por la magia que le transmites a todo lo que haces.",
+        "💖 Por ser mi lugar seguro y mi reina consentida."
+    ]
     
-    with col_extra1:
-        st.markdown("""
-        <div class='card'>
-            <h4 style='color: #d63384;'>🏺 Sacar una nota del Frasco Mágico</h4>
-            <p>Haz clic abajo para sacar una notita aleatoria con recuerdos, razones por las que eres increíble o planes a futuro:</p>
+    if st.button("🫙 Sacar una nota del Frasco 💖"):
+        nota = random.choice(razones)
+        st.balloons()
+        st.markdown(f"""
+        <div class='surprise-box' style='background: #fff0f5; border: 3px solid #ff4d6d;'>
+            <h3 style='color: #c2185b; margin: 0;'>💌 Notita del Frasco:</h3>
+            <p style='font-size: 1.25em; margin-top: 10px; color: #333;'><b>{nota}</b></p>
         </div>
         """, unsafe_allow_html=True)
-        
-        if st.button("🔮 Sacar una Notita del Frasco 🌸"):
-            notas_frasco = [
-                "🦋 **Razón #1:** La forma en que te entregas con tanto amor a tu hijita.",
-                "💖 **Razón #2:** Tu determinación imperturbable para culminar tus estudios de Administración.",
-                "🌸 **Razón #3:** Tu risa y cómo ilumina cualquier conversación a la distancia.",
-                "🍝 **Plan Futuro:** Una cena romántica para celebrar tus triunfos en TQ.",
-                "🏡 **Momento Paz:** Un fin de semana soleado en la finca sin revisar correos.",
-                "👑 **Razón #4:** Tu elegancia, tu inteligencia y tu corazón noble.",
-                "🍿 **Noche Especial:** Maratón de películas de terror con crispeticas y tu cobijita favorita."
-            ]
-            nota_sacada = random.choice(notas_frasco)
-            st.balloons()
-            st.markdown(f"""
-            <div style='background: linear-gradient(135deg, #fff0f5 0%, #ffe3ec 100%); padding: 22px; border-radius: 20px; border: 2px solid #ff4d6d; text-align: center; font-size: 1.25em;'>
-                {nota_sacada}
-            </div>
-            """, unsafe_allow_html=True)
-            
-        st.write("")
-        st.write("---")
-        st.markdown("#### 🎵 Música & Ambiente para Leer tu Diario")
-        st.write("Te sugiero poner tu playlist favorita en Spotify mientras navegas por tus notas:")
-        st.audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", format="audio/mp3")
-        st.caption("*(Puedes pausar o reproducir esta melodía suave de fondo)*")
-
-    with col_extra2:
-        st.markdown("""
-        <div class='counter-box'>
-            <p style='margin: 0; font-weight: bold;'>✨ RECORDATORIO DIARIO ✨</p>
-            <h2>¡Eres Incansable!</h2>
-            <p style='margin: 0; font-size: 1.1em;'>Medellín & Bucaramanga unidos siempre 🏔️✈️💖</p>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        st.markdown("#### 📊 Resumen de tu Diario")
-        total_notas = len(cargar_entradas())
-        st.metric(label="Total de memorias guardadas:", value=f"{total_notas} entradas 📖")
-        
-        if total_notas > 0:
-            entries = cargar_entradas()
-            # Descarga de respaldo de entradas
-            json_bytes = json.dumps(entries, ensure_ascii=False, indent=4).encode('utf-8')
-            st.download_button(
-                label="📥 Descargar Copia de Seguridad de mi Diario (.json)",
-                data=json_bytes,
-                file_name="Copia_Seguridad_Diario_LauraSofia.json",
-                mime="application/json"
-            )
