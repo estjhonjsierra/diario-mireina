@@ -528,46 +528,94 @@ Sábado de tranquilidad, de sonreír sin afanes y de regalarte el tiempo libre q
 
 LINEA_DEL_TIEMPO_RECUERDOS = [
     {
-        "fecha": "Enero 2026",
-        "titulo": "❤️ Nos conocimos",
-        "desc": "El día en que nuestras conversaciones comenzaron y cambió mi perspectiva por completo. Tu dulzura e inteligencia brillaron desde el primer segundo.",
+        "fecha": "25/03/2026",
+        "titulo": "❤️ Primer saludo",
+        "desc": "Quedó registrada la primera conversación del chat con un saludo sencillo, y desde ahí empezó a sentirse la confianza.",
         "icono": "❤️"
     },
     {
-        "fecha": "Febrero 2026",
-        "titulo": "🌸 Primera llamada interminable",
-        "desc": "Aquella noche hablando horas sin parar sobre la vida, TQ, tus metas en Administración y tus sueños. El tiempo se pasó volando.",
-        "icono": "🌸"
+        "fecha": "10/04/2026",
+        "titulo": "📝 Checklist resuelto",
+        "desc": "Se ayudó a diligenciar el checklist desde la tablet y SharePoint hasta lograr que la opción apareciera correctamente.",
+        "icono": "📝"
     },
     {
-        "fecha": "Marzo 2026",
-        "titulo": "📷 Primera foto juntos en la memoria",
-        "desc": "Ese momento inmortalizado donde tu sonrisa iluminó absolutamente todo. Una foto para guardar por siempre.",
-        "icono": "📷"
+        "fecha": "14/04/2026",
+        "titulo": "📦 Causal de descontinuación",
+        "desc": "Se aclaró la causal del producto descontinuado y quedó la referencia como 824 baja rotación.",
+        "icono": "📦"
     },
     {
-        "fecha": "Abril 2026",
-        "titulo": "💌 Primera carta escrita desde el corazón",
-        "desc": "Las primeras palabras plasmadas para hacerte saber lo mucho que vales y la falta que me haces día a día.",
-        "icono": "💌"
+        "fecha": "17/04/2026",
+        "titulo": "🔗 Envío de enlaces",
+        "desc": "Se compartieron enlaces de SharePoint y soportes para carpeta y checklist, mostrando apoyo constante.",
+        "icono": "🔗"
     },
     {
-        "fecha": "Mayo 2026",
-        "titulo": "✈️ El puente Medellín - Bucaramanga",
-        "desc": "Consolidamos esta conexión única a 390 km de distancia, demostrando que cuando el cariño es real, las montañas solo son paisaje.",
-        "icono": "✈️"
+        "fecha": "02/06/2026",
+        "titulo": "♻️ Devolución en CEDI",
+        "desc": "Se revisó un formato de devolución en el CEDI del Éxito y se aclaró el número correcto para el registro.",
+        "icono": "♻️"
     },
     {
-        "fecha": "Junio 2026",
-        "titulo": "✨ Una tarde soñada de desconexión",
-        "desc": "Verte sonreír alegre, descansando y compartiendo tiempo de calidad con los tuyos fue de los regalos más lindos de mitad de año.",
-        "icono": "✨"
+        "fecha": "06/07/2026",
+        "titulo": "🌷 Conversación más cercana",
+        "desc": "La charla empezó a fluir con más cariño y admiración; ambos dijeron que podían hablar más seguido.",
+        "icono": "🌷"
     },
     {
-        "fecha": "Julio 2026",
-        "titulo": "👑 Creación de 'El Diario de Mi Reina'",
-        "desc": "Lanzamiento oficial de este rincón mágico interactivo lleno de ositos, mariposas y mensajes diarios para ti.",
-        "icono": "👑"
+        "fecha": "07/07/2026",
+        "titulo": "💬 Más sobre ustedes",
+        "desc": "Hablaron de estudio, ciudad, comida favorita, redes y el deseo de conocerse en persona con respeto.",
+        "icono": "💬"
+    },
+    {
+        "fecha": "12/07/2026",
+        "titulo": "🎂 Cumpleaños y familia",
+        "desc": "Compartieron edades, fechas de cumpleaños y detalles de familia, dejando ver una confianza más profunda.",
+        "icono": "🎂"
+    },
+    {
+        "fecha": "13/07/2026",
+        "titulo": "🎵 Música compartida",
+        "desc": "Descubrieron gustos musicales en común y hablaron de afrobeat, Beéle y Melendi con mucho entusiasmo.",
+        "icono": "🎵"
+    },
+    {
+        "fecha": "18/07/2026",
+        "titulo": "🚗 Apoyo en carretera",
+        "desc": "Hubo mensajes de cuidado cuando el regreso se complicó por un accidente y el trayecto se hizo más largo.",
+        "icono": "🚗"
+    },
+    {
+        "fecha": "19/07/2026",
+        "titulo": "💪 Ánimo y sueños",
+        "desc": "Se dieron palabras de apoyo para seguir adelante con los sueños, el estudio y las responsabilidades.",
+        "icono": "💪"
+    },
+    {
+        "fecha": "22/07/2026",
+        "titulo": "📆 Calendario para verse",
+        "desc": "Empezaron a mirar agendas para encontrar un momento y verse pronto, con muchas ganas de acercarse.",
+        "icono": "📆"
+    },
+    {
+        "fecha": "23/07/2026",
+        "titulo": "💖 Te quiero mucho",
+        "desc": "La conversación subió de tono emocional y ella le dijo que lo quería mucho, con ternura y confianza.",
+        "icono": "💖"
+    },
+    {
+        "fecha": "25/07/2026",
+        "titulo": "📍 Ubicación compartida",
+        "desc": "Compartieron ubicación en tiempo real, coordinaron la llegada y se acompañaron durante el trayecto.",
+        "icono": "📍"
+    },
+    {
+        "fecha": "26/07/2026",
+        "titulo": "🌙 Cierre con cariño",
+        "desc": "El chat cerró con confirmaciones de afecto, cuidado y la sensación de estar siempre pendientes el uno del otro.",
+        "icono": "🌙"
     }
 ]
 
@@ -713,7 +761,7 @@ with col_mus2:
         <div style='background: white; border-radius: 18px; padding: 10px 18px; border: 2px solid #ff85a1; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center;'>
             <span style='color: #d63384; font-weight: bold; font-size: 0.9em;'>🎶 Reproduciendo nuestra melodía de paz...</span>
             <audio autoplay loop controls style='width: 100%; height: 32px; margin-top: 5px;'>
-                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
                 Tu navegador no soporta el reproductor de audio.
             </audio>
         </div>
