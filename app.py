@@ -6,7 +6,7 @@ import pytz
 import io
 import random
 
-# Librerías para generar el PDF elegante
+# Librerías para generar el PDF elegante con ReportLab
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
@@ -16,7 +16,7 @@ from reportlab.lib import colors
 # 1. CONFIGURACIÓN DE PÁGINA
 # ==========================================
 st.set_page_config(
-    page_title="Diario Especial | Laura Sofía 💖🦋",
+    page_title="El Diario de Mi Reina 💖🦋🧸✨",
     page_icon="👑",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -28,120 +28,145 @@ if "bienvenida" not in st.session_state:
     st.session_state["bienvenida"] = True
 
 # ==========================================
-# 2. ESTILOS CSS AVANZADOS, TIPOGRAFÍA GRANDE & ANIMACIONES FLOTANTES
+# 2. SISTEMA DE COLORES PASTEL DINÁMICOS POR DÍA
 # ==========================================
-st.markdown("""
+tz_colombia = pytz.timezone("America/Bogota")
+dia_semana_num = datetime.now(tz_colombia).weekday() # 0: Lunes, 6: Domingo
+
+# Paleta de degradados pasteles femeninos y suaves
+PALETAS_PASTEL = {
+    0: {"nombre": "Rosa Algodón de Azúcar (Lunes)", "gradient": "linear-gradient(135deg, #fff0f5 0%, #ffe3ec 40%, #f7d6e0 70%, #fff5f8 100%)"},
+    1: {"nombre": "Lavanda Suave (Martes)", "gradient": "linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 40%, #f5f3ff 70%, #faf5ff 100%)"},
+    2: {"nombre": "Melocotón Dulce (Miércoles)", "gradient": "linear-gradient(135deg, #fff7ed 0%, #ffedd5 40%, #fff1f2 70%, #fffaf0 100%)"},
+    3: {"nombre": "Menta & Rosas (Jueves)", "gradient": "linear-gradient(135deg, #f0fdf4 0%, #dcfce7 40%, #fdf2f8 70%, #f7fee7 100%)"},
+    4: {"nombre": "Seda Rosa Pastel (Viernes)", "gradient": "linear-gradient(135deg, #fdf2f8 0%, #fce7f3 40%, #fbcfe8 70%, #fff0f5 100%)"},
+    5: {"nombre": "Lila Perlado (Sábado)", "gradient": "linear-gradient(135deg, #faf5ff 0%, #f3e8ff 40%, #ffe4e6 70%, #fcf5ff 100%)"},
+    6: {"nombre": "Cuarzo Rosa Cálido (Domingo)", "gradient": "linear-gradient(135deg, #fff1f2 0%, #ffe4e6 40%, #fecdd3 70%, #fff5f5 100%)"}
+}
+
+fondo_hoy = PALETAS_PASTEL[dia_semana_num]["gradient"]
+nombre_paleta = PALETAS_PASTEL[dia_semana_num]["nombre"]
+
+# ==========================================
+# 3. ESTILOS CSS AVANZADOS & ANIMACIONES
+# ==========================================
+st.markdown(f"""
     <style>
-    /* ----------------------------------------------------
-       CONFIGURACIÓN GLOBAL DE TIPOGRAFÍA GRANDE (MAYOR TAMAÑO)
-       ---------------------------------------------------- */
-    html, body, [class*="css"], .stMarkdown, p, div, label, span {
+    /* Configuración global de tipografía grande */
+    html, body, [class*="css"], .stMarkdown, p, div, label, span {{
         font-size: 21px !important;
         font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         line-height: 1.6 !important;
-    }
+    }}
 
-    /* Entradas de texto, selectores y botones con letra grande */
-    .stTextInput input, .stTextArea textarea, .stSelectbox div, .stMultiSelect, .stRadio label {
+    .stTextInput input, .stTextArea textarea, .stSelectbox div, .stMultiSelect, .stRadio label {{
         font-size: 1.1em !important;
-    }
+    }}
 
-    /* Fondo Degradado Suave con Destellos Pastel */
-    .stApp {
-        background: linear-gradient(135deg, #fff0f3 0%, #ffe3ec 40%, #f7d6e0 70%, #fff5f7 100%);
-        background-attachment: fixed;
-    }
+    /* FONDO DINÁMICO QUE CAMBIA SEGÚN EL DÍA DE LA SEMANA */
+    .stApp {{
+        background: {fondo_hoy} !important;
+        background-attachment: fixed !important;
+    }}
 
     /* ----------------------------------------------------
-       MARIPOSAS Y CORAZONES FLOTANTES EN EL FONDO (ANIMADOS)
+       PARTÍCULAS FLOTANTES: OSITOS, ESTRELLAS Y MARIPOSAS
        ---------------------------------------------------- */
-    .floating-particle {
+    .floating-particle {{
         position: fixed;
         z-index: 0;
         pointer-events: none;
         user-select: none;
         animation: floatParticle 9s infinite ease-in-out;
-        opacity: 0.75;
-        font-size: 1.8rem;
-    }
+        opacity: 0.85;
+        font-size: 2.2rem;
+    }}
 
-    @keyframes floatParticle {
-        0% {
+    @keyframes floatParticle {{
+        0% {{
             transform: translateY(105vh) translateX(0px) rotate(0deg) scale(0.8);
             opacity: 0;
-        }
-        20% { opacity: 0.85; }
-        80% { opacity: 0.85; }
-        100% {
-            transform: translateY(-15vh) translateX(50px) rotate(360deg) scale(1.25);
+        }}
+        20% {{ opacity: 0.95; }}
+        80% {{ opacity: 0.95; }}
+        100% {{
+            transform: translateY(-15vh) translateX(65px) rotate(360deg) scale(1.35);
             opacity: 0;
-        }
-    }
+        }}
+    }}
 
-    /* Posiciones y ritmos variados para partículas */
-    .p1 { left: 5%; animation-duration: 10s; animation-delay: 0s; }
-    .p2 { left: 18%; animation-duration: 12s; animation-delay: 2s; }
-    .p3 { left: 32%; animation-duration: 9s;  animation-delay: 4s; }
-    .p4 { left: 48%; animation-duration: 11s; animation-delay: 1s; }
-    .p5 { left: 63%; animation-duration: 13s; animation-delay: 5s; }
-    .p6 { left: 78%; animation-duration: 8s;  animation-delay: 3s; }
-    .p7 { left: 90%; animation-duration: 12s; animation-delay: 6s; }
+    .p1 {{ left: 3%;  animation-duration: 10s; animation-delay: 0s; }}
+    .p2 {{ left: 14%; animation-duration: 12s; animation-delay: 2s; }}
+    .p3 {{ left: 26%; animation-duration: 9s;  animation-delay: 4s; }}
+    .p4 {{ left: 38%; animation-duration: 11s; animation-delay: 1s; }}
+    .p5 {{ left: 52%; animation-duration: 13s; animation-delay: 5s; }}
+    .p6 {{ left: 66%; animation-duration: 8s;  animation-delay: 3s; }}
+    .p7 {{ left: 80%; animation-duration: 12s; animation-delay: 6s; }}
+    .p8 {{ left: 92%; animation-duration: 10s; animation-delay: 1.5s; }}
 
-    /* ----------------------------------------------------
-       KEYFRAMES Y ANIMACIONES DE ELEMENTOS
-       ---------------------------------------------------- */
-    @keyframes floatHeader {
-        0% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-8px) rotate(1deg); }
-        100% { transform: translateY(0px) rotate(0deg); }
-    }
+    /* Animaciones header */
+    @keyframes floatHeader {{
+        0% {{ transform: translateY(0px) rotate(0deg); }}
+        50% {{ transform: translateY(-8px) rotate(1deg); }}
+        100% {{ transform: translateY(0px) rotate(0deg); }}
+    }}
 
-    @keyframes flutter {
-        0%, 100% { transform: translateY(0px) scale(1) rotate(0deg); }
-        25% { transform: translateY(-6px) scale(1.08) rotate(-4deg); }
-        50% { transform: translateY(-2px) scale(0.96) rotate(3deg); }
-        75% { transform: translateY(-8px) scale(1.05) rotate(-2deg); }
-    }
+    @keyframes flutter {{
+        0%, 100% {{ transform: translateY(0px) scale(1) rotate(0deg); }}
+        25% {{ transform: translateY(-6px) scale(1.08) rotate(-4deg); }}
+        50% {{ transform: translateY(-2px) scale(0.96) rotate(3deg); }}
+        75% {{ transform: translateY(-8px) scale(1.05) rotate(-2deg); }}
+    }}
 
-    /* ANIMACIÓN EN VIVO DE LA FOTO (MOVIMIENTO Y BRILLO CONTINUO) */
-    @keyframes photoMovement {
-        0% {
+    @keyframes photoMovement {{
+        0% {{
             transform: translateY(0px) rotate(0deg) scale(1);
             box-shadow: 0px 10px 25px rgba(255, 77, 109, 0.3);
-        }
-        50% {
+        }}
+        50% {{
             transform: translateY(-14px) rotate(1.5deg) scale(1.02);
             box-shadow: 0px 20px 38px rgba(255, 77, 109, 0.5);
-        }
-        100% {
+        }}
+        100% {{
             transform: translateY(0px) rotate(0deg) scale(1);
             box-shadow: 0px 10px 25px rgba(255, 77, 109, 0.3);
-        }
-    }
+        }}
+    }}
 
-    /* ----------------------------------------------------
-       ESTILOS DE ENCABEZADO Y TARJETAS
-       ---------------------------------------------------- */
-    .main-header {
+    /* Estilos de encabezado y tarjetas */
+    .main-header {{
         text-align: center;
         color: #c2185b;
-        font-size: 3.2em !important;
+        font-size: 3.3em !important;
         font-weight: 900;
         margin-bottom: 5px;
         animation: floatHeader 4s ease-in-out infinite;
         text-shadow: 3px 3px 10px rgba(214, 51, 132, 0.2);
-    }
+    }}
 
-    .sub-header {
+    .sub-header {{
         text-align: center;
         color: #4a4a4a;
         font-size: 1.35em !important;
         font-weight: 600;
-        margin-bottom: 28px;
-    }
+        margin-bottom: 24px;
+    }}
 
-    /* Tarjetas Interactivas con Elevación */
-    .card {
+    .theme-badge {{
+        text-align: center;
+        background: rgba(255, 255, 255, 0.85);
+        border: 2px solid #ff85a1;
+        border-radius: 20px;
+        padding: 6px 18px;
+        width: fit-content;
+        margin: 0 auto 20px auto;
+        font-size: 0.95em;
+        font-weight: bold;
+        color: #d63384;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }}
+
+    .card {{
         background: rgba(255, 255, 255, 0.96);
         border-radius: 24px;
         padding: 28px;
@@ -150,14 +175,14 @@ st.markdown("""
         margin-bottom: 24px;
         font-size: 1.1em;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+    }}
     
-    .card:hover {
+    .card:hover {{
         transform: translateY(-5px);
         box-shadow: 0 14px 35px rgba(255, 77, 109, 0.2);
-    }
+    }}
 
-    .daily-card {
+    .daily-card {{
         background: linear-gradient(135deg, #ffffff 0%, #fff0f5 100%);
         border: 2px solid #ffb6c1;
         border-radius: 24px;
@@ -165,10 +190,9 @@ st.markdown("""
         box-shadow: 0 12px 32px rgba(214, 51, 132, 0.18);
         margin-top: 15px;
         animation: floatHeader 6s ease-in-out infinite;
-    }
+    }}
 
-    /* FOTO ANIMADA EN VIVO CON MOVIMIENTO FLOTANTE Y MARIPOSA */
-    .photo-card-moving {
+    .photo-card-moving {{
         border: 4px solid #ff85a1;
         border-radius: 26px;
         padding: 16px;
@@ -179,14 +203,14 @@ st.markdown("""
         color: #d63384;
         animation: photoMovement 5s ease-in-out infinite;
         transition: all 0.4s ease;
-    }
+    }}
 
-    .photo-card-moving:hover {
+    .photo-card-moving:hover {{
         transform: scale(1.04) rotate(1deg) !important;
         border-color: #ff4d6d;
-    }
+    }}
 
-    .mood-response-box {
+    .mood-response-box {{
         background: linear-gradient(135deg, #ffffff 0%, #fff0f3 100%);
         border-radius: 20px;
         padding: 25px;
@@ -195,179 +219,188 @@ st.markdown("""
         box-shadow: 0 8px 22px rgba(255, 133, 161, 0.25);
         font-size: 1.15em;
         line-height: 1.7;
-    }
+    }}
 
-    .surprise-box {
+    .surprise-box {{
         background: #ffffff;
-        border-radius: 20px;
-        padding: 22px;
+        border-radius: 22px;
+        padding: 24px;
         border: 2px dashed #ff4d6d;
         margin-top: 18px;
         text-align: center;
         font-size: 1.2em;
         animation: flutter 4s infinite ease-in-out;
-    }
+        box-shadow: 0 10px 25px rgba(255, 77, 109, 0.15);
+    }}
 
-    /* Botones Grandes y Llamativos */
-    .stButton>button {
-        font-size: 1.2em !important;
+    .stButton>button {{
+        font-size: 1.15em !important;
         border-radius: 18px !important;
-        padding: 14px 28px !important;
+        padding: 12px 24px !important;
         font-weight: 800 !important;
         background: linear-gradient(135deg, #ff4d6d 0%, #ff758f 100%) !important;
         color: white !important;
         border: none !important;
         box-shadow: 0 8px 20px rgba(255, 77, 109, 0.35) !important;
         transition: all 0.3s ease !important;
-    }
+    }}
 
-    .stButton>button:hover {
+    .stButton>button:hover {{
         transform: scale(1.04) !important;
         box-shadow: 0 10px 25px rgba(255, 77, 109, 0.5) !important;
-    }
+    }}
 
-    /* Badge Flotante Decorativo */
-    .floating-badge {
+    .floating-badge {{
         display: inline-block;
         animation: flutter 3s ease-in-out infinite;
         font-size: 1.5em;
-    }
+    }}
 
-    .counter-box {
-        background: linear-gradient(135deg, #ff758f 0%, #ff4d6d 100%);
-        color: white;
+    .coupon-card {{
+        background: #ffffff;
+        border: 3px dashed #ff85a1;
         border-radius: 20px;
         padding: 20px;
         text-align: center;
-        box-shadow: 0 8px 20px rgba(255, 77, 109, 0.3);
         margin-bottom: 15px;
-    }
-    .counter-box h2 {
-        color: white !important;
-        margin: 0;
-        font-size: 2.2em !important;
-    }
+        transition: all 0.3s ease;
+    }}
+    .coupon-card:hover {{
+        transform: scale(1.03);
+        border-color: #ff4d6d;
+    }}
     </style>
 
-    <!-- INYECCIÓN DE CORAZONES Y MARIPOSAS FLOTANTES EN PANTALLA -->
-    <div class="floating-particle p1">🦋</div>
-    <div class="floating-particle p2">💖</div>
+    <!-- ELEMENTOS FLOTANTES MULTICOLOR -->
+    <div class="floating-particle p1">🧸</div>
+    <div class="floating-particle p2">⭐</div>
     <div class="floating-particle p3">🦋</div>
-    <div class="floating-particle p4">💕</div>
-    <div class="floating-particle p5">🌸</div>
-    <div class="floating-particle p6">🦋</div>
-    <div class="floating-particle p7">✨</div>
+    <div class="floating-particle p4">💖</div>
+    <div class="floating-particle p5">🌟</div>
+    <div class="floating-particle p6">🧸</div>
+    <div class="floating-particle p7">🦋</div>
+    <div class="floating-particle p8">✨</div>
 """, unsafe_allow_html=True)
 
 # ==========================================
-# 3. BASE DE DATOS EXTENDIDA DE MENSAJES DIARIOS
+# 4. BASE DE DATOS EXTENDIDA DE MENSAJES DIARIOS (CERO TE AMO, SOLO TE QUIERO)
 # ==========================================
 MENSAJES_DIARIOS = {
     "2026-07-26": {
         "fecha_str": "Domingo, 26 de Julio",
-        "titulo": "✨ Un rincón creado con el corazón 🦋💖",
+        "titulo": "✨ Un rincón creado con el corazón 🦋💖🧸",
         "poema": """Mi reina hermosa,
-Hoy empieza un detalle hecho a la medida de tu luz. Quería que tuvieras un espacio que te recuerde lo increíble que eres, incluso cuando la rutina presione. Gracias por ser mi lugar seguro, por tu dedicación en TQ y por construir con tanta valentía tu futuro profesional en Administración. Hoy domingo te deseo calma y que recuerdes que mi admiración por ti no tiene límites. Te amo infinitamente."""
+Hoy empieza un detalle hecho a la medida de tu luz. Quería que tuvieras un espacio que te recuerde lo increíble que eres, incluso cuando la rutina presione. Gracias por ser mi lugar seguro, por tu dedicación en TQ y por construir con tanta valentía tu futuro profesional en Administración. Hoy domingo te deseo calma y que recuerdes que mi admiración por ti no tiene límites. Te quiero infinitamente."""
     },
     "2026-07-27": {
         "fecha_str": "Lunes, 27 de Julio",
-        "titulo": "💪 Fuerza para iniciar la semana 🦋🌸",
+        "titulo": "💪 Fuerza para iniciar la semana 🦋🌸⭐",
         "poema": """Lunes de nuevos comienzos, mi reina.
-Sé la disciplina y el compromiso con el que te levantas a dar lo mejor de ti en TQ. Nunca dudes del talento gigantesco que habita en ti ni de lo lejos que vas a llegar. Cuando sientas que la semana pesa, recuerda que aquí hay alguien a cientos de kilómetros sosteniendo tu mano en el pensamiento. ¡A romperla hoy!"""
+Sé la disciplina y el compromiso con el que te levantas a dar lo mejor de ti en TQ. Nunca dudes del talento gigantesco que habita en ti ni de lo lejos que vas a llegar. Cuando sientas que la semana pesa, recuerda que aquí hay alguien a cientos de kilómetros sosteniendo tu mano en el pensamiento. ¡A romperla hoy! Te quiero mucho."""
     },
     "2026-07-28": {
         "fecha_str": "Martes, 28 de Julio",
-        "titulo": "🌹 La calma en tus ojos ✨💖",
-        "poema": """Hay una serenidad única en tu mirada que me devuelve la paz en cualquier momento. Hoy martes solo quiero recordarte que no tienes que poder con todo al mismo tiempo. Vas paso a paso, construyendo un imperio de sueños para ti y tu hijita. Eres elegancia, tenacidad y ternura en una sola persona. Disfruta tu día mi niña hermosa."""
+        "titulo": "🌹 La calma en tus ojos ✨💖🧸",
+        "poema": """Hay una serenidad única en tu mirada que me devuelve la paz en cualquier momento. Hoy martes solo quiero recordarte que no tienes que poder con todo al mismo tiempo. Vas paso a paso, construyendo un imperio de sueños para ti y tu hijita. Eres elegancia, tenacidad y ternura en una sola persona. Disfruta tu día mi reina hermosa. Te quiero."""
     },
     "2026-07-29": {
         "fecha_str": "Miércoles, 29 de Julio",
-        "titulo": "🏔️ Distancia que acorta el amor 🦋✈️",
-        "poema": """De Medellín a Bucaramanga hay montañas, pero no hay distancia capaz de apagar lo que siento por ti. Mitad de semana, mi administradora estrella. Cada esfuerzo en tus estudios y en tu trabajo es una semilla de un futuro brillante. Te pienso a cada hora y me llena de orgullo decir que eres mi reina."""
+        "titulo": "🏔️ Distancia que acorta el cariño 🦋✈️⭐",
+        "poema": """De Medellín a Bucaramanga hay montañas, pero no hay distancia capaz de apagar lo mucho que te quiero. Mitad de semana, mi administradora estrella. Cada esfuerzo en tus estudios y en tu trabajo es una semilla de un futuro brillante. Te pienso a cada hora y me llena de orgullo decir que eres mi reina."""
     },
     "2026-07-30": {
         "fecha_str": "Jueves, 30 de Julio",
-        "titulo": "✨ Luz en el camino 🌸💖",
+        "titulo": "✨ Luz en el camino 🌸💖🧸",
         "poema": """Casi viernes, mi vida.
-Tu sonrisa tiene la magia de iluminar hasta el día más gris. Gracias por tu ternura, por tu escucha y por tu forma tan linda de amar. Que hoy sea un día fluido en el trabajo, donde las cosas salgan a tu favor y donde sientas que todo tu empeño valdrá la pena. Te amo con todo mi ser."""
+Tu sonrisa tiene la magia de iluminar hasta el día más gris. Gracias por tu ternura, por tu escucha y por tu forma tan linda de ser. Que hoy sea un día fluido en el trabajo, donde las cosas salgan a tu favor y donde sientas que todo tu empeño valdrá la pena. Te quiero con todo mi ser."""
     },
     "2026-07-31": {
         "fecha_str": "Viernes, 31 de Julio",
-        "titulo": "🏡 Rumbo al descanso y la finca 🦋🌱",
+        "titulo": "🏡 Rumbo al descanso y la finca 🦋🌱⭐",
         "poema": """¡Llegó el viernes y se cierra Julio!
-Sé lo mucho que anhelas el fin de semana para desconectarte, respirar aire puro en la finca y disfrutar de esos momentos invaluables con tu hijita. Que hoy el tiempo se pase volando en el trabajo para que comiences a disfrutar de tu espacio de paz. ¡Te mereces todo el descanso del mundo!"""
+Sé lo mucho que anhelas el fin de semana para desconectarte, respirar aire puro en la finca y disfrutar de esos momentos invaluables con tu hijita. Que hoy el tiempo se pase volando en el trabajo para que comiences a disfrutar de tu espacio de paz. ¡Te mereces todo el descanso del mundo! Te quiero mucho."""
     },
     "2026-08-01": {
         "fecha_str": "Sábado, 01 de Agosto",
-        "titulo": "🌸 Bienvenido Agosto 💖✨",
+        "titulo": "🌸 Bienvenido Agosto 💖✨🧸",
         "poema": """Iniciamos un nuevo mes, mi reina.
-Sábado de tranquilidad, de aire fresco en la finca y de regalarte el tiempo que tanto trabajas en la semana. Deseo que tu corazón se llene de risas, de desconexión y de ese amor puro de hogar. Disfruta tu fin de semana mi reina bella, te pienso donde estés."""
+Sábado de tranquilidad, de aire fresco en la finca y de regalarte el tiempo que tanto trabajas en la semana. Deseo que tu corazón se llene de risas, de desconexión y de esa paz pura de hogar. Disfruta tu fin de semana mi reina bella, te quiero y te pienso donde estés."""
     },
     "2026-08-02": {
         "fecha_str": "Domingo, 02 de Agosto",
-        "titulo": "☕ Paz para el alma 🦋❤️",
-        "poema": """Un café por la mañana, tranquilidad en la naturaleza y el calor de quienes amas. Los domingos son para recargar el alma y tú mereces llenarte de toda la energía bonita posible. Gracias por existir, por ser tan auténtica y por darle un sentido tan lindo a mis días."""
+        "titulo": "☕ Paz para el alma 🦋❤️⭐",
+        "poema": """Un café por la mañana, tranquilidad en la naturaleza y el calor de quienes amas. Los domingos son para recargar el alma y tú mereces llenarte de toda la energía bonita posible. Gracias por existir, por ser tan auténtica y por darle un sentido tan lindo a mis días. Te quiero muchísimo."""
     },
     "2026-08-03": {
         "fecha_str": "Lunes, 03 de Agosto",
-        "titulo": "🚀 Con la mente en alto 💼✨",
+        "titulo": "🚀 Con la mente en alto 💼✨🧸",
         "poema": """Iniciamos semana de trabajo y metas.
-Recuerda que cada reto laboral en TQ demuestra la mujer capaz, inteligente y estructurada que eres. No te achiquopales ante ningún obstáculo; tienes la capacidad y la berraquera para resolver lo que sea. ¡Estoy muy orgulloso de ti!"""
+Recuerda que cada reto laboral en TQ demuestra la mujer capaz, inteligente y estructurada que eres. No te achicopales ante ningún obstáculo; tienes la capacidad y la berraquera para resolver lo que sea. ¡Estoy muy orgulloso de ti! Te quiero mi reina."""
     },
     "2026-08-04": {
         "fecha_str": "Martes, 04 de Agosto",
-        "titulo": "🎓 Tu futuro como Administradora 💖📚",
-        "poema": """Ver tu entrega con los estudios de Administración me inspira a diario. Sé las noches de cansancio y el sacrificio de equilibrar todo: trabajo, estudio y hogar. Pero créeme, reina, cada trasnocho se convertirá en los triunfos más grandes de tu vida. Sigue firme, vas increíble."""
+        "titulo": "🎓 Tu futuro como Administradora 💖📚⭐",
+        "poema": """Ver tu entrega con los estudios de Administración me inspira a diario. Sé las noches de cansancio y el sacrificio de equilibrar todo: trabajo, estudio y hogar. Pero créeme, reina, cada trasnocho se convertirá en los triunfos más grandes de tu vida. Sigue firme, vas increíble. Te quiero con todo mi corazón."""
     },
     "2026-08-05": {
         "fecha_str": "Miércoles, 05 de Agosto",
-        "titulo": "💖 Mi refugio preferido 🦋✨",
-        "poema": """Si me preguntaran dónde quiero estar, siempre diría que a tu lado o en tu pensamiento. Eres esa persona con la que hablar de todo y de nada se siente perfecto. Mitad de semana mi reina, que hoy las tareas salgan rápido y sin contratiempos."""
+        "titulo": "💖 Mi refugio preferido 🦋✨🧸",
+        "poema": """Si me preguntaran dónde quiero estar, siempre diría que platicando contigo o en tu pensamiento. Eres esa persona con la que hablar de todo y de nada se siente perfecto. Mitad de semana mi reina, que hoy las tareas salgan rápido y sin contratiempos. Te quiero mucho."""
     },
     "2026-08-06": {
         "fecha_str": "Jueves, 06 de Agosto",
-        "titulo": "🌟 Orgullo y admiración 🌸👑",
-        "poema": """No hay un solo día en que no me sienta afortunado de tenerte en mi vida. Admirar tu belleza es fácil, pero admirar tu temple, tu rol como madre y tu ética impecable es lo que realmente me tiene cautivado. Un abrazo apretado desde aquí."""
+        "titulo": "🌟 Orgullo y admiración 🌸👑⭐",
+        "poema": """No hay un solo día en que no me sienta afortunado de tenerte en mi vida. Admirar tu belleza es fácil, pero admirar tu temple, tu rol como madre y tu ética impecable es lo que realmente me tiene cautivado. Un abrazo apretado desde aquí. Te quiero, mi reina."""
     },
     "2026-08-07": {
         "fecha_str": "Viernes, 07 de Agosto",
-        "titulo": "🍕 Noche de antojitos y relax 🍿❤️",
-        "poema": """¡Viernes! Hoy es día de soltar las cargas de la oficina, quizás pedir esa lasaña o pasta deliciosa que tanto te gusta y relajarse. Mañana nos espera un fin de semana hermoso. Que tengas una tarde tranquila y feliz mi reina."""
+        "titulo": "🍕 Noche de antojitos y relax 🍿❤️🧸",
+        "poema": """¡Viernes! Hoy es día de soltar las cargas de la oficina, quizás pedir esa lasaña o pasta deliciosa que tanto te gusta y relajarse. Mañana nos espera un fin de semana hermoso. Que tengas una tarde tranquila y feliz mi reina. Te quiero."""
     },
     "2026-08-08": {
         "fecha_str": "Sábado, 08 de Agosto",
-        "titulo": "🍃 Respirar y disfrutar 🦋🏡",
-        "poema": """Que la brisa de la finca te despeje cualquier estrés y que el sonido de la naturaleza te llene de calma. Pasa un sábado espectacular rodeada de amor, risas con tu niña y esos pequeños momentos que hacen la vida bella."""
+        "titulo": "🍃 Respirar y disfrutar 🦋🏡⭐",
+        "poema": """Que la brisa de la finca te despeje cualquier estrés y que el sonido de la naturaleza te llene de calma. Pasa un sábado espectacular rodeada de cariño, risas con tu niña y esos pequeños momentos que hacen la vida bella. Te quiero infinitamente."""
     },
     "2026-08-09": {
         "fecha_str": "Domingo, 09 de Agosto",
-        "titulo": "🍿 Pelis de terror y descanso 👻💖",
-        "poema": """Domingo ideal para acurrucarse a ver películas (o una buena de terror de las tuyas 👻), comer algo rico y recargar baterías sin afanes. Que descanses profundamente para que inicies la semana renovada."""
+        "titulo": "🍿 Pelis de terror y descanso 👻💖🧸",
+        "poema": """Domingo ideal para acurrucarse a ver películas (o una buena de terror de las tuyas 👻), comer algo rico y recargar baterías sin afanes. Que descanses profundamente para que inicies la semana renovada. Te quiero mucho, mi reina."""
     },
     "2026-08-10": {
         "fecha_str": "Lunes, 10 de Agosto",
-        "titulo": "💎 Eres invencible 🦋🔥",
-        "poema": """Empieza otra semana para brillar. A veces se nos olvida lo fuertes que somos hasta que nos toca demostrarlo, y tú, mi reina, has demostrado una y otra vez que no hay meta que te quede grande. ¡Con toda hoy en TQ!"""
+        "titulo": "💎 Eres invencible 🦋🔥⭐",
+        "poema": """Empieza otra semana para brillar. A veces se nos olvida lo fuertes que somos hasta que nos toca demostrarlo, y tú, mi reina, has demostrado una y otra vez que no hay meta que te quede grande. ¡Con toda hoy en TQ! Te quiero."""
     },
     "2026-08-15": {
         "fecha_str": "Sábado, 15 de Agosto",
-        "titulo": "🏡 El lugar donde eres feliz 🌸💖",
-        "poema": """Nada se compara a ver la paz que sientes cuando estás en la finca. Que este sábado sea para disfrutar de los tuyos, tomar el sol y olvidar cualquier pendiente de trabajo. Disfrútalo al máximo mi cielo."""
+        "titulo": "🏡 El lugar donde eres feliz 🌸💖🧸",
+        "poema": """Nada se compara a ver la paz que sientes cuando estás en la finca. Que este sábado sea para disfrutar de los tuyos, tomar el sol y olvidar cualquier pendiente de trabajo. Disfrútalo al máximo mi cielo. Te quiero."""
     },
     "2026-08-20": {
         "fecha_str": "Jueves, 20 de Agosto",
-        "titulo": "💖 Siempre en mi corazón 🦋✈️",
-        "poema": """No importa cuántos correos o tareas tengas hoy en TQ, tómate un minuto para respirar y sentir que desde Medellín te estoy enviando todo mi amor y la mejor energía. Eres maravillosa."""
+        "titulo": "💖 Siempre en mi corazón 🦋✈️⭐",
+        "poema": """No importa cuántos correos o tareas tengas hoy en TQ, tómate un minuto para respirar y sentir que desde Medellín te estoy enviando todo mi cariño y la mejor energía. Eres maravillosa y te quiero mucho."""
     },
     "2026-08-26": {
         "fecha_str": "Miércoles, 26 de Agosto",
-        "titulo": "💖 Un mes en este diario y siempre 🦋👑",
-        "poema": """Mi reina hermosa, hoy cumplimos un mes en este rinconcito especial. Gracias por permitirme estar a tu lado en la distancia, apoyarte y recordarte a diario lo infinitamente especial que eres para mí. ¡Te amo con el alma!"""
+        "titulo": "💖 Un mes en este diario y siempre 🦋👑🧸",
+        "poema": """Mi reina hermosa, hoy cumplimos un mes en este rinconcito especial. Gracias por permitirme estar a tu lado en la distancia, apoyarte y recordarte a diario lo infinitamente especial que eres para mí. ¡Te quiero con el alma!"""
     }
 }
 
+COMBOS_ICONOS = [
+    "🧸 ⭐ 🦋 💖 ✨",
+    "🌟 🧸 🌸 🦋 💫",
+    "🦋 ⭐ 🧸 💖 👑",
+    "✨ 🦄 🧸 ⭐ 🌸",
+    "💫 💖 🦋 🧸 🌟",
+    "🌸 ⭐ 🧸 🦋 ✨",
+    "👑 🧸 🌟 🦋 💫"
+]
+
 # ==========================================
-# 4. FUNCIONES DE PERSISTENCIA Y PDF
+# 5. FUNCIONES DE PERSISTENCIA (CARGAR, GUARDAR Y BORRAR)
 # ==========================================
 DB_FILE = "diario_laura.json"
 
@@ -384,6 +417,21 @@ def guardar_entradas(entradas):
     with open(DB_FILE, "w", encoding="utf-8") as f:
         json.dump(entradas, f, ensure_ascii=False, indent=4)
 
+def eliminar_entrada_por_indice(index):
+    entradas = cargar_entradas()
+    if 0 <= index < len(entradas):
+        entradas.pop(index)
+        guardar_entradas(entradas)
+        return True
+    return False
+
+def borrar_todo_el_historial():
+    if os.path.exists(DB_FILE):
+        os.remove(DB_FILE)
+
+# ==========================================
+# 6. GENERADOR DE PDF ELEGANTE
+# ==========================================
 def generar_pdf_carta(titulo, remitente, contenido, fecha_hora_str):
     buffer = io.BytesIO()
     doc = SimpleDocTemplate(
@@ -438,39 +486,41 @@ def generar_pdf_carta(titulo, remitente, contenido, fecha_hora_str):
         spaceBefore=25
     )
 
-    story.append(Paragraph("💖 CARTA DE PENSAMIENTOS 🦋", title_style))
-    story.append(Paragraph("🌸 ✨ 🦋 ✨ 💖 ✨ 🌸", title_style))
+    story.append(Paragraph("💖 CARTA DE PENSAMIENTOS 🧸🦋", title_style))
+    story.append(Paragraph("🌸 ✨ 🧸 ⭐ 🦋 ✨ 🌸", title_style))
     story.append(Paragraph(f"<b>Fecha y Hora:</b> {fecha_hora_str} (Hora Colombia)", meta_style))
     story.append(Paragraph(f"<b>Asunto:</b> {titulo}", ParagraphStyle('Sub', parent=title_style, fontSize=18, textColor=colors.HexColor("#ff85a1"))))
     story.append(Spacer(1, 14))
     
-    # Sintaxis de salto de línea corregida aquí
     contenido_formateado = contenido.replace('\n', '<br/>')
     story.append(Paragraph(contenido_formateado, body_style))
     story.append(Spacer(1, 20))
-    story.append(Paragraph(f"Con todo mi amor y admiración,<br/><b>{remitente}</b> ✨🦋", footer_style))
+    story.append(Paragraph(f"Con todo mi cariño y admiración,<br/><b>{remitente}</b> ✨🦋🧸", footer_style))
     story.append(Spacer(1, 15))
-    story.append(Paragraph("🌸 ✨ 🦋 ✨ 💖 ✨ 🌸", title_style))
+    story.append(Paragraph("🌸 ✨ 🧸 ⭐ 🦋 ✨ 🌸", title_style))
 
     doc.build(story)
     buffer.seek(0)
     return buffer
 
 # ==========================================
-# 5. ENCABEZADO Y MARCA PRINCIPAL
+# 7. ENCABEZADO Y MARCA PRINCIPAL
 # ==========================================
-st.markdown("<h1 class='main-header'>✨ El Diario de Laura Sofía 💖🦋</h1>", unsafe_allow_html=True)
-st.markdown("<p class='sub-header'>De Medellín a Bucaramanga 🏔️✈️🌳 | Un rincón lleno de magia, mariposas y amor</p>", unsafe_allow_html=True)
+st.markdown("<h1 class='main-header'>✨ El Diario de Mi Reina 💖🦋🧸</h1>", unsafe_allow_html=True)
+st.markdown("<p class='sub-header'>De Medellín a Bucaramanga 🏔️✈️🌳 | Un rincón lleno de magia, ositos, mariposas y mucho cariño</p>", unsafe_allow_html=True)
+st.markdown(f"<div class='theme-badge'>🎨 Tono Pastel de Hoy: {nombre_paleta}</div>", unsafe_allow_html=True)
 
 # ==========================================
-# 6. MENÚ PRINCIPAL DE 5 PESTAÑAS
+# 8. MENÚ PRINCIPAL DE 7 PESTAÑAS
 # ==========================================
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
+tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
     "👑 Bienvenida & Portada", 
     "✍️ Mi Diario Interactivo", 
-    "🍕 Nuestros Detalles & Gustos", 
-    "📜 Generador de Cartas PDF ✨",
-    "🌟 Frasco de Recuerdos & Extra 💕"
+    "📜 Histórico de Memorias", 
+    "📊 Planificador & Hábitos",
+    "🍕 Antojitos & Cupones", 
+    "📜 Generador PDF",
+    "🫙 Frasco & Ruleta Mágica"
 ])
 
 # ------------------------------------------
@@ -483,25 +533,23 @@ with tab1:
         st.markdown("""
         <div class='card'>
             <h3 style='color: #d63384; margin-bottom: 10px; font-size: 1.55em;'>
-                ¡Bienvenida a tu lugar seguro, mi Reina! <span class='floating-badge'>👑🦋</span>
+                ¡Bienvenida a tu lugar seguro, Mi Reina! <span class='floating-badge'>👑🧸🦋</span>
             </h3>
             <p style='color: #222; font-size: 1.15em; line-height: 1.8;'>
                 Este diario fue creado exclusivamente para ti, para acompañarte durante tus metas en <b>TQ</b>, 
                 tus trasnochos estudiando <b>Administración de Empresas</b> y tus momentos de descanso.
-                ¡Llena tus días de mariposas, corazones y sonrisas! 🌸✨
+                ¡Llena tus días de ositos, mariposas, estrellas y sonrisas! 🌸✨⭐
             </p>
         </div>
         """, unsafe_allow_html=True)
         
-        # Fecha actual en Colombia
-        tz_colombia = pytz.timezone("America/Bogota")
         fecha_colombia = datetime.now(tz_colombia)
         fecha_hoy_key = fecha_colombia.strftime("%Y-%m-%d")
         
         mensaje_hoy = MENSAJES_DIARIOS.get(fecha_hoy_key, {
             "fecha_str": fecha_colombia.strftime("%A, %d de %B"),
-            "titulo": "✨ Un mensaje especial para ti 🦋💖",
-            "poema": "Mi reina hermosa, recuerda siempre lo increíble, inteligente y hermosa que eres. Cada día es una nueva oportunidad para acercarte a tus sueños. ¡Te amo con todo mi corazón!"
+            "titulo": "✨ Un mensaje especial para ti 🦋💖🧸",
+            "poema": "Mi reina hermosa, recuerda siempre lo increíble, inteligente y hermosa que eres. Cada día es una nueva oportunidad para acercarte a tus sueños. ¡Te quiero con todo mi corazón!"
         })
         
         st.markdown(f"""
@@ -519,14 +567,13 @@ with tab1:
         st.write("")
         st.write("---")
         
-        # SECCIÓN DE SORPRESAS Y ÁNIMO INTEGRADA AQUÍ
-        st.markdown("<h3 style='color: #d63384; font-size: 1.5em;'>🌟 Rinconcito de Sorpresas & Ánimo 🦋</h3>", unsafe_allow_html=True)
-        st.write("¿Quieres una chispa de alegría extra hoy?")
+        st.markdown("<h3 style='color: #d63384; font-size: 1.5em;'>🌟 Rinconcito de Sorpresas & Notas Especiales 🧸🦋⭐</h3>", unsafe_allow_html=True)
+        st.write("¿Quieres un detalle o una chispa de alegría hoy?")
         
         col_btn1, col_btn2, col_btn3 = st.columns(3)
         
         with col_btn1:
-            if st.button("🎉 Celebración 💖"):
+            if st.button("🎉 Fiesta Mágica 💖"):
                 st.balloons()
                 st.snow()
                 
@@ -538,14 +585,15 @@ with tab1:
                     "Vas a ser una Administradora de Empresas brillante. ¡Orgullo total de tu disciplina! 🎓💪",
                     "Disfruta cada segundo del fin de semana en la finca con tu hijita. 🏡💖",
                     "¡Muchos éxitos hoy en TQ! Que tengas una jornada fluida e impecable. 💼🌟",
-                    "Desde Medellín te mando toda la buena energía, mariposas y un abrazo apretado. 🏔️✈️",
+                    "Desde Medellín te mando toda la buena energía, ositos, mariposas y un abrazo apretado. 🏔️✈️🧸",
                     "No olvides regalarte una pausa activa, tomar agüita y respirar profundo. ☕🌸",
                     "Eres la reina de tu propio destino y nada te queda grande. 👑🔥"
                 ]
                 st.session_state["mensaje_sorpresa_actual"] = random.choice(frases)
+                st.session_state["iconos_combo_actual"] = random.choice(COMBOS_ICONOS)
 
         with col_btn3:
-            if st.button("🌸 Afirmación 🦋"):
+            if st.button("🌸 Afirmación 🧸⭐"):
                 afirmaciones = [
                     "✨ 'Soy capaz, inteligente y estoy construyendo un futuro hermoso paso a paso.'",
                     "✨ 'Mi trabajo en TQ y mis estudios están rindiendo frutos admirables.'",
@@ -553,20 +601,22 @@ with tab1:
                     "✨ 'Tengo la fuerza para superar cualquier imprevisto con elegancia y serenidad.'"
                 ]
                 st.session_state["mensaje_sorpresa_actual"] = random.choice(afirmaciones)
+                st.session_state["iconos_combo_actual"] = random.choice(COMBOS_ICONOS)
 
         if "mensaje_sorpresa_actual" in st.session_state:
+            combo_icons = st.session_state.get("iconos_combo_actual", "🧸 ⭐ 🦋 💖 ✨")
             st.markdown(f"""
             <div class='surprise-box'>
-                <p style='color: #d63384; font-weight: bold; margin-bottom: 6px; font-size: 1.1em;'>💖 Nota especial para ti 🦋:</p>
+                <div style='font-size: 1.6em; margin-bottom: 8px;'>{combo_icons}</div>
+                <p style='color: #d63384; font-weight: bold; margin-bottom: 6px; font-size: 1.1em;'>Nota especial para ti, Mi Reina:</p>
                 <b>{st.session_state['mensaje_sorpresa_actual']}</b>
             </div>
             """, unsafe_allow_html=True)
 
     with col_foto:
-        # FOTO CON ANIMACIÓN Y MOVIMIENTO CONTINUO
         st.markdown("""
         <div class='photo-card-moving'>
-            <b>📸 Nuestro Rincón Especial 💖🦋</b>
+            <b>📸 Nuestro Rincón Especial 💖🦋🧸</b>
             <p style='font-size: 0.85em; font-weight: normal; margin-top: 4px; color: #666;'>
                 (¡Mira cómo flota nuestra foto!)
             </p>
@@ -574,25 +624,24 @@ with tab1:
         """, unsafe_allow_html=True)
         st.write("")
         
-        # Carga dinámica de foto de portada
         if os.path.exists("portada.jpg"):
-            st.image("portada.jpg", caption="¡Siempre juntos y flotando de amor, mi reina hermosa! ✨💖🦋", use_container_width=True)
+            st.image("portada.jpg", caption="¡Siempre juntos, mi reina hermosa! ✨💖🦋🧸", use_container_width=True)
         elif os.path.exists("portada.jpeg"):
-            st.image("portada.jpeg", caption="¡Siempre juntos y flotando de amor, mi reina hermosa! ✨💖🦋", use_container_width=True)
+            st.image("portada.jpeg", caption="¡Siempre juntos, mi reina hermosa! ✨💖🦋🧸", use_container_width=True)
         elif os.path.exists("portada.png"):
-            st.image("portada.png", caption="¡Siempre juntos y flotando de amor, mi reina hermosa! ✨💖🦋", use_container_width=True)
+            st.image("portada.png", caption="¡Siempre juntos, mi reina hermosa! ✨💖🦋🧸", use_container_width=True)
         else:
             st.image(
                 "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
-                caption="¡Brillando con tu luz propia donde vayas! ✨🦋",
+                caption="¡Brillando con tu luz propia donde vayas! ✨🦋🧸",
                 use_container_width=True
             )
             
         st.markdown("""
         <div style='background: white; border-radius: 20px; padding: 20px; margin-top: 18px; border: 2px solid #ffb6c1; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.05);'>
             <p style='margin:0; color:#333; font-size: 1.1em;'>
-                <b>Ruta del Amor:</b> Medellín ↔ Bucaramanga 🏔️✈️<br>
-                <b>Estado Actual:</b> Pensándote 24/7 con mariposas 💭❤️🦋
+                <b>Ruta Especial:</b> Medellín ↔ Bucaramanga 🏔️✈️<br>
+                <b>Estado Actual:</b> Pensándote 24/7 con ositos y mariposas 💭❤️🦋🧸
             </p>
         </div>
         """, unsafe_allow_html=True)
@@ -601,17 +650,15 @@ with tab1:
 # TAB 2: MI DIARIO INTERACTIVO
 # ------------------------------------------
 with tab2:
-    st.markdown("<h3 style='color: #d63384;'>✍️ Mi Diario Personal e Interactivo 🦋</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='color: #d63384;'>✍️ Mi Diario Personal e Interactivo 🦋🧸</h3>", unsafe_allow_html=True)
     st.write("Escribe lo que viviste hoy, desahógate o guarda un lindo recuerdo.")
     
-    tz_colombia = pytz.timezone("America/Bogota")
     fecha_hoy = datetime.now(tz_colombia).strftime("%d/%m/%Y %I:%M %p")
     
     st.write("---")
-    st.markdown("#### **¿Cómo te sientes en este momento, mi reina?** 🌸")
+    st.markdown("#### **¿Cómo te sientes en este momento, mi reina?** 🌸⭐")
     st.caption("*(Selecciona tu estado de ánimo y mira la respuesta automática)*")
     
-    # Selector Dinámico y Visual
     estado_animo = st.radio(
         "Selecciona tu estado de ánimo:",
         options=[
@@ -627,28 +674,26 @@ with tab2:
         label_visibility="collapsed"
     )
     
-    # DICCIONARIO DE RESPUESTAS AUTOMÁTICAS E INSTANTÁNEAS
     respuestas_animo = {
         "😴 Cansada": """💆‍♀️ **Mi vida hermosa:** Sé que has tenido un día largo entre la oficina de TQ, tareas o la rutina. Te has esforzado un montón.
-        Por favor regálate una ducha tibia, ponte ropa cómoda y permite que tu mente descanse. ¡Hiciste un trabajo fabuloso hoy y estoy muy orgulloso de ti! 🦋""",
+        Por favor regálate una ducha tibia, ponte ropa cómoda y permite que tu mente descanse. ¡Hiciste un trabajo fabuloso hoy y estoy muy orgulloso de ti! Te quiero mucho. 🧸🦋""",
         
         "🙂 Tranquila": """☕ **Paz para tu corazón:** Qué dicha saber que estás disfrutando de un momento de calma. 
-        Tómate un café o té, escucha una bonita canción y disfruta esta serenidad. Te mereces cada segundo de tranquilidad. 🌸""",
+        Tómate un café o té, escucha una bonita canción y disfruta esta serenidad. Te mereces cada segundo de tranquilidad, mi reina. 🌸⭐""",
         
         "😊 Motivada": """🚀 **¡Esa es la actitud, mi reina!**: Tu energía positiva contagia y mueve montañas. 
-        Aprovecha este impulso para avanzar en tus metas de Administración o proyectos personales. ¡Vas con toda! ✨""",
+        Aprovecha este impulso para avanzar en tus metas de Administración o proyectos personales. ¡Vas con toda! Te quiero. ✨🧸""",
         
-        "⭐ Excelente": """🌟 **¡Qué felicidad verte así!**: Tu alegría ilumina todo a tu alrededor y llena el aire de mariposas. 
-        Guarda este momento de satisfacción en tu diario y celebra cada logro, por pequeño o grande que sea. 💖""",
+        "⭐ Excelente": """🌟 **¡Qué felicidad verte así!**: Tu alegría ilumina todo a tu alrededor y llena el aire de mariposas y estrellas. 
+        Guarda este momento de satisfacción en tu diario y celebra cada logro, por pequeño o grande que sea. 💖🦋""",
         
         "💖 Imparable": """👑 **¡Eres una mujer poderosa e invencible!**: No hay reto laboral ni examen de universidad que pueda contigo. 
-        Tienes la berraquera y la inteligencia para devorarte el mundo. ¡A brillar! 🦋🔥""",
+        Tienes la berraquera y la inteligencia para devorarte el mundo. ¡A brillar, mi reina! 🧸🔥""",
         
         "🤯 Abrumada / Estresada": """🤗 **Respira profundo, mi cielo:** Cierra los ojos 5 segundos. No tienes que resolver todo en un solo día.
-        Ve paso a paso. Recuerda que aquí estoy siempre para escucharte, apoyarte y sostenerte cuando sientas que la carga pesa. ❤️"""
+        Ve paso a paso. Recuerda que aquí estoy siempre para escucharte, apoyarte y acompañarte. Te quiero mucho. ❤️🧸"""
     }
     
-    # Tarjeta de Respuesta Dinámica
     st.markdown(f"""
     <div class='mood-response-box'>
         {respuestas_animo[estado_animo]}
@@ -682,122 +727,217 @@ with tab2:
             }
             entradas.insert(0, nueva)
             guardar_entradas(entradas)
-            st.success("¡Entrada guardada con éxito en tu diario personal! 📖✨🦋")
+            st.success("¡Entrada guardada con éxito en tu diario personal! 📖✨🦋🧸")
             st.balloons()
         else:
             st.warning("Por favor escribe un título y el contenido antes de guardar.")
 
-    st.write("---")
-    st.markdown("### 📚 Tus Memorias y Notas Guardadas 🦋")
-    
-    entradas_guardadas = cargar_entradas()
-    if entradas_guardadas:
-        busqueda = st.text_input("🔍 Buscar en mis notas pasadas:", placeholder="Escribe palabras clave...")
-        
-        for item in entradas_guardadas:
-            if busqueda.lower() in item['titulo'].lower() or busqueda.lower() in item['contenido'].lower():
-                cat = item.get('categoria', '💖 Pensamientos')
-                with st.expander(f"📅 {item['fecha']} — {item['titulo']} ({item['animo']}) [{cat}]"):
-                    st.markdown(f"**Categoría:** {cat}")
-                    st.markdown(f"**Estado de ánimo:** {item['animo']}")
-                    st.write(item['contenido'])
-    else:
-        st.info("Aún no tienes entradas guardadas. ¡Inaugura tu diario escribiendo la primera arriba! ✨🦋")
-
 # ------------------------------------------
-# TAB 3: NUESTROS DETALLES & GUSTOS
+# TAB 3: HISTÓRICO DE MEMORIAS Y GESTIÓN (BOTÓN DE BORRAR)
 # ------------------------------------------
 with tab3:
-    st.markdown("<h3 style='color: #d63384;'>🍕 Nuestros Detalles, Gustos & Momentos 🦋</h3>", unsafe_allow_html=True)
-    st.write("Un rinconcito que reúne las cosas que nos encantan y nuestras dinámicas favoritas.")
+    st.markdown("<h3 style='color: #d63384;'>📜 Histórico de Memorias & Gestión de Notas 🗑️💖</h3>", unsafe_allow_html=True)
+    st.write("Aquí se guardan todas tus entradas pasadas. Puedes buscarlas, leerlas o eliminar las que no desees guardar.")
     
-    col1, col2 = st.columns(2, gap="large")
+    entradas_guardadas = cargar_entradas()
     
-    with col1:
-        st.markdown("""
-        <div class='card'>
-            <h4 style='color: #c2185b;'>🍕 Tus Antojitos & Gustos Favoritos 💖</h4>
-            <ul>
-                <li><b>Comida preferida:</b> Lasaña y pastas deliciosas 🍝</li>
-                <li><b>Pelis preferidas:</b> ¡Películas de terror! 👻🍿</li>
-                <li><b>Lugar favorito para desconectar:</b> La finca con tu familia y tu hijita 🏡🌱</li>
-                <li><b>Tu pasión profesional:</b> Administradora de Empresas en potencia 🎓💼</li>
-                <li><b>Empresa:</b> TQ (Tecnoquímicas) 🏢✨</li>
-            </ul>
-        </div>
-        """, unsafe_allow_html=True)
+    if entradas_guardadas:
+        st.write("---")
+        col_search, col_clean = st.columns([1.2, 0.8])
         
-    with col2:
-        st.markdown("""
-        <div class='card'>
-            <h4 style='color: #c2185b;'>🏔️ Nuestra Conexión en la Distancia ✈️</h4>
-            <p>
-                Aunque nos separen los kilómetros entre <b>Medellín</b> y <b>Bucaramanga</b>, 
-                cada pensamiento y cada detalle nos mantiene más cerca que nunca.
-            </p>
-            <p style='font-weight: bold; color: #ff4d6d;'>
-                ¡Recuerda que siempre cuentas conmigo en cada paso de tu camino! 💖🦋
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
+        with col_search:
+            busqueda = st.text_input("🔍 Buscar en tu historial:", placeholder="Escribe palabras clave...")
+            
+        with col_clean:
+            st.markdown("<p style='font-size:0.85em; color:#666; margin-bottom:5px;'>Zona de Gestión Global:</p>", unsafe_allow_html=True)
+            confirmar_borrado = st.checkbox("⚠️ Confirmo que deseo borrar TODO el historial")
+            if st.button("🚨 Limpiar Todo el Historial"):
+                if confirmar_borrado:
+                    borrar_todo_el_historial()
+                    st.success("¡El historial de notas ha sido limpiado por completo!")
+                    st.rerun()
+                else:
+                    st.warning("Por favor marca la casilla de confirmación primero.")
+
+        st.write("---")
+        
+        for idx, item in enumerate(entradas_guardadas):
+            if busqueda.lower() in item['titulo'].lower() or busqueda.lower() in item['contenido'].lower():
+                cat = item.get('categoria', '💖 Pensamientos')
+                
+                with st.expander(f"📅 {item['fecha']} — {item['titulo']} ({item['animo']}) [{cat}]"):
+                    st.markdown(f"**Categoría:** `{cat}`")
+                    st.markdown(f"**Estado de ánimo registrado:** {item['animo']}")
+                    st.write(item['contenido'])
+                    
+                    st.write("")
+                    col_del1, col_del2 = st.columns([0.3, 0.7])
+                    with col_del1:
+                        if st.button(f"🗑️ Eliminar esta nota", key=f"del_{idx}"):
+                            eliminar_entrada_por_indice(idx)
+                            st.success("Nota eliminada correctamente. 🗑️✨")
+                            st.rerun()
+
+        # Opción para exportar respaldo
+        st.write("---")
+        json_data = json.dumps(entradas_guardadas, ensure_ascii=False, indent=4)
+        st.download_button(
+            label="📥 Descargar Copia de Respaldo de mi Historial (.JSON)",
+            data=json_data,
+            file_name=f"Historial_Diario_Mi_Reina_{datetime.now().strftime('%Y%m%d')}.json",
+            mime="application/json"
+        )
+    else:
+        st.info("Aún no tienes entradas guardadas en tu histórico. ¡Escribe la primera en la pestaña 'Mi Diario Interactivo'! ✨🦋🧸")
 
 # ------------------------------------------
-# TAB 4: GENERADOR DE CARTAS PDF
+# TAB 4: PLANIFICADOR & HÁBITOS (TQ + UNIVERSIDAD)
 # ------------------------------------------
 with tab4:
-    st.markdown("<h3 style='color: #d63384;'>📜 Generador de Cartas en PDF ✨</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='color: #d63384;'>📊 Planificador & Hábitos Diarios de Mi Reina 🎓💼</h3>", unsafe_allow_html=True)
+    st.write("Un organizador sencillo para cuidar tu salud, tus estudios en Administración y tus metas en TQ.")
+    
+    st.write("---")
+    col_hab1, col_hab2 = st.columns(2, gap="large")
+    
+    with col_hab1:
+        st.markdown("<h4 style='color: #c2185b;'>💧 Bienestar & Autocuidado</h4>", unsafe_allow_html=True)
+        h1 = st.checkbox("Tomar al menos 2 litros de agua 🥤")
+        h2 = st.checkbox("Hacer una pausa activa y estirar la espalda 🧘‍♀️")
+        h3 = st.checkbox("Disfrutar un café/té con tranquilidad ☕")
+        h4 = st.checkbox("Dormir al menos 7 horas hoy 💤")
+        
+    with col_hab2:
+        st.markdown("<h4 style='color: #c2185b;'>💼 Éxito Laboral & Universitario</h4>", unsafe_allow_html=True)
+        h5 = st.checkbox("Completar tareas prioritarias en TQ 🏢")
+        h6 = st.checkbox("Avanzar en lecturas/trabajos de Administración 📚")
+        h7 = st.checkbox("Organizar el correo/agenda del día 📅")
+        h8 = st.checkbox("Regalarme 15 minutos de desconexión total 🌸")
+
+    # Progreso interactivo
+    puntos = sum([h1, h2, h3, h4, h5, h6, h7, h8])
+    porcentaje = int((puntos / 8) * 100)
+    
+    st.write("---")
+    st.markdown(f"#### **Tu Progreso de Hoy:** {porcentaje}%")
+    st.progress(porcentaje / 100)
+    
+    if porcentaje == 100:
+        st.balloons()
+        st.success("¡Eres sencillamente increíble, mi reina! Cumpliste todos tus hábitos de hoy. 👑🏆💖")
+    elif porcentaje >= 50:
+        st.info("¡Vas super bien! Recuerda no presionarte y disfrutar el proceso paso a paso. ✨🦋")
+
+# ------------------------------------------
+# TAB 5: ANTOJITOS & CUPONES
+# ------------------------------------------
+with tab5:
+    st.markdown("<h3 style='color: #d63384;'>🍕 Antojitos, Gustos & Cupones Especiales 🎫💖</h3>", unsafe_allow_html=True)
+    st.write("¡Canjea tus cupones simbólicos cuando quieras consentirte!")
+    
+    col_c1, col_c2 = st.columns(2, gap="large")
+    
+    with col_c1:
+        st.markdown("""
+        <div class='coupon-card'>
+            <h4 style='color: #c2185b; margin-bottom: 5px;'>🍝 Cupón: Noche de Lasaña / Pastas</h4>
+            <p style='color: #555; font-size: 0.95em;'>Válido para disfrutar tu comida preferida sin preocupaciones.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        if st.button("✨ Canjear Cupón Pasta/Lasaña"):
+            st.balloons()
+            st.success("¡Cupón Canjeado! Que disfrutes un banquete delicioso mi reina. 🍝💖")
+
+        st.markdown("""
+        <div class='coupon-card'>
+            <h4 style='color: #c2185b; margin-bottom: 5px;'>👻 Cupón: Peli de Terror & Popcorn</h4>
+            <p style='color: #555; font-size: 0.95em;'>Válido para una maratón espeluznante y llena de descanso.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        if st.button("✨ Canjear Cupón Película"):
+            st.balloons()
+            st.success("¡Cupón Canjeado! Prepara las cotufas para la peli. 🍿🍿")
+
+    with col_c2:
+        st.markdown("""
+        <div class='coupon-card'>
+            <h4 style='color: #c2185b; margin-bottom: 5px;'>🏡 Cupón: Fin de Semana en la Finca</h4>
+            <p style='color: #555; font-size: 0.95em;'>Válido para desconectarte del trabajo de TQ y respirar aire puro.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        if st.button("✨ Canjear Cupón Finca"):
+            st.balloons()
+            st.success("¡Cupón Canjeado! Modo paz y naturaleza activado. 🍃🌸")
+
+        st.markdown("""
+        <div class='coupon-card'>
+            <h4 style='color: #c2185b; margin-bottom: 5px;'>☕ Cupón: Tarde de Cero Estrés</h4>
+            <p style='color: #555; font-size: 0.95em;'>Válido para soltar los pendientes y descansar profundamente.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        if st.button("✨ Canjear Cupón Cero Estrés"):
+            st.balloons()
+            st.success("¡Cupón Canjeado! Inhala paz, exhala tensión. 👑💆‍♀️")
+
+# ------------------------------------------
+# TAB 6: GENERADOR DE CARTAS PDF
+# ------------------------------------------
+with tab6:
+    st.markdown("<h3 style='color: #d63384;'>📜 Generador de Cartas en PDF ✨🧸</h3>", unsafe_allow_html=True)
     st.write("Crea y descarga cartas elegantes en formato PDF para guardar tus momentos o imprimirlos.")
     
     col_p1, col_p2 = st.columns(2)
     with col_p1:
         titulo_carta = st.text_input("Asunto o Título de la Carta:", value="Un mensaje especial para mi reina 💖")
     with col_p2:
-        remitente_carta = st.text_input("Remitente:", value="Tu enamorado desde Medellín 🏔️")
+        remitente_carta = st.text_input("Remitente:", value="Tu admirador desde Medellín 🏔️")
 
     contenido_carta = st.text_area(
         "Escribe el mensaje de la carta:", 
         height=220,
-        value="Mi reina hermosa, te escribo este mensaje para recordarte lo mucho que te amo y lo orgulloso que me siento de ver todo tu esfuerzo en TQ y en la Universidad. Eres una mujer simplemente extraordinaria..."
+        value="Mi reina hermosa, te escribo este mensaje para recordarte lo mucho que te quiero y lo orgulloso que me siento de ver todo tu esfuerzo en TQ y en la Universidad. Eres una mujer simplemente extraordinaria..."
     )
     
     if st.button("📄 Generar PDF Elegante ✨"):
-        tz_colombia = pytz.timezone("America/Bogota")
         fecha_hora_actual = datetime.now(tz_colombia).strftime("%d/%m/%Y %I:%M %p")
         
         pdf_bytes = generar_pdf_carta(titulo_carta, remitente_carta, contenido_carta, fecha_hora_actual)
         
-        st.success("¡Tu carta PDF ha sido creada exitosamente! 📜💖")
+        st.success("¡Tu carta PDF ha sido creada exitosamente! 📜💖🧸")
         
         st.download_button(
             label="⬇️ Descargar Carta en PDF 🦋",
             data=pdf_bytes,
-            file_name=f"Carta_Laura_Sofia_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf",
+            file_name=f"Carta_Mi_Reina_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf",
             mime="application/pdf"
         )
 
 # ------------------------------------------
-# TAB 5: FRASCO DE RECUERDOS & EXTRA
+# TAB 7: FRASCO DE RECUERDOS & RULETA MÁGICA
 # ------------------------------------------
-with tab5:
-    st.markdown("<h3 style='color: #d63384;'>🌟 Frasco de Recuerdos & Motivos de Amor 💕</h3>", unsafe_allow_html=True)
+with tab7:
+    st.markdown("<h3 style='color: #d63384;'>🫙 Frasco de Recuerdos & Ruleta Mágica 💕🧸⭐</h3>", unsafe_allow_html=True)
     st.write("Saca una notita del frasco virtual cada vez que quieras sonreír.")
     
     razones = [
         "🌸 Por tu sonrisa que ilumina mis días a la distancia.",
         "🎓 Por la admiración gigante que siento al verte estudiar Administración.",
         "💼 Por tu profesionalismo y entrega impecable en TQ.",
-        "🏡 Por ver el amor tan hermoso con el que cuidas a tu hijita y a tu hogar.",
+        "🏡 Por el cariño tan hermoso con el que cuidas a tu hijita y a tu hogar.",
         "✨ Por tu dulzura, tus chistes y cada conversación compartida.",
         "🦋 Por la magia que le transmites a todo lo que haces.",
-        "💖 Por ser mi lugar seguro y mi reina consentida."
+        "💖 Por ser mi lugar seguro y mi reina consentida.",
+        "🧸 Por lo lindo que es tenerte en mi vida y compartir estos detalles."
     ]
     
     if st.button("🫙 Sacar una nota del Frasco 💖"):
         nota = random.choice(razones)
+        combo = random.choice(COMBOS_ICONOS)
         st.balloons()
         st.markdown(f"""
         <div class='surprise-box' style='background: #fff0f5; border: 3px solid #ff4d6d;'>
-            <h3 style='color: #c2185b; margin: 0;'>💌 Notita del Frasco:</h3>
+            <div style='font-size: 1.8em; margin-bottom: 6px;'>{combo}</div>
+            <h3 style='color: #c2185b; margin: 0;'>💌 Notita del Frasco para Mi Reina:</h3>
             <p style='font-size: 1.25em; margin-top: 10px; color: #333;'><b>{nota}</b></p>
         </div>
         """, unsafe_allow_html=True)
