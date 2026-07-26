@@ -10,12 +10,12 @@ st.set_page_config(
     layout="centered"
 )
 
-# Efecto de bienvenida (Animación inicial)
+# Efecto de bienvenida (Animación inicial de globos/celebración)
 if "bienvenida" not in st.session_state:
     st.balloons()
     st.session_state["bienvenida"] = True
 
-# Estilos CSS Avanzados (Efectos y diseño romántico)
+# Estilos CSS Avanzados (Diseño romántico con tonos rosas y bordes elegantes)
 st.markdown("""
     <style>
     /* Fondo con degradado suave */
@@ -68,7 +68,7 @@ st.write("---")
 
 # Menú por pestañas
 tab1, tab2, tab3, tab4 = st.tabs([
-    "👑 Bienvenida & Foto", 
+    "👑 Bienvenida & Portada", 
     "✍️ Mi Diario", 
     "🍕 Nuestros Detalles", 
     "🌟 Sorpresas & Ánimo"
@@ -86,7 +86,7 @@ def guardar_entradas(entradas):
     with open(DB_FILE, "w", encoding="utf-8") as f:
         json.dump(entradas, f, ensure_ascii=False, indent=4)
 
-# TAB 1: BIENVENIDA Y FOTO
+# TAB 1: BIENVENIDA Y PORTADA
 with tab1:
     st.markdown("""
     <div class='card'>
@@ -97,12 +97,19 @@ with tab1:
     
     st.markdown("<div class='photo-card'><b>📸 Nuestro Rincón Especial</b></div>", unsafe_allow_html=True)
     
-    # Imagen de portada (Pudiste cambiar este link por un GIF o foto subida)
-    st.image(
-        "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
-        caption="¡Siempre brillando con tu luz propia y hermosa sonrisa! ✨",
-        use_container_width=True
-    )
+    # Intenta cargar la imagen local portada.jpeg / portada.png / portada.jpg o la foto por defecto
+    if os.path.exists("portada.jpeg"):
+        st.image("portada.jpeg", caption="¡Siempre contigo, mi reina! ✨💖", use_container_width=True)
+    elif os.path.exists("portada.jpg"):
+        st.image("portada.jpg", caption="¡Siempre contigo, mi reina! ✨💖", use_container_width=True)
+    elif os.path.exists("portada.png"):
+        st.image("portada.png", caption="¡Siempre contigo, mi reina! ✨💖", use_container_width=True)
+    else:
+        st.image(
+            "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+            caption="¡Siempre brillando con tu luz propia y hermosa sonrisa! ✨",
+            use_container_width=True
+        )
     
     if st.button("🎉 ¡Lanzar animación de celebración!"):
         st.balloons()
@@ -154,14 +161,14 @@ with tab3:
         ### 🍕 Antojitos & Favoritos
         * **Plato favorito:** Lasaña y Pasta 🍝
         * **El infaltable:** Perro caliente de medianoche 🌭
-        * **Pelis:** Terror (*Evil Dead Rise*) 🍿👻[cite: 1]
+        * **Pelis:** Terror (*Evil Dead Rise*) 🍿👻
         """)
     with col2:
         st.markdown("""
         ### ⚽ La Apuesta
-        * **Tu equipo:** ¡Noruega! 🇳🇴[cite: 1]
-        * **Mi equipo:** Francia / Argentina 🇫🇷🇦🇷[cite: 1]
-        * **Lugar de paz:** La finca los fines de semana 🏡[cite: 1]
+        * **Tu equipo:** ¡Noruega! 🇳🇴
+        * **Mi equipo:** Francia / Argentina 🇫🇷🇦🇷
+        * **Lugar de paz:** La finca los fines de semana 🏡
         """)
 
 # TAB 4: MENSAJES DE ÁNIMO
