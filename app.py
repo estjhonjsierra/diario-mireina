@@ -17,13 +17,13 @@ from reportlab.lib import colors
 # 1. CONFIGURACIÓN DE PÁGINA Y ESTADO INICIAL COMPLETO
 # ==============================================================================
 st.set_page_config(
-    page_title="El Diario de Mi Reina 👑 | Edición Mágica Deluxe",
+    page_title="El Diario de Mi Reina 👑 | Edición Mágica Deluxe 2026",
     page_icon="👑",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Control de primera visita
+# Control de primera visita y bienvenida
 if "bienvenida" not in st.session_state:
     st.balloons()
     st.session_state["bienvenida"] = True
@@ -37,13 +37,13 @@ if "reproduciendo_musica" not in st.session_state:
 
 # Contadores de estadísticas bonitas
 if "sonrisas_count" not in st.session_state:
-    st.session_state["sonrisas_count"] = 17
+    st.session_state["sonrisas_count"] = 24
 
 if "metas_cumplidas_count" not in st.session_state:
-    st.session_state["metas_cumplidas_count"] = 9
+    st.session_state["metas_cumplidas_count"] = 12
 
 if "cartas_creadas_count" not in st.session_state:
-    st.session_state["cartas_creadas_count"] = 41
+    st.session_state["cartas_creadas_count"] = 48
 
 # Personalizaciones por defecto (Preferencia de Ella)
 if "user_font" not in st.session_state:
@@ -59,38 +59,44 @@ if "user_particles" not in st.session_state:
 # 2. SISTEMA DE PALETAS Y PERSONALIZACIÓN DE ESTILOS
 # ==============================================================================
 tz_colombia = pytz.timezone("America/Bogota")
-dia_semana_num = datetime.now(tz_colombia).weekday()  # 0: Lunes, 6: Domingo
+fecha_actual_colombia = datetime.now(tz_colombia)
+dia_semana_num = fecha_actual_colombia.weekday()  # 0: Lunes, 6: Domingo
 
 THEME_PRESETS = {
     "Rosa Algodón": {
         "gradient": "linear-gradient(135deg, #fff0f5 0%, #ffe3ec 40%, #f7d6e0 70%, #fff5f8 100%)",
         "border": "#ff85a1",
         "accent": "#d63384",
-        "card_bg": "rgba(255, 255, 255, 0.96)"
+        "card_bg": "rgba(255, 255, 255, 0.96)",
+        "glow": "rgba(255, 133, 161, 0.35)"
     },
     "Lavanda Imperial": {
         "gradient": "linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 40%, #f5f3ff 70%, #faf5ff 100%)",
         "border": "#c084fc",
         "accent": "#7e22ce",
-        "card_bg": "rgba(255, 255, 255, 0.96)"
+        "card_bg": "rgba(255, 255, 255, 0.96)",
+        "glow": "rgba(192, 132, 252, 0.35)"
     },
     "Melocotón Cálido": {
         "gradient": "linear-gradient(135deg, #fff7ed 0%, #ffedd5 40%, #fff1f2 70%, #fffaf0 100%)",
         "border": "#fb923c",
         "accent": "#c2410c",
-        "card_bg": "rgba(255, 255, 255, 0.96)"
+        "card_bg": "rgba(255, 255, 255, 0.96)",
+        "glow": "rgba(251, 146, 60, 0.35)"
     },
     "Menta Fresca": {
         "gradient": "linear-gradient(135deg, #f0fdf4 0%, #dcfce7 40%, #fdf2f8 70%, #f7fee7 100%)",
         "border": "#4ade80",
         "accent": "#15803d",
-        "card_bg": "rgba(255, 255, 255, 0.96)"
+        "card_bg": "rgba(255, 255, 255, 0.96)",
+        "glow": "rgba(74, 222, 128, 0.35)"
     },
     "Atardecer Pastel": {
         "gradient": "linear-gradient(135deg, #fff1f2 0%, #ffe4e6 40%, #fecdd3 70%, #fff5f5 100%)",
         "border": "#fb7185",
         "accent": "#be123c",
-        "card_bg": "rgba(255, 255, 255, 0.96)"
+        "card_bg": "rgba(255, 255, 255, 0.96)",
+        "glow": "rgba(251, 113, 133, 0.35)"
     }
 }
 
@@ -102,10 +108,10 @@ FONTS_PRESETS = {
 }
 
 PARTICLE_SETS = {
-    "🦋 Mariposas & 🌸 Flores": ["🦋", "🌸", "🌷", "🌺", "✨", "🦋"],
-    "⭐ Estrellas & 💖 Corazones": ["⭐", "💖", "✨", "🌟", "💕", "⭐"],
-    "🧸 Ositos & 👑 Coronas": ["🧸", "👑", "🎀", "🧸", "✨", "👑"],
-    "🌈 Mezcla Mágica Completa": ["🧸", "🦋", "⭐", "💖", "🌸", "👑", "🌷", "✨"]
+    "🦋 Mariposas & 🌸 Flores": ["🦋", "🌸", "🌷", "🌺", "✨", "🦋", "🌸", "🌷", "🌺", "✨", "🦋", "🌸"],
+    "⭐ Estrellas & 💖 Corazones": ["⭐", "💖", "✨", "🌟", "💕", "⭐", "💖", "✨", "🌟", "💕", "⭐", "💖"],
+    "🧸 Ositos & 👑 Coronas": ["🧸", "👑", "🎀", "🧸", "✨", "👑", "🧸", "👑", "🎀", "🧸", "✨", "👑"],
+    "🌈 Mezcla Mágica Completa": ["🧸", "🦋", "⭐", "💖", "🌸", "👑", "🌷", "✨", "💕", "🌺", "🌟", "🎀"]
 }
 
 theme_cfg = THEME_PRESETS.get(st.session_state["user_theme"], THEME_PRESETS["Rosa Algodón"])
@@ -113,7 +119,7 @@ font_family_css = FONTS_PRESETS.get(st.session_state["user_font"], FONTS_PRESETS
 particles_list = PARTICLE_SETS.get(st.session_state["user_particles"], PARTICLE_SETS["🦋 Mariposas & 🌸 Flores"])
 
 # ==============================================================================
-# 3. ESTILOS CSS AVANZADOS, GOOGLE FONTS & PARTICULAS DINÁMICAS
+# 3. ESTILOS CSS AVANZADOS, GOOGLE FONTS & 12 PARTICULAS DINÁMICAS
 # ==============================================================================
 st.markdown(f"""
 <style>
@@ -137,32 +143,36 @@ html, body, [class*="css"], .stMarkdown, p, div, label, span {{
     background-attachment: fixed !important;
 }}
 
-/* PARTICULAS FLOTANTES CONTINUAS EN EL FONDO */
+/* PARTICULAS FLOTANTES CONTINUAS EN EL FONDO (12 PARTICULAS) */
 .floating-particle {{
     position: fixed;
     z-index: 0;
     pointer-events: none;
     user-select: none;
-    animation: floatParticle 11s infinite ease-in-out;
+    animation: floatParticle 12s infinite ease-in-out;
     opacity: 0.88;
-    font-size: 2.4rem;
+    font-size: 2.5rem;
 }}
 
 @keyframes floatParticle {{
     0% {{ transform: translateY(105vh) translateX(0px) rotate(0deg) scale(0.8); opacity: 0; }}
     20% {{ opacity: 0.95; }}
     80% {{ opacity: 0.95; }}
-    100% {{ transform: translateY(-15vh) translateX(75px) rotate(360deg) scale(1.35); opacity: 0; }}
+    100% {{ transform: translateY(-15vh) translateX(85px) rotate(360deg) scale(1.4); opacity: 0; }}
 }}
 
-.p1 {{ left: 3%; animation-duration: 11s; animation-delay: 0s; }}
-.p2 {{ left: 15%; animation-duration: 13.5s; animation-delay: 2s; }}
-.p3 {{ left: 28%; animation-duration: 9.8s; animation-delay: 4s; }}
-.p4 {{ left: 42%; animation-duration: 12.2s; animation-delay: 1s; }}
-.p5 {{ left: 56%; animation-duration: 14s; animation-delay: 5s; }}
-.p6 {{ left: 70%; animation-duration: 8.9s; animation-delay: 3s; }}
-.p7 {{ left: 83%; animation-duration: 12.8s; animation-delay: 6s; }}
-.p8 {{ left: 94%; animation-duration: 10.2s; animation-delay: 1.5s; }}
+.p1  {{ left: 2%;  animation-duration: 11s;   animation-delay: 0s; }}
+.p2  {{ left: 10%; animation-duration: 13.5s; animation-delay: 2s; }}
+.p3  {{ left: 19%; animation-duration: 9.8s;  animation-delay: 4s; }}
+.p4  {{ left: 28%; animation-duration: 12.2s; animation-delay: 1s; }}
+.p5  {{ left: 37%; animation-duration: 14s;    animation-delay: 5s; }}
+.p6  {{ left: 46%; animation-duration: 8.9s;   animation-delay: 3s; }}
+.p7  {{ left: 55%; animation-duration: 12.8s; animation-delay: 6s; }}
+.p8  {{ left: 64%; animation-duration: 10.2s; animation-delay: 1.5s; }}
+.p9  {{ left: 73%; animation-duration: 13.1s; animation-delay: 3.5s; }}
+.p10 {{ left: 82%; animation-duration: 11.4s; animation-delay: 0.8s; }}
+.p11 {{ left: 90%; animation-duration: 14.5s; animation-delay: 4.2s; }}
+.p12 {{ left: 96%; animation-duration: 9.5s;  animation-delay: 2.2s; }}
 
 /* Keyframes de animación */
 @keyframes floatHeader {{
@@ -171,11 +181,10 @@ html, body, [class*="css"], .stMarkdown, p, div, label, span {{
     100% {{ transform: translateY(0px) rotate(0deg); }}
 }}
 
-@keyframes flutter {{
-    0%, 100% {{ transform: translateY(0px) scale(1) rotate(0deg); }}
-    25% {{ transform: translateY(-6px) scale(1.05) rotate(-3deg); }}
-    50% {{ transform: translateY(-2px) scale(0.98) rotate(2deg); }}
-    75% {{ transform: translateY(-7px) scale(1.03) rotate(-2deg); }}
+@keyframes pulseBorder {{
+    0% {{ box-shadow: 0 0 15px {theme_cfg['glow']}; }}
+    50% {{ box-shadow: 0 0 30px {theme_cfg['border']}; }}
+    100% {{ box-shadow: 0 0 15px {theme_cfg['glow']}; }}
 }}
 
 @keyframes photoMovement {{
@@ -188,33 +197,34 @@ html, body, [class*="css"], .stMarkdown, p, div, label, span {{
 .main-header {{
     text-align: center;
     color: {theme_cfg['accent']};
-    font-size: 3.4em !important;
+    font-size: 3.5em !important;
     font-weight: 900;
     margin-bottom: 4px;
     animation: floatHeader 4.5s ease-in-out infinite;
-    text-shadow: 3px 3px 14px rgba(214, 51, 132, 0.22);
+    text-shadow: 3px 3px 16px rgba(214, 51, 132, 0.25);
 }}
 
 .sub-header {{
     text-align: center;
     color: #4a4a4a;
-    font-size: 1.35em !important;
+    font-size: 1.38em !important;
     font-weight: 600;
     margin-bottom: 20px;
 }}
 
 .theme-badge {{
     text-align: center;
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.94);
     border: 2px solid {theme_cfg['border']};
     border-radius: 22px;
     padding: 8px 24px;
     width: fit-content;
     margin: 0 auto 22px auto;
-    font-size: 0.98em;
+    font-size: 1em;
     font-weight: bold;
     color: {theme_cfg['accent']};
     box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+    animation: pulseBorder 3s infinite ease-in-out;
 }}
 
 .card {{
@@ -335,19 +345,23 @@ html, body, [class*="css"], .stMarkdown, p, div, label, span {{
 }}
 </style>
 
-<!-- Partículas flotantes decorativas configurables -->
+<!-- 12 Partículas flotantes decorativas configurables -->
 <div class="floating-particle p1">{particles_list[0]}</div>
 <div class="floating-particle p2">{particles_list[1]}</div>
 <div class="floating-particle p3">{particles_list[2]}</div>
 <div class="floating-particle p4">{particles_list[3]}</div>
 <div class="floating-particle p5">{particles_list[4]}</div>
 <div class="floating-particle p6">{particles_list[5]}</div>
-<div class="floating-particle p7">{particles_list[0]}</div>
-<div class="floating-particle p8">{particles_list[1]}</div>
+<div class="floating-particle p7">{particles_list[6]}</div>
+<div class="floating-particle p8">{particles_list[7]}</div>
+<div class="floating-particle p9">{particles_list[8]}</div>
+<div class="floating-particle p10">{particles_list[9]}</div>
+<div class="floating-particle p11">{particles_list[10]}</div>
+<div class="floating-particle p12">{particles_list[11]}</div>
 """, unsafe_allow_html=True)
 
 # ==============================================================================
-# 4. MOTOR JS MULTI-EFECTO FIESTA MÁGICA
+# 4. MOTOR JS MULTI-EFECTO FIESTA MÁGICA (8 EFECTOS DIFERENTES)
 # ==============================================================================
 def lanzar_efecto_fiesta_js(tipo_efecto):
     """Genera componentes JavaScript interactivos para efectos visuales sorprendentes."""
@@ -355,7 +369,7 @@ def lanzar_efecto_fiesta_js(tipo_efecto):
         js_code = """
         <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
         <script>
-            var count = 220;
+            var count = 250;
             var defaults = { origin: { y: 0.7 } };
             function fire(particleRatio, opts) {
                 confetti(Object.assign({}, defaults, opts, {
@@ -386,7 +400,7 @@ def lanzar_efecto_fiesta_js(tipo_efecto):
             confetti({
                 shapes: [teddy, butterfly, heart, crown, star, flower],
                 scalar: 3,
-                particleCount: 60,
+                particleCount: 70,
                 spread: 160,
                 origin: { y: 0.4 },
                 startVelocity: 35
@@ -399,7 +413,7 @@ def lanzar_efecto_fiesta_js(tipo_efecto):
         js_code = """
         <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
         <script>
-            var duration = 3.5 * 1000;
+            var duration = 3.8 * 1000;
             var animationEnd = Date.now() + duration;
             var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
@@ -412,7 +426,7 @@ def lanzar_efecto_fiesta_js(tipo_efecto):
                 if (timeLeft <= 0) {
                     return clearInterval(interval);
                 }
-                var particleCount = 50 * (timeLeft / duration);
+                var particleCount = 55 * (timeLeft / duration);
                 confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
                 confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
             }, 250);
@@ -425,10 +439,52 @@ def lanzar_efecto_fiesta_js(tipo_efecto):
         <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
         <script>
             confetti({
-                particleCount: 120,
+                particleCount: 140,
                 spread: 110,
                 origin: { y: 0.6 },
                 colors: ['#ffd700', '#ffa500', '#fff8dc', '#ffdf00']
+            });
+        </script>
+        """
+        components.html(js_code, height=0)
+
+    elif tipo_efecto == "lluvia_corazones_3d":
+        js_code = """
+        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+        <script>
+            var scalar = 2.8;
+            var h1 = confetti.shapeFromText({ text: '💕', scalar });
+            var h2 = confetti.shapeFromText({ text: '💖', scalar });
+            var h3 = confetti.shapeFromText({ text: '💗', scalar });
+            var h4 = confetti.shapeFromText({ text: '❤️', scalar });
+
+            confetti({
+                shapes: [h1, h2, h3, h4],
+                scalar: 3.2,
+                particleCount: 80,
+                spread: 140,
+                origin: { y: 0.5 },
+                startVelocity: 40
+            });
+        </script>
+        """
+        components.html(js_code, height=0)
+
+    elif tipo_efecto == "burbujas_magicas":
+        js_code = """
+        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+        <script>
+            var scalar = 2.2;
+            var b1 = confetti.shapeFromText({ text: '🫧', scalar });
+            var b2 = confetti.shapeFromText({ text: '✨', scalar });
+
+            confetti({
+                shapes: [b1, b2],
+                scalar: 2.5,
+                particleCount: 65,
+                spread: 180,
+                origin: { y: 0.3 },
+                startVelocity: 20
             });
         </script>
         """
@@ -481,7 +537,7 @@ def guardar_capsula(nueva_capsula):
         json.dump(capsulas, f, ensure_ascii=False, indent=4)
 
 # ==============================================================================
-# 6. BASE DE DATOS EXTENDIDA DE MENSAJES DIARIOS, LÍNEA DEL TIEMPO & FRASES
+# 6. BASE DE DATOS EXTENDIDA DE MENSAJES DIARIOS, RETOS Y CANCIONES
 # ==============================================================================
 MENSAJES_DIARIOS = {
     "2026-07-26": {
@@ -898,9 +954,9 @@ Desde Medellín te mando la mejor energía, respaldando cada una de tus metas y 
         "fecha_str": "Martes, 25 de Agosto",
         "titulo": "Admiración que florece y se profundiza cada mañana 🌅🧸💕",
         "poema": """Martes luminoso, mi reina hermosa.
-Si me pideran listar las cosas que admiro de ti, no acabaría nunca:
-su capacidad de análisis para los temas administrativos, su responsabilidad profesional impecable en TQ,
-su amor de madre entregada y la amabilidad con la que tratas a todos.
+Si me pidieran listar las cosas que admiro de ti, no acabaría nunca:
+tu capacidad de análisis para los temas administrativos, tu responsabilidad profesional impecable en TQ,
+tu amor de madre entregada y la amabilidad con la que tratas a todos.
 
 Cada día que pasa me convenzo más del ser humano extraordinario que eres.
 Espero que en medio del ajetreo del día te regales un instante para respirar y valorar lo lejos que has llegado.
@@ -992,6 +1048,74 @@ Gracias por ser esa mujer transparente, trabajadora y maravillosa que ilumina mi
 Recibe este último día de agosto con la alegría del deber cumplido y con la certeza de que lo que viene será aún más brillante.
 Gracias por ser mi reina y mi inspiración. Te amo con todo mi ser y te abrazo apretado a la distancia."""
     }
+}
+
+RETOS_DIARIOS = {
+    "2026-08-01": "🌸 Reto de Hoy: Tómate una taza de tu bebida favorita despacio y regálate 10 minutos de lectura o música en paz.",
+    "2026-08-02": "☕ Reto de Hoy: Respira profundo 3 veces, suelta los pendientes de la semana y disfruta un abrazo apretado con tu hijita.",
+    "2026-08-03": "💼 Reto de Hoy: Inicia el trabajo en TQ sonriéndote al espejo y recordando que eres una profesional brillante e invencible.",
+    "2026-08-04": "🌿 Reto de Hoy: Haz una pausa activa a mitad de mañana, estira tus brazos y bebe un vaso entero de agua fresca.",
+    "2026-08-05": "✈️ Reto de Hoy: Escucha una canción que te alegre el alma y recuerda que desde Medellín hay alguien pensándote mucho.",
+    "2026-08-06": "🌷 Reto de Hoy: Escribe en una nota un logro reciente tuyo en la universidad y celébralo internamente.",
+    "2026-08-07": "🇨🇴 Reto de Hoy: ¡Día festivo! Prohibido pensar en correos o informes. Dedícate 100% a descansar y consentirte.",
+    "2026-08-08": "🧸 Reto de Hoy: Prepara o pide tu comida antojo preferida y disfrútala sin ningún tipo de culpa.",
+    "2026-08-09": "🕊️ Reto de Hoy: Cierra los ojos 5 minutos antes de dormir y agradece por la paz y el amor que habitan en tu hogar.",
+    "2026-08-10": "✨ Reto de Hoy: Camina con postura de reina ejecutiva durante toda tu jornada. ¡El mundo es tuyo!",
+    "2026-08-11": "📦 Reto de Hoy: Organiza tu espacio de trabajo de forma armoniosa para que todo fluya con elegancia y sin estrés.",
+    "2026-08-12": "🌟 Reto de Hoy: Regálate una mascarilla o un baño relajante al llegar a casa para soltar la tensión del ombligo de semana.",
+    "2026-08-13": "🎓 Reto de Hoy: Repasa tus apuntes de Administración sintiendo orgullo por cada concepto que dominas.",
+    "2026-08-14": "🌅 Reto de Hoy: Desconéctate del trabajo exactamente a tu hora de salida y celebra el inicio del fin de semana.",
+    "2026-08-15": "🌺 Reto de Hoy: Tómate una foto bonita sonriendo junto a tu niña y guárdala como un tesoro de felicidad.",
+    "2026-08-16": "☕ Reto de Hoy: Escucha el ritmo suave del afrobeat o de Beéle mientras te preparas un almuerzo delicioso.",
+    "2026-08-17": "🎈 Reto de Hoy: ¡Lunes festivo! Regálate una siesta reparadora en la tarde sin mirar la hora.",
+    "2026-08-18": "💫 Reto de Hoy: Afronta los pendientes de TQ uno a uno con la calma y la seguridad que te caracterizan.",
+    "2026-08-19": "🏔️ Reto de Hoy: Tómate 2 minutos para enviarme un emoji o un saludito que alegre mi día desde Bucaramanga.",
+    "2026-08-20": "👑 Reto de Hoy: Mírate al espejo y repite en voz alta: 'Soy una mujer capaz, inteligente, hermosa y amada'.",
+    "2026-08-21": "🏆 Reto de Hoy: Planea una noche de películas o descanso cómodo para celebrar el fin de la semana laboral.",
+    "2026-08-22": "🌟 Reto de Hoy: Sal a dar una caminata suave, siente la brisa en tu rostro y desconecta por completo tu mente.",
+    "2026-08-23": "📖 Reto de Hoy: Lee una frase que te inspire y guárdala en la sección de notas de tu diario interactivo.",
+    "2026-08-24": "💼 Reto de Hoy: Mantén una actitud serena ante cualquier imprevisto en la oficina; nada apaga tu luz.",
+    "2026-08-25": "🌅 Reto de Hoy: Desayuna despacio disfrutando cada bocado antes de iniciar tus actividades diarias.",
+    "2026-08-26": "✨ Reto de Hoy: Haz un cumplido sincero a ti misma sobre lo bien que gestionas tu tiempo y tu vida.",
+    "2026-08-27": "🛡️ Reto de Hoy: Si sientes cansancio, delega o posterga lo que no sea urgente. Tu bienestar es lo primero.",
+    "2026-08-28": "🎓 Reto de Hoy: Cierra tu semana laboral con un aplauso mental para ti misma por todo lo logrado en agosto.",
+    "2026-08-29": "🎈 Reto de Hoy: Ríe a carcajadas con tu hijita y disfruten de un momento de juego o diversión juntas.",
+    "2026-08-30": "🙏 Reto de Hoy: Haz una lista mental de 3 cosas hermosas que viviste durante este mes que termina.",
+    "2026-08-31": "💖 Reto de Hoy: Recibe este nuevo mes con el corazón lleno de fe, sabiendo que vienen bendiciones aún más grandes."
+}
+
+CANCIONES_DIARIAS = {
+    "2026-08-01": {"titulo": "Inolvidable - Beéle 🎶", "desc": "Una melodía fresca para arrancar Agosto con la mejor vibra y alegría en el corazón."},
+    "2026-08-02": {"titulo": "Caminando por la Vida - Melendi 🎸", "desc": "Un recordatorio de avanzar paso a paso, sonriendo y disfrutando el viaje."},
+    "2026-08-03": {"titulo": "Vivir Mi Vida - Marc Anthony 💃", "desc": "Energía pura de Lunes para conquistar cada meta laboral en TQ con entusiasmo."},
+    "2026-08-04": {"titulo": "Afrobeat Essentials 🥁", "desc": "Ritmos envolventes y cálidos para acompañar tu tarde de trabajo con fluidez."},
+    "2026-08-05": {"titulo": "Hasta Ese Día - Lasso 🎵", "desc": "Una letra romántica que acorta los kilómetros entre Medellín y Bucaramanga."},
+    "2026-08-06": {"titulo": "Color Esperanza - Diego Torres 🌈", "desc": "Fuerza y motivación pura para tu carrera de Administración de Empresas."},
+    "2026-08-07": {"titulo": "Paz y Calma Acoustic 🍃", "desc": "Acordes suaves para saborear este festivo patrio en la serenidad de tu hogar."},
+    "2026-08-08": {"titulo": "Mi Persona Favorita - Alejandro Sanz 💖", "desc": "Una dedicatoria dulce para celebrar tu amor con tu linda hijita."},
+    "2026-08-09": {"titulo": "Un Beso en Madrid - TINI & Alejandro Sanz ☕", "desc": "Música suave para acompañar tu café del domingo con nostalgia bonita."},
+    "2026-08-10": {"titulo": "La Gozadera - Gente de Zona 🎉", "desc": "Chispa y dinamismo para iniciar una semana de éxitos y buena actitud."},
+    "2026-08-11": {"titulo": "Destino o Casualidad - Melendi ✨", "desc": "Una canción especial para pensar en cómo la vida nos conecta de formas bellas."},
+    "2026-08-12": {"titulo": "Loco - Beéle 🌴", "desc": "Sabor caribeño y alegría contagiosa para superar el ombligo de semana."},
+    "2026-08-13": {"titulo": "La Promesa - Melendi 📜", "desc": "Palabras sinceras de admiración y respeto para la reina de mi corazón."},
+    "2026-08-14": {"titulo": "Viernes de Fiesta & Sol ☀️", "desc": "Ritmo alegre para cerrar las carpetas del trabajo y dar la bienvenida al fin de semana."},
+    "2026-08-15": {"titulo": "Bonito - Jarabe de Palo 🌸", "desc": "Porque todo en ti es bonito: tu forma de ser, tu sonrisa y tu dedicación."},
+    "2026-08-16": {"titulo": "Si Tú La Ves - Nicky Jam & Wisin 🎶", "desc": "Un tema con ritmo alegre para llenar de dinamismo tu tarde libre."},
+    "2026-08-17": {"titulo": "Risa - Babylon Summer 🎈", "desc": "Música relajante para sacarle el máximo provecho a este lunes festivo."},
+    "2026-08-18": {"titulo": "Aprender a Volar - Patricia Sosa 🦅", "desc": "Inspiración pura para retomar la jornada con la seguridad de una mujer invencible."},
+    "2026-08-19": {"titulo": "Más Allá de la Distancia 🏔️", "desc": "Melodía instrumental para acompañar tus pensamientos de media tarde."},
+    "2026-08-20": {"titulo": "Tuyo - Rodrigo Amarante 🌹", "desc": "Un toque elegante y envolvente para celebrar el jueves con sofisticación."},
+    "2026-08-21": {"titulo": "Celebra la Vida - Axel 🏆", "desc": "Himno de alegría para celebrar que lograste superar otra semana más."},
+    "2026-08-22": {"titulo": "Amanecer - Bomba Estéreo 🌅", "desc": "Buena vibra, luz y energía colorida para disfrutar de tu sábado en familia."},
+    "2026-08-23": {"titulo": "Qué Bonito - Rosario 🌺", "desc": "Una de las letras más bellas para homenajear la pureza de tus sentimientos."},
+    "2026-08-24": {"titulo": "Un Stoppeable - Sia 🚀", "desc": "Fuerza mental pura para comerte el mundo en la recta final de agosto."},
+    "2026-08-25": {"titulo": "Barranquilla - Beéle 🌊", "desc": "Ritmos frescos que alegran la mente y refrescan tus momentos libres."},
+    "2026-08-26": {"titulo": "La Mujer Perfecta - Kurt 👑", "desc": "Dedicatoria directa a ti: inteligente, trabajadora, madre amorosa y bella."},
+    "2026-08-27": {"titulo": "Casi Un Hogar - Melendi 🏡", "desc": "Melodía acogedora para recargar energías al llegar a tu casa en la noche."},
+    "2026-08-28": {"titulo": "Cierre de Mes Triunfal 🎓", "desc": "Música de celebración por haber demostrado tu excelencia en TQ y la U."},
+    "2026-08-29": {"titulo": "Volví a Nacer - Carlos Vives 🌻", "desc": "Alegría vallenata contagiosa para disfrutar de un fin de semana pleno."},
+    "2026-08-30": {"titulo": "Gracias a la Vida - Mercedes Sosa 🙏", "desc": "Reflexión y paz en el corazón para despedir el mes con gratitud."},
+    "2026-08-31": {"titulo": "Un Viaje Inolvidable - Éxitos Beéle 👑", "desc": "El cierre perfecto para un mes donde demostraste que eres la reina de mi mundo."}
 }
 
 LINEA_DEL_TIEMPO_RECUERDOS = [
@@ -1286,6 +1410,7 @@ with tab1:
         </div>
         """, unsafe_allow_html=True)
 
+        # CÁLCULO DINÁMICO DE HOY EN HORA COLOMBIA
         fecha_colombia = datetime.now(tz_colombia)
         fecha_hoy_key = fecha_colombia.strftime("%Y-%m-%d")
         
@@ -1295,10 +1420,14 @@ with tab1:
             "poema": "Mi reina hermosa, recuerda siempre lo increíble, inteligente y hermosa que eres. Cada día y cada noche es una nueva oportunidad para acercarte a tus sueños. ¡Te quiero con todo mi corazón!"
         })
 
+        reto_hoy = RETOS_DIARIOS.get(fecha_hoy_key, "🌸 Reto de Hoy: Tómate 10 minutos para consentirte y tomar tu bebida favorita en calma.")
+        cancion_hoy = CANCIONES_DIARIAS.get(fecha_hoy_key, {"titulo": "Inolvidable - Beéle 🎶", "desc": "Una melodía llena de sol y buena vibra para ti."})
+
+        # TARJETA DEL MENSAJE DIARIO CAMBIANTE AUTOMÁTICO
         st.markdown(f"""
         <div class='daily-card'>
             <span style='background-color: #ff85a1; color: white; padding: 8px 18px; border-radius: 16px; font-weight: bold; font-size: 1.05em;'>
-                📅 {mensaje_hoy['fecha_str']}
+                📅 {mensaje_hoy['fecha_str']} (Actualización Automática 🇨🇴)
             </span>
             <h3 style='color: #c2185b; margin-top: 18px; margin-bottom: 14px; font-size: 1.5em;'>{mensaje_hoy['titulo']}</h3>
             <p style='color: #222; font-size: 1.15em; line-height: 1.85; white-space: pre-line;'>
@@ -1306,6 +1435,26 @@ with tab1:
             </p>
         </div>
         """, unsafe_allow_html=True)
+
+        st.write("")
+        # BLOQUE CAMBIANTE DE CANCIÓN Y RETO DIARIO
+        col_m_extra1, col_m_extra2 = st.columns(2)
+        with col_m_extra1:
+            st.markdown(f"""
+            <div style='background: white; border-radius: 20px; padding: 18px; border: 2px solid #ff85a1; box-shadow: 0 6px 20px rgba(0,0,0,0.05);'>
+                <h4 style='color: #d63384; margin-top: 0;'>🎵 Canción del Día:</h4>
+                <b>{cancion_hoy['titulo']}</b>
+                <p style='font-size: 0.9em; color: #555; margin-top: 4px;'>{cancion_hoy['desc']}</p>
+            </div>
+            """, unsafe_allow_html=True)
+
+        with col_m_extra2:
+            st.markdown(f"""
+            <div style='background: white; border-radius: 20px; padding: 18px; border: 2px solid #fb923c; box-shadow: 0 6px 20px rgba(0,0,0,0.05);'>
+                <h4 style='color: #c2410c; margin-top: 0;'>✨ Desafío Bonito de Hoy:</h4>
+                <p style='font-size: 0.92em; color: #333; margin: 0;'>{reto_hoy}</p>
+            </div>
+            """, unsafe_allow_html=True)
 
         st.write("")
         st.write("---")
@@ -1317,7 +1466,7 @@ with tab1:
             if st.button("🎉 Fiesta Mágica Multi-Efecto"):
                 st.balloons()
                 st.snow()
-                efectos = ["confetti_boom", "lluvia_emojis", "fuegos_artificiales", "estrellas_doradas"]
+                efectos = ["confetti_boom", "lluvia_emojis", "fuegos_artificiales", "estrellas_doradas", "lluvia_corazones_3d", "burbujas_magicas"]
                 st.session_state["efecto_fiesta_actual"] = random.choice(efectos)
                 st.rerun()
 
@@ -1415,15 +1564,16 @@ with tab3:
             min_value=date(2026, 1, 1),
             max_value=date(2026, 12, 31)
         )
-        st.info("💡 Cada día en la lista tiene un color asociado para reflejar tu estado de ánimo o las entradas registradas.")
+        st.info("💡 Cada día en la lista tiene un mensaje, reto y canción asociados.")
 
     with col_cal2:
         fecha_str_key = fecha_seleccionada.strftime("%Y-%m-%d")
         entradas_totales = cargar_entradas()
         
-        # Filtrar entradas del diario para esa fecha
         entradas_dia = [e for e in entradas_totales if e['fecha'].startswith(fecha_seleccionada.strftime("%d/%m/%Y"))]
         mensaje_sistema = MENSAJES_DIARIOS.get(fecha_str_key, None)
+        reto_sistema = RETOS_DIARIOS.get(fecha_str_key, None)
+        cancion_sistema = CANCIONES_DIARIAS.get(fecha_str_key, None)
 
         st.markdown(f"#### 📖 Memorias del {fecha_seleccionada.strftime('%d de %B de %Y')}")
         
@@ -1435,6 +1585,12 @@ with tab3:
                 <p style='color: #333; font-size: 0.98em;'>{mensaje_sistema['poema']}</p>
             </div>
             """, unsafe_allow_html=True)
+
+        if reto_sistema:
+            st.info(f"✨ **Reto asignado:** {reto_sistema}")
+
+        if cancion_sistema:
+            st.success(f"🎵 **Música sugerida:** {cancion_sistema['titulo']} - *{cancion_sistema['desc']}*")
 
         if entradas_dia:
             st.markdown("<b>📝 Entradas escritas por ti este día:</b>", unsafe_allow_html=True)
