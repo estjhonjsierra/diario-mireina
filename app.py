@@ -526,213 +526,471 @@ Sábado de tranquilidad, de sonreír sin afanes y de regalarte el tiempo libre q
     },
     "2026-08-02": {
         "fecha_str": "Domingo, 02 de Agosto",
-        "titulo": "La dulzura de tus pausas y la grandeza de tus sueños 🌸🧸✨",
-        "poema": """Mi reina amada, hoy domingo amanece con la calma perfecta para que tu alma respire profundo y se llene de luz. A veces me detengo a pensar en todo lo que cargas sobre tus hombros con tanta elegancia y fortaleza: tus responsabilidades impecables en TQ, las metas gigantescas que construyes día a día en tu carrera de Administración de Empresas, y sobre todo, ese amor incondicional, puro y hermoso con el que guías y cuidas el camino de tu hijita. Eres un ser sencillamente extraordinario.
+        "titulo": "La dulzura de tus pausas y el santuario de tu paz 🌸🧸✨",
+        "poema": """Mi reina amada, hoy amanece con la calma dulce que solo el domingo sabe regalarnos.
+Quiero que te detengas por un momento y respires profundo, sintiendo cómo el aire puro llena tu pecho.
+A veces me pongo a reflexionar en todo el universo de cosas que sostienes con tanta gracia y elegancia:
+desde tus responsabilidades impecables en Tecnoquímicas (TQ), donde dejas tu sello de excelencia a diario,
+hasta las metas tan ambiciosas que construyes noche tras noche en tu carrera de Administración de Empresas,
+pasando por el pilar más hermoso y sagrado de tu vida: el amor infinito con el que guías los pasos de tu hijita.
 
-Quiero que hoy te regales un instante de desconexión absoluta, de esos donde el tiempo se detiene, donde el café sabe más rico y donde la mente se libera de cualquier pendiente. Recuerda que no importa cuántos kilómetros separen a Medellín de Bucaramanga; mis pensamientos, mi admiración y mi corazón completo están contigo en cada segundo. Eres mi refugio, mi motivo de orgullo y la mujer más bella de mi universo. Disfruta de la calidez de tu hogar, ríe con el alma y recuerda siempre lo infinitamente que te quiero."""
+Eres una mujer sencillamente extraordinaria, un ser lleno de una luz que no se apaga con nada.
+Quiero que hoy te regales un instante de desconexión absoluta de las exigencias externas.
+Un momento donde el café o el té sepan más rico, donde las risas en tu hogar llenen cada rincón,
+y donde sientas que no hay afán, no hay prisa y no hay pendientes urgentes que no puedan esperar.
+
+Recuerda que aunque nos separen las montañas entre Medellín y Bucaramanga,
+mis pensamientos viajan constantes como una brisa tibia para abrazarte en la distancia.
+Eres mi refugio, mi motivo constante de orgullo y la reina absoluta de mi corazón.
+Disfruta de la tranquilidad de tu espacio, ríe con el alma y nunca olvides lo infinitamente que te quiero.
+Que tu domingo sea un verdadero bálsamo de amor y paz pura."""
     },
     "2026-08-03": {
         "fecha_str": "Lunes, 03 de Agosto",
         "titulo": "El inicio de una semana brillante para mi reina 👑💼💖",
-        "poema": """Comienza una nueva semana, mi vida hermosa, y con ella nacen múltiples oportunidades para que vuelvas a demostrar de qué estás hecha. Sé que los lunes a veces traen consigo el peso de los informes, la rutina en Tecnoquímicas y la exigencia constante, pero quiero recordarte la mujer capaz, perspicaz e infinitamente talentosa que eres. No hay reto administrativo que te quede grande ni obstáculo que tu tenacidad no pueda derribar.
+        "poema": """Comienza una nueva semana, mi vida hermosa, y con ella nacen múltiples oportunidades para que deslumbres.
+Sé que los lunes a veces traen consigo el peso de los informes, la rutina agitada en Tecnoquímicas y la exigencia,
+pero quiero recordarte la mujer extremadamente capaz, perspicaz e infinitamente talentosa que eres.
+No existe reto administrativo que te quede grande ni obstáculo que tu tenacidad no pueda superar.
 
-Camina hoy con la frente en alto, vistiendo esa seguridad que te caracteriza y esa sonrisa que tiene el poder de iluminar cualquier espacio. Cuando sientas que la jornada se torna intensa o que el cansancio intenta rozar tus alas, recuerda que a la distancia hay alguien que te admira profundamente, que celebra cada uno de tus logros silenciosos y que cuenta las horas para recordarte lo mucho que vales. ¡A conquistarlo todo hoy, mi administradora estrella! Te amo y te sostengo en la distancia."""
+Camina hoy con la frente en alto, vistiendo esa seguridad deslumbrante que te caracteriza
+y esa sonrisa magnética que tiene el poder divino de iluminar cualquier oficina o lugar donde estés.
+Cuando sientas que la jornada se torna un poco densa o que el cansancio intenta rozar tus alas,
+recuerda que a cientos de kilómetros hay alguien que te admira profundamente desde el alma,
+alguien que celebra cada uno de tus logros silenciosos y que cuenta las horas para recordarte cuánto vales.
+
+¡A conquistarlo todo hoy, mi administradora estrella!
+Te sostengo en la distancia con un abrazo cálido y apretado.
+Estoy contigo en cada paso de tu día."""
     },
     "2026-08-04": {
         "fecha_str": "Martes, 04 de Agosto",
-        "titulo": "La gracia de tu perseverancia y la paz de tu mirada ✨🕊️",
-        "poema": """Martes para contemplar la belleza de tu constancia, mi reina bella. Es cautivador ver cómo encajas con tanta gracia la dulzura de una madre entregada con la firmeza de una profesional brillante. Cada paso que das en TQ, cada noche que le dedicas a repasar tus apuntes de la universidad, no solo es muestra de tu disciplina, sino también el cimiento del futuro radiante que mereces tú y tu pequeña.
+        "titulo": "La gracia de tu perseverancia y la serenidad de tu alma ✨🕊️🌸",
+        "poema": """Martes para contemplar la belleza de tu constancia, mi reina bella.
+Es cautivador ver cómo encajas con tanta soltura la dulzura de una madre amorosa
+con la firmeza y visión de una profesional y futura administradora brillante.
+Cada paso firme que das en TQ, cada noche que le dedicas a repasar tus libros y guías universitarias,
+no solo es muestra de tu disciplina de hierro, sino el cimiento de un futuro radiante para ti y tu princesa.
 
-Deseo de corazón que hoy encuentres momentos de serenidad en medio de la agitación. Que las tareas fluyan con soltura, que las personas a tu alrededor valoren la luz y el orden que aportas, y que al final de la tarde puedas suspirar sabiendo que lo hiciste excelente. Nunca olvides que en mi corazón ocupas el lugar más sagrado y que no hay día en que no agradezca por haberte atravesado en mi vida. Cuídate mucho, mi reina hermosa."""
+Deseo de todo corazón que hoy encuentres momentos de profunda serenidad en medio del movimiento.
+Que las tareas fluyan con soltura, que los archivos se gestionen rápido y sin tropiezos,
+y que las personas a tu alrededor sepan valorar la enorme luz y el orden impecable que tú aportas.
+
+Al final de la tarde, cuando regreses a tu refugio, quiero que respires y sientas orgullo de ti.
+Nunca olvides que en mi corazón ocupas un lugar sagrado e inamovible.
+Cuídate mucho hoy, mi mujer maravillosa. Te quiero con una fuerza que trasciende la distancia."""
     },
     "2026-08-05": {
         "fecha_str": "Miércoles, 05 de Agosto",
         "titulo": "Puentes invisibles entre Medellín y Bucaramanga 🏔️✈️💕",
-        "poema": """Llegamos a la mitad de la semana, mi vida. A veces observo el mapa y contemplo los cientos de kilómetros que separan las montañas antioqueñas de los hermosos valles bumangueses; sin embargo, me da risa y ternura comprobar que no existe geografía capaz de distanciar lo que se siente desde el alma. Cada pensamiento mío viaja velozmente hacia ti, envolviéndote en un abrazo cálido que busca protegerte del estrés.
+        "poema": """Llegamos a la mitad de la semana, mi vida hermosa.
+A veces contemplo el mapa de nuestra patria y me quedo mirando los kilómetros que separan
+las verdes montañas antioqueñas de los majestuosos paisajes bumangueses.
+Sin embargo, me da una ternura inmensa comprobar que no existe geografía capaz de distanciar
+lo que se siente desde lo más profundo del corazón.
 
-Eres mi pensamiento favorito en las mañanas y el suspiro con el que cierro mis noches. Espero que hoy tu jornada laboral sea ligera, que tus ideas brillen en cada reunión y que sientas una chispa de felicidad constante en tu pecho. Sigue adelante con esa valentía que te caracteriza, mi reina, porque estás haciendo un trabajo formidable en todos los ámbitos de tu vida. Te quiero con una profundidad que las palabras apenas logran esbozar."""
+Cada pensamiento mío hacia ti viaja a la velocidad de la luz, envolviéndote en un manto cálido
+que busca protegerte de las prisas del trabajo y darte un respiro lleno de dulzura.
+Eres mi pensamiento preferido en las mañanas y el pensamiento con el que cierro mis ojos de noche.
+
+Espero que hoy tu jornada laboral en TQ sea fluida y tranquila,
+que tus ideas brillen en cada conversación y que sientas una chispa de paz constante en tu pecho.
+Sigue adelante con esa entereza que te hace única, porque estás haciendo un trabajo magistral.
+Te quiero con un cariño profundo, maduro y leal."""
     },
     "2026-08-06": {
         "fecha_str": "Jueves, 06 de Agosto",
-        "titulo": "Tu esfuerzo silencioso construye un imperio 🏰📜🌷",
-        "poema": """Casi rozamos el fin de semana, mi administradora soñada. Hoy jueves quiero rendirle un homenaje a ese esfuerzo silencioso que nadie más ve: a las madrugadas, a los minutos robados al descanso para cumplir con tus entregas de la universidad, a la paciencia infinita con la que gestionas cada detalle en TQ y al amor inconmensurable que le dedicas a tu princesa en casa.
+        "titulo": "Tu esfuerzo silencioso construye un imperio indestructible 🏰📜🌷",
+        "poema": """Casi rozamos el fin de semana, mi administradora soñada.
+Hoy jueves quiero rendirle un tributo muy especial a ese esfuerzo silencioso que no todos ven:
+a las madrugadas constantes, a los minutos que le robas al descanso para avanzar en tus entregas,
+a la paciencia infinita con la que resuelves cada detalle laboral en Tecnoquímicas,
+y al amor incondicional con el que atiendes las risas y necesidades de tu hijita.
 
-Quizás a veces sientas cansancio, y es completamente válido, pero quiero que te mires a través de mis ojos por un instante: verías a una mujer majestuosa, inteligente, invencible y llena de una ternura que conmueve. No te rindas jamás, pero tampoco te exijas más de la cuenta. Vas por el camino correcto y cada semilla sembrada florecerá en abundancia. Te amo con todo mi ser y te pienso a cada instante de mi día."""
+Quizás a veces sientas cansancio en el cuerpo, y es completamente natural y válido,
+pero quiero que por un instante intentes mirarte a través de mis ojos:
+verías a una mujer majestuosa, inteligente, capaz de vencer cualquier tempestad y llena de ternura.
+
+No te exijas más de lo debido; lo estás haciendo perfecto, paso a paso.
+Cada semilla que siembras hoy florecerá en jardines de éxito y estabilidad para los tuyos.
+Te pienso a cada segundo y te mando un beso lleno de devoción."""
     },
     "2026-08-07": {
         "fecha_str": "Viernes, 07 de Agosto",
-        "titulo": "Fiesta patria y el refugio de tus abrazos 🇨🇴🌸💖",
-        "poema": """¡Feliz viernes y festivo, mi reina adorada! Qué alegría tan inmensa siento al saber que el calendario nos regala este respiro para que puedas pausar el ajetreo del trabajo y regalarte el descanso que tanto te mereces. Hoy es un día para bajar las revoluciones, para dejar los correos y las hojas de cálculo a un lado, y entregarte de lleno al calor de tu hogar, a las risas con tu hijita y a esos placeres sencillos que llenan el alma.
+        "titulo": "Festivo nacional y el merecido santuario de tu descanso 🇨🇴🌸💖",
+        "poema": """¡Feliz viernes y feliz festivo de la Batalla de Boyacá, mi reina adorada!
+Qué alegría tan gigante siente mi corazón al saber que hoy el calendario nos regala este respiro,
+permitiéndote pausar por completo la rutina exigente de Tecnoquímicas y los libros de la universidad.
+Hoy es un día sagrado para desconectar la mente, soltar los correos y entregarte a la calma.
 
-Que este día de fiesta patria sea el pretexto perfecto para consentirte, tomarte ese café o té sin prisa, disfrutar de una rica comida y recargar tus energías en paz. Mi corazón celebra contigo este descanso porque sé cuánto has trabajado durante la semana. Gracias por existir, por brindarme tu afecto sincero y por ser esa reina maravillosa que alegra mis días. Disfruta enormemente tu viernes, vida mía."""
+Aprovecha este festivo para disfrutar de tu hogar sin mirar el reloj.
+Siente la dicha de desayunar despacio, de tomarte tu café o té mientras conversas placenteramente,
+de abrazar a tu hijita y regalarse risas llenas de la paz más pura que existe.
+
+Que tu casa se llene de energía renovada y que este día libre sea un abrazo para tu espíritu.
+Desde Medellín celebro tu descanso porque sé cuánto has trabajado y cuánto te lo mereces.
+Eres la reina de mi universo y hoy deseo que te consientan como la mujer grandiosa que eres.
+¡Disfruta enormemente tu viernes de descanso, mi amor!"""
     },
     "2026-08-08": {
         "fecha_str": "Sábado, 08 de Agosto",
-        "titulo": "Sábado de magia, libertad y sonrisas de hogar 🧸🌈✨",
-        "poema": """Sábado con aroma a hogar, a tranquilidad y a momentos inolvidables, mi reina consentida. Me llena el corazón de una profunda alegría imaginarte relajada, vistiendo tu ropa más cómoda, disfrutando del tiempo libre al lado de tu hijita y dejando que las horas transcurran suavemente, sin la presión de las alarmas ni las agendas apretadas.
+        "titulo": "Sábado de magia, libertad y risas inolvidables de hogar 🧸🌈✨",
+        "poema": """Sábado con aroma a hogar, a tranquilidad y a momentos memorables, mi reina consentida.
+Me llena de una profunda paz imaginarte relajada, vistiendo tus prendas más cómodas,
+disfrutando de tu tiempo libre al lado de tu pequeña y dejando que las horas transcurran suavecito,
+sin la presión de alarmas, correos corporativos ni llamadas urgentes.
 
-Te mereces cada segundo de esta libertad. Te mereces reír hasta que te duela la panza, ver tu película o serie favorita, comer algo delicioso y sentir cómo la paz abraza tu casa. Desde la distancia, te envío un abrazo gigante cargado de ositos, mariposas y todo el cariño del universo. Que la felicidad de hoy sea el combustible para tu espíritu. Te adoro con toda mi alma, mi reina hermosa."""
+Te mereces cada segundo de esta libertad. Te mereces reír con libertad, disfrutar un antojo delicioso,
+mirar una película que te guste o simplemente descansar sintiendo que el deber está cumplido.
+Desde la distancia, te envío un abrazo envolvente cargado de ositos, mariposas y bendiciones.
+
+Que la alegría de hoy llene tus tanques de energía y que sientas en todo instante mi presencia afectuosa.
+Gracias por existir y por ser ese faro de luz que alegra mi vida de una forma tan bonita.
+Te adoro con toda mi alma, mi reina hermosa."""
     },
     "2026-08-09": {
         "fecha_str": "Domingo, 09 de Agosto",
-        "titulo": "Un remanso de amor para recargar el alma ☕🦋🌺",
-        "poema": """Llegamos al domingo, mi vida hermosa, ese día sagrado donde el mundo parece bajar la velocidad para permitirnos reconectar con lo que verdaderamente importa. Hoy quiero pedirte que te mimes de forma especial, que escuches a tu cuerpo y le permitas descansar profundamente. La semana laboral arrancará mañana, pero hoy el tiempo le pertenece única y exclusivamente a tu bienestar y al amor de tu familia.
+        "titulo": "Un remanso de amor puro para acariciar tu alma ☕🦋🌺",
+        "poema": """Llegamos al domingo, mi vida hermosa, ese día sagrado donde el mundo desacelera
+para permitirnos reconectar con lo verdaderamente valioso de la existencia.
+Hoy quiero pedirte que te mimes de manera especial, que escuches a tu cuerpo y le permitas descansar.
+La semana laboral arrancará mañana, pero hoy el tiempo es únicamente para tu bienestar y tu familia.
 
-Gracias por permitirme ser parte de tu universo, por escucharme, por compartir conmigo tus metas, tus chistes y tu día a día. Construir este vínculo contigo, a pesar de la distancia, es uno de los regalos más lindos de mi vida. Que este domingo termine con una tranquilidad inmensa en tu pecho y con la certeza absoluta de que eres profundamente amada y valorada. Un beso gigante hasta la hermosa Bucaramanga."""
+Gracias por permitirme ser parte de tu historia, por escucharme con esa dulzura que tienes,
+por compartir conmigo tus sueños de ser una gran Administradora y por tus risas compartidas.
+Construir este lazo contigo, desafiando cualquier distancia, es una de las cosas más bellas de mi vida.
+
+Que este domingo cierre con una tranquilidad inmensa en tu pecho y con la absoluta certeza
+de que eres profundamente amada, respetada y valorada por quien te escribe desde Medellín.
+Un abrazo inmenso y un beso dulce hasta Bucaramanga."""
     },
     "2026-08-10": {
         "fecha_str": "Lunes, 10 de Agosto",
-        "titulo": "Fuerza imparable y la elegancia de tus pasos 💼👑✨",
-        "poema": """Nuevo lunes, mi reina hermosa, y una nueva oportunidad para deslumbrar al mundo con tu profesionalismo y tu carácter brillante. Sé que volver a la rutina de TQ tras un fin de semana reconfortante requiere un impulso extra, pero si de algo estoy completamente seguro, es de la berraquera y el compromiso inquebrantable que laten en tu corazón.
+        "titulo": "Fuerza invencible y la majestuosidad de tu camino 💼👑✨",
+        "poema": """Nuevo lunes, mi reina hermosa, y una nueva oportunidad para deslumbrar al mundo
+con la firmeza de tu carácter y la elegancia de tu inteligencia.
+Sé que retomar el ritmo tras un fin de semana festivo exige una cuota extra de energía,
+pero si de algo estoy seguro es de la berraquera gigante que habita en tu corazón.
 
-Enfréntate a este inicio de semana recordando que eres la futura Administradora de Empresas más capaz, metódica y talentosa. Deja que tu inteligencia abra caminos y que tu serenidad resuelva cualquier eventualidad. Yo estaré aquí, como tu admirador número uno, enviándote la mejor energía en cada hora del día y recordándote que en Medellín hay un corazón que late al ritmo del tuyo. ¡Muchos éxitos en tu jornada hoy!"""
+Enfréntate a esta jornada recordando que eres una mujer empoderada, metódica y brillante.
+Que tus gestiones en Tecnoquímicas salgan fluidas, que los problemas encuentren solución rápida
+y que sientas la satisfacción de saber que dominas cada proceso con maestría.
+
+Yo estaré aquí, siendo tu admirador número uno a la distancia, enviándote la mejor vibración
+y recordándote a cada rato que tu potencial no tiene fronteras.
+¡A romperla hoy, mi futura Administradora! Que tengas un lunes de puros éxitos."""
     },
     "2026-08-11": {
         "fecha_str": "Martes, 11 de Agosto",
-        "titulo": "Orgullo absoluto por tu entrega en TQ 📦💖🌷",
-        "poema": """Martes de trabajo duro, mi vida bella. Cada vez que pienso en la dedicación que le pones a tus labores en Tecnoquímicas, en tu minuciosidad para que todo salga perfecto y en la ética con la que asumes cada tarea, se me hincha el pecho de un orgullo indescriptible. Eres el claro ejemplo de que cuando una mujer combina inteligencia, valores y determinación, no existen límites para su éxito.
+        "titulo": "Orgullo infinito por tu impecable labor en TQ 📦💖🌷",
+        "poema": """Martes de enfoque y realizaciones, mi vida bella.
+Cada vez que pienso en la dedicación impecable que le pones a tus actividades en Tecnoquímicas,
+en tu cuidado por los detalles para que los registros y procesos funcionen sin errores,
+se me hincha el pecho de un orgullo verdadero.
+Eres el reflejo de lo que ocurre cuando se combina talento, ética y compromiso.
 
-Deseo que hoy las cosas fluyan con una armonía increíble, que los pendientes se resuelvan con rapidez y que tus compañeros y superiores reconozcan el inmenso valor que representas. Y al final de la tarde, cuando regreses a tu refugio, recuerda que siempre habrá un espacio para ti en mis palabras para desahogarte, hacerte reír o simplemente acompañar tu descanso. Te quiero de una forma muy especial, mi reina."""
+Deseo que hoy las horas en el trabajo transcurran livianas y agradables,
+que las interacciones con tus compañeros sean amables y productivas,
+y que sientas el reconocimiento implícito que genera tu excelente labor.
+
+Cuando el sol se ponga y regreses a descansar a tu casa, recuerda que siempre habrá aquí
+un espacio cálido para escucharte, leerte y desearte la noche más reparadora.
+Te quiero de una forma única y especial, mi reina."""
     },
     "2026-08-12": {
         "fecha_str": "Miércoles, 12 de Agosto",
-        "titulo": "Mitad de semana: Tu luz que nunca se apaga 🌟💫🧸",
-        "poema": """¡Miércoles, mi reina adorada! Hemos alcanzado la cúspide de la semana. Sé que el cansancio acumulado de la rutina puede empezar a sentirse un poco en el cuerpo, pero también sé que tu espíritu posee una luz inextinguible que te impulsa a dar lo mejor de ti en todo instante.
+        "titulo": "Mitad de semana: La luz inagotable que emana de ti 🌟💫🧸",
+        "poema": """¡Miércoles, mi reina adorada! Llegamos al corazón de la semana.
+Sé que el esfuerzo acumulado entre las jornadas laborales de TQ y las exigencias de la carrera
+puede empezar a sentirse en los hombros, pero también conozco la luz inagotable de tu espíritu.
+Tienes una fuerza interior que te renueva y te permite salir victoriosa de cada reto.
 
-Tómate breves pausas durante el día, respira el aire fresco, hidrátate bien y regálate una sonrisa en el espejo. Estás construyendo un camino maravilloso para ti y para tu hijita, paso a paso, con esfuerzo y amor verdadero. Nada de lo que haces cae en saco roto; todo dará sus frutos dorados muy pronto. Te envío un abrazo tan fuerte y apretado que logre cruzar la Cordillera Oriental para llegar directito a tu corazón. Te amo profundamente."""
+Tómate pausas breves durante el día, bebe agüita fresca, estira tu espalda y regálate una sonrisa.
+Estás construyendo un monumento de estabilidad y superación para ti y para tu hijita.
+Ningún trasnocho es en vano, ninguna lectura de universidad cae en saco roto; todo dará sus frutos dorados.
+
+Te envío un abrazo tan profundo y cálido que cruce los valles y llegue directo a tu pecho
+para recordarte que nunca estás sola. Te quiero con todo mi corazón."""
     },
     "2026-08-13": {
         "fecha_str": "Jueves, 13 de Agosto",
-        "titulo": "La sabiduría de una futura Administradora brillante 🎓📜💖",
-        "poema": """Jueves con sabor a victoria cercana, mi vida. Al contemplar tus esfuerzos en los estudios de Administración de Empresas, no puedo evitar visualizarte en un futuro no muy lejano liderando grandes proyectos, tomando decisiones estratégicas y siendo esa ejecutiva admirable que desde ya se está perfilando en ti. Tu mente aguda y tu visión estructurada son tus mayores herramientas.
+        "titulo": "La visión de una futura Administradora brillante 🎓📜💖",
+        "poema": """Jueves con perspectiva de victoria, mi vida.
+Al contemplar el entusiasmo y la seriedad con que asumes tus estudios de Administración de Empresas,
+no puedo evitar imaginarte en un futuro muy cercano liderando equipos con sabiduría,
+tomando decisiones estratégicas de alto nivel y siendo esa ejecutiva admirable que ya se vislumbra en ti.
 
-Nunca te sientas abrumada por la cantidad de lecturas o exámenes; recuerda que cada concepto que dominas hoy es un peldaño más en la escalera de tu triunfo personal. Me siento profundamente afortunado de poder presenciar tu crecimiento, apoyarte moralmente y celebrar cada nota y cada logro académico a tu lado. Sigue brillando, mi reina, que el mundo entero es tuyo. Te quiero con todas las fuerzas de mi alma."""
+Tu mente estructurada, tu capacidad de análisis y tu tenacidad son herramientas indestructibles.
+No te abrumes si algún tema universitario parece complejo; tómalo con calma, que tú tienes el intelecto de sobra.
+Me siento profundamente honrado de ser testigo de tu crecimiento y de acompañarte en este viaje.
+
+Sigue brillando con esa humildad tan bella que te caracteriza.
+El futuro te tiene preparadas cosas gigantescas. Te pienso con amor y profunda admiración."""
     },
     "2026-08-14": {
         "fecha_str": "Viernes, 14 de Agosto",
-        "titulo": "El suspiro de alivio al ver llegar el descanso 🌅🌸✨",
-        "poema": """¡Por fin es viernes, mi reina deslumbrante! Qué satisfacción tan grande se siente al mirar hacia atrás y ver todo lo que lograste conquistar durante esta semana de trabajo en TQ y estudios universitarios. Te entregaste al máximo, demostraste una vez más tu valía y ahora la puerta del fin de semana se abre de par en par para recibirte como la verdadera reina que eres.
+        "titulo": "El suspiro de alivio al conquistar una nueva semana 🌅🌸✨",
+        "poema": """¡Por fin es viernes, mi reina deslumbrante!
+Qué alegría se siente en el aire al mirar atrás y comprobar que lograste conquistar otra semana más.
+Cumpliste tus metas en Tecnoquímicas, le cumpliste a tus materias de la universidad
+y mantuviste el amor encendido en tu hogar como la madre maravillosa que eres.
 
-Que las horas laborales de hoy se deslicen de manera rápida y placentera. Prepárate para soltar los informes, cerrar las carpetas y sumergirte en ese ambiente cálido de descanso, risas en familia y desconexión total. Recuerda que esta noche es tuya para relajarte, consentirte y disfrutar de una buena comida. Te pienso a cada instante y te envío miles de besos y abrazos virtuales."""
+Que el ritmo de hoy en el trabajo sea amable y apresurado para que la tarde te reciba con los brazos abiertos.
+Prepárate para cerrar las carpetas, apagar el computador y sumergirte en ese espacio de descanso
+donde solo importan las risas, la buena comida y la paz.
+
+Esta noche es para que te consientas como te mereces.
+Yo estaré celebrando tus logros desde Medellín y enviándote todo mi afecto en cada pensamiento.
+¡Que tengas un viernes sensacional, mi vida!"""
     },
     "2026-08-15": {
         "fecha_str": "Sábado, 15 de Agosto",
-        "titulo": "Sábado para celebrar tu amor maternal y tu belleza 🧸👑💕",
-        "poema": """Sábado radiante, mi reina hermosa. Una de las virtudes que más me enamoran y me conmueven de ti es el amor desbordante, paciente y dulce con el que educas y cuidas a tu hijita. Ver la complicidad, el cariño y el hogar tan lindo que has construido para ambas demuestra la pureza y la nobleza gigantesca que habitan en tu corazón.
+        "titulo": "Sábado para honrar tu amor maternal y tu bella esencia 🧸👑💕",
+        "poema": """Sábado radiante, mi reina hermosa.
+Una de las facetas que más profundamente me cautivan de ti es el amor desbordante,
+paciente y dulce con el que guías y cuidas el universo de tu pequeña hijita.
+Ver la complicidad que comparten y la felicidad que construyes en tu hogar
+me demuestra la pureza y la grandeza de tu corazón.
 
-Hoy sábado es un día perfecto para disfrutar de ese vínculo sagrado, para jugar, compartir, pasear o simplemente acurrucarse a ver películas juntas. Deseo que la felicidad inunde cada rincón de tu casa y que la paz permanezca en tu alma durante todo el fin de semana. Gracias por mostrarme lo que significa el amor real y la dedicación sin límites. Te adoro con todo mi ser, mi reina bella."""
+Hoy sábado es un día perfecto para nutrir esa complicidad:
+para jugar, salir a caminar, compartir un helado o simplemente acurrucarse en casa sin afanes.
+Deseo que la alegría inunde cada rincón de tu hogar y que descanses con la conciencia en paz.
+
+Gracias por enseñarme lo que significa el amor abnegado y la fortaleza verdadera.
+Disfruta de cada instante de tu sábado, mi reina bella. Te adoro con todo mi ser."""
     },
     "2026-08-16": {
         "fecha_str": "Domingo, 16 de Agosto",
-        "titulo": "Domingo de paz profunda y latidos compartidos ☕✨🕊️",
-        "poema": """Domingo de serenidad absoluta, mi vida hermosa. Hoy te propongo un pacto con la tranquilidad: regálate momentos de introspección bonita, escucha la música que alegra tu espíritu, tómate un café bien caliente a sorbos lentos y permite que el cansancio se evapore por completo.
+        "titulo": "Domingo de paz plena, café caliente y pensamientos mutuos ☕✨🕊️",
+        "poema": """Domingo de calma infinita, mi vida hermosa.
+Hoy te propongo un pacto de tranquilidad total: regálate momentos de silencio sanador,
+escucha las canciones de Beéle, Melendi o el afrobeat que tanto te gusta y alegran tu alma,
+bebe un café o té caliente a sorbos pausados y permite que cualquier vestigio de fatiga desaparezca.
 
-A veces la vida nos lleva a mil por hora, pero días como hoy existen para recordarnos que lo más valioso es el presente y los afectos verdaderos. Aunque no pueda estar físicamente sentado a tu lado compartiendo ese café, quiero que sepas que en pensamiento estoy ahí, contemplando tu sonrisa y agradeciendo a la vida por haber cruzado nuestros caminos. Disfruta enormemente este domingo mi reina. Te quiero más de lo que las palabras pueden expresar."""
+A veces la vida nos exige andar deprisa, pero los domingos existen como un recordatorio dulce
+de que lo verdaderamente sagrado son los afectos reales y la paz interior.
+Aunque la distancia física nos mantenga en ciudades distintas,
+quiero que sepas que en pensamiento estoy a tu lado, sonriéndote y cuidándote.
+
+Que este día termine con una serenidad hermosa en tu pecho.
+Te quiero con un cariño limpio, transparente y eterno."""
     },
     "2026-08-17": {
         "fecha_str": "Lunes, 17 de Agosto",
-        "titulo": "Lunes festivo de desconexión y tiempo en familia 🎈🌸💖",
-        "poema": """¡Un lunes festivo que sabe a gloria, mi reina adorada! Qué bendición tan grande tener este día adicional de descanso para romper la rutina y recargar la mente. Hoy el lunes no viene cargado de afanes ni de metas laborales, sino de la oportunidad maravillosa de prolongar la paz de tu fin de semana.
+        "titulo": "Lunes festivo de desconexión total y amor familiar 🎈🌸💖",
+        "poema": """¡Un nuevo lunes festivo para celebrar la vida, mi reina adorada!
+Qué regalo maravilloso del calendario tener este día extra para prolongar la descanso de tu fin de semana.
+Hoy el inicio de semana no viene acompañado de despertadores madrugadores ni de compromisos de TQ,
+sino de la oportunidad perfecta para consentirte y regalarte bienestar.
 
-Aprovecha cada minuto de este día festivo para recargar tus baterías emocionales. Sal a respirar aire puro, comparte momentos alegres con tu hijita, coman algo que les encante y descansa profundamente. Mi corazón celebra saberte tranquila y feliz en tu hogar. Recuerda que no importa el día ni la hora, mi admiración y mi cariño por ti permanecen firmes e inalterables. ¡Pásala de maravilla hoy, mi reina!"""
+Disfruta de este día festivo de la Asunción con una sonrisa amplia.
+Comparte momentos bellos con tu hijita, preparen algo sabroso para almorzar,
+y permite que tu mente se limpie de cualquier preocupación laboral o académica.
+
+Desde Medellín te mando un abrazo lleno de ternura que te acompañe durante todo el día.
+Mi admiración y mi afecto por ti son una constante firme que no depende de fechas.
+¡Pásala increíble hoy, mi reina!"""
     },
     "2026-08-18": {
         "fecha_str": "Martes, 18 de Agosto",
-        "titulo": "Renovar la energía con el corazón lleno de ilusión 💫💼✨",
-        "poema": """Martes con la energía totalmente renovada, mi vida. Después de un fin de semana largo y reconfortante, hoy la semana laboral arranca de una forma más corta pero igualmente llena de propósitos. Llega a Tecnoquímicas con la serenidad de quien sabe que tiene todo bajo control y con la frescura que te regaló el descanso.
+        "titulo": "Renovar el espíritu y retomar el rumbo con ilusión 💫💼✨",
+        "poema": """Martes con la energía al cien por ciento, mi vida.
+Tras un fin de semana prolongado y lleno de descanso, hoy la semana arranca de forma más corta
+pero igualmente repleta de metas bonitas por alcanzar.
+Llega a Tecnoquímicas con la compostura de quien sabe que tiene las riendas de su trabajo bajo control.
 
-Confío plenamente en tus destrezas, en tu criterio acertado y en tu capacidad para resolver cualquier imprevisto con la mayor de las elegancias. Que tu día esté lleno de interacciones positivas, avances significativos en tus metas y sorpresas agradables. Recuerda que aquí en Medellín hay alguien que no deja de pensarte ni un solo minuto y que se siente inmensamente afortunado de tenerte en su vida. ¡A triunfar hoy!"""
+Confío plenamente en tus destrezas, en tu sentido práctico y en tu inteligencia rápida.
+Que la jornada sea fluida, que las tareas se completen con agilidad y que el ambiente laboral sea grato.
+
+Recuerda que aquí en Antioquia hay alguien que no deja de pensarte con orgullo,
+alguien que valora cada gesto tuyo y que se siente bendecido por tenerte en su día a día.
+¡A triunfar hoy, mi reina empoderada!"""
     },
     "2026-08-19": {
         "fecha_str": "Miércoles, 19 de Agosto",
-        "titulo": "Latidos constantes más allá de los kilómetros 🏔️✈️💖",
-        "poema": """Miércoles de reflexiones profundas, mi reina amada. A veces contemplo el mapa nocturno de Colombia y me imagino las luces de Bucaramanga desde la distancia. Me gusta pensar que entre la maraña de calles y luces, hay un lugarcito iluminado por la calidez de tu presencia, donde habitas con tu gracia, tus sueños y tu ternura.
+        "titulo": "Latidos sincronizados más allá de las fronteras 🏔️✈️💖",
+        "poema": """Miércoles de reflexiones bonitas, mi reina amada.
+A veces contemplo el cielo atardecer y me imagino la vista de Bucaramanga a la distancia.
+Me reconforta enormemente saber que bajo ese mismo cielo habita una mujer increíble,
+llena de virtudes, trabajando duro por sus sueños y cuidando a los suyos con amor.
 
-La distancia física es apenas un detalle cuando dos almas logran conectar de la forma sincera y bonita en que lo hemos hecho. Gracias por tu escucha atenta, por cada mensaje que alegra mis jornadas y por ser esa presencia constante que le da color a mis días. Que este miércoles te traiga la satisfacción del deber cumplido y momentos de mucha paz. Te amo con un cariño infinito y eterno."""
+La distancia entre nuestras ciudades se vuelve diminuta cuando hay una conexión honesta,
+basada en el respeto, la complicidad, el apoyo mutuo y un cariño que crece día con día.
+Gracias por tu ternura, por tus palabras y por ser esa presencia luminosa que me acompaña.
+
+Que este miércoles te traiga la satisfacción del trabajo bien hecho en TQ y momentos de risas.
+Te amo con una fuerza sincera y permanente."""
     },
     "2026-08-20": {
         "fecha_str": "Jueves, 20 de Agosto",
-        "titulo": "Elegancia, ternura y determinación en un solo ser 👑🦋🌸",
-        "poema": """Jueves de resplandor, mi reina consentida. Es fascinante contemplar la combinación tan perfecta que habita en ti: tienes la dulzura más tierna para tratar a quienes amas, la elegancia impecable en tu comportamiento diario y la determinación de hierro para no rendirte jamás ante tus metas profesionales y universitarias.
+        "titulo": "Sutileza, inteligencia y firmeza en un solo ser 👑🦋🌸",
+        "poema": """Jueves de resplandor, mi reina consentida.
+Es inspirador observar la combinación tan perfecta que se da en tu personalidad:
+posees la dulzura más tierno para tratar a las personas que amas,
+la distinción en tu forma de expresarte y comportarte,
+y la firmeza indispensable para no rendirte jamás ante los retos de la universidad y el trabajo.
 
-Esa mezcla de virtudes te convierte en una mujer única, de esas que dejan una huella imborrable en el corazón de quien tiene el privilegio de conocerlas. Deseo que el día de hoy responda a toda esa belleza que llevas dentro: que las cosas te salgan bien al primer intento, que el clima sea agradable y que sientas en todo momento la calidez de mi cariño rodeándote. Te quiero con toda la fuerza de mi ser."""
+Esa riqueza de virtudes te convierte en un ser humano sencillamente excepcional.
+Deseo que el día de hoy responda a toda esa luz que llevas dentro:
+que tus gestiones salgan bien al primer intento y que la gente a tu alrededor te facilite las tareas.
+
+Te envío mi cariño envuelto en palabras sinceras para recordarte que vales oro.
+Que tengas un jueves maravilloso, mi vida."""
     },
     "2026-08-21": {
         "fecha_str": "Viernes, 21 de Agosto",
-        "titulo": "Viernes victorioso para la mujer de mi vida 🏆💖✨",
-        "poema": """¡Llegamos al viernes, mi reina victoriada! Otra semana superada con honores, otra muestra más de tu capacidad organizativa en TQ y de tu entrega absoluta a tu carrera de Administración. Te mereces una aplauso de pie por la constancia que le imprimes a cada uno de tus días.
+        "titulo": "Viernes de victoria para la dueña de mis pensamientos 🏆💖✨",
+        "poema": """¡Llegamos al viernes, mi reina victoriosa!
+Otra semana laboral cerrada con éxito en Tecnoquímicas, otro escalón superado en la universidad
+y otro periodo donde demostraste que tu berraquera no tiene límites.
+Te mereces un aplauso de pie por la disciplina impecable que le pones a todo.
 
-Que el cierre de la jornada de hoy sea suave y ágil, dejándote libre para comenzar a disfrutar de tu tiempo libre. Esta noche regálate un momento consentido: prepara o pide tu cena favorita, ponte cómoda y desconéctate por completo del estrés. Yo estaré desde aquí enviándote todo mi amor y recordando lo orgulloso que me siento de ti. ¡Feliz viernes, mi vida hermosa!"""
+Que las horas laborales de hoy pasen rápido y sin complicaciones.
+Esta noche arranca el fin de semana y quiero que te prepares para consentirte:
+disfruta de una cena sabrosa, ponte cómoda y desconecta el chip de la productividad obligatoria.
+
+Yo estaré desde aquí celebrando tus victorias y enviándote todo mi amor.
+¡Feliz viernes, mi mujer soñada!"""
     },
     "2026-08-22": {
         "fecha_str": "Sábado, 22 de Agosto",
-        "titulo": "Un fin de semana para crear recuerdos dorados 🧸🌟🌺",
-        "poema": """Sábado de descanso merecido, mi reina adorada. El fin de semana es el lienzo en blanco donde escribes tus momentos más felices junto a tu hijita, libre de los correos de TQ y de la carga académica de la universidad. Deseo de corazón que hoy llenes ese lienzo de colores vivos, de risas contagiosas y de abrazos apretados.
+        "titulo": "Un fin de semana para tejer recuerdos de oro 🧸🌟🌺",
+        "poema": """Sábado de descanso ganado a pulso, mi reina adorada.
+El fin de semana es ese espacio donde puedes dedicarte sin apuros a lo que más amas:
+a compartir tiempo de calidad con tu hijita, a ver sus sonrisas y a descansar tu cuerpo.
 
-Permítete disfrutar de los pequeños detalles: el sol de la mañana, un helado delicioso, un juego divertido o una siesta reparadora. La vida está hecha de estos instantes de felicidad sencilla y pura. Gracias por ser esa mujer transparente, bondadosa y maravillosa que alegra mi existencia. Disfruta tu sábado al máximo, mi reina bella. Te amo profundamente."""
+Aprovecha este sábado para vivir el presente sin pensar en los correos del lunes.
+Salgan a pasear, disfruten del clima, coman algo que les encante o descansen en casa plácidamente.
+La felicidad se construye con estos momentos sencillos pero profundos.
+
+Gracias por ser la mujer bondadosa, auténtica y hermosa que alegra mis días a la distancia.
+Disfruta tu sábado al máximo, mi reina bella. Te amo con todo mi corazón."""
     },
     "2026-08-23": {
         "fecha_str": "Domingo, 23 de Agosto",
-        "titulo": "La poesía que escribes con cada uno de tus actos 📖💖✨",
-        "poema": """Domingo de calma y afecto, mi vida hermosa. Hay personas que leen poesía en los libros, pero yo prefiero leerla en la forma en que vives tu vida: en la devoción con la que crías a tu pequeña, en la pasión con la que estudias para ser una gran administradora, en la responsabilidad con la que cumples en TQ y en la calidez con la que tratas a quienes te rodean.
+        "titulo": "La poesía viva que escribes con cada uno de tus actos 📖💖✨",
+        "poema": """Domingo de calma y afecto sincero, mi vida hermosa.
+Hay personas que buscan la poesía en los libros antiguos, pero yo prefiero verla en tu vida diaria:
+en el amor abnegado con el que guías a tu niña, en el empeño con el que estudias Administración,
+en la responsabilidad con la que cumples en TQ y en la calidez con la que hablas.
 
-Eres un poema viviente de superación, elegancia y amor. Hoy domingo solo deseo que descanses, que recargues la mente y que sientas una paz profunda en tu alma. Mañana vendrán nuevos retos, pero hoy el universo entero se detiene para consentirte. Recuerda que no importa la distancia, mi corazón está siempre contigo. Un beso gigante hasta Bucaramanga."""
+Eres una lección constante de superación, elegancia y ternura.
+Hoy domingo solo deseo que te regales paz, que descanses tu mente y renueves tus fuerzas.
+Mañana empezará una nueva semana, pero hoy el día es para recargar el alma.
+
+Recuerda que no importa la distancia, mi corazón y mis pensamientos habitan a tu lado.
+Un beso inmenso hasta Bucaramanga."""
     },
     "2026-08-24": {
         "fecha_str": "Lunes, 24 de Agosto",
-        "titulo": "La firmeza de tus convicciones en una nueva semana 💼👑🌸",
-        "poema": """Iniciamos la última semana completa de agosto, mi reina soñada. Mírate al espejo antes de salir de casa y reconoce a la mujer empoderada, sabia y fuerte que tienes en frente. Nada de lo que has logrado hasta hoy ha sido casualidad; ha sido el fruto directo de tu trabajo duro, tu inteligencia y tu fe inquebrantable.
+        "titulo": "La entereza de tus convicciones en una nueva recta final 💼👑🌸",
+        "poema": """Iniciamos la última semana completa del mes de agosto, mi reina soñada.
+Mírate al espejo antes de salir de casa y reconoce a la mujer valiente, sabia y capaz que tienes frente a ti.
+Todo lo que has construido hasta hoy es el resultado directo de tu esfuerzo constante y tu fe.
 
-Afronta las tareas de Tecnoquímicas hoy con la seguridad de que eres una pieza clave e insustituible por tu talento. Que la semana empiece con pie derecho, con buenas noticias, flujos de trabajo despejados y el corazón lleno de optimismo. Desde Medellín te mando la mejor energía y mi admiración perpetua. ¡A romperla toda hoy, mi reina!"""
+Afronta tus compromisos en Tecnoquímicas con la tranquilidad de quien domina su área.
+Que la semana comience con noticias positivas, flujos de trabajo despejados y mucha armonía.
+
+Desde Medellín te mando la mejor energía, respaldando cada una de tus metas y celebrando tu camino.
+¡A romperla hoy con toda la actitud, mi reina!"""
     },
     "2026-08-25": {
         "fecha_str": "Martes, 25 de Agosto",
-        "titulo": "Admiración que crece con cada amanecer 🌅🧸💕",
-        "poema": """Martes radiante, mi reina hermosa. Si me preguntaran qué es lo que más admiro de ti, no sabría por dónde empezar: si por la agudeza con la que entiendes los procesos administrativos, por la solidez de tu ética laboral en TQ, por la dulzura maternal que desbordas o por la sencillez y carisma con el que iluminas cualquier conversación.
+        "titulo": "Admiración que florece y se profundiza cada mañana 🌅🧸💕",
+        "poema": """Martes luminoso, mi reina hermosa.
+Si me pideran listar las cosas que admiro de ti, no acabaría nunca:
+su capacidad de análisis para los temas administrativos, su responsabilidad profesional impecable en TQ,
+su amor de madre entregada y la amabilidad con la que tratas a todos.
 
-Cada día que pasa me convenzo más de lo increíble y valiosa que eres. Espero que en medio de las correderas del día te regales un momento para respirar y recordar que vas por el camino correcto hacia todas tus metas. Estoy contigo en pensamiento, sosteniendo tu mano y apoyando cada uno de tus pasos. Cuídate mucho y ten un martes fabuloso."""
+Cada día que pasa me convenzo más del ser humano extraordinario que eres.
+Espero que en medio del ajetreo del día te regales un instante para respirar y valorar lo lejos que has llegado.
+
+Estoy contigo en el pensamiento, sosteniendo tu mano y apoyándote en todo momento.
+Cuídate mucho hoy y ten un martes lleno de cosas bonitas."""
     },
     "2026-08-26": {
         "fecha_str": "Miércoles, 26 de Agosto",
-        "titulo": "Un recordatorio de lo extraordinaria que eres 🌟✨🌷",
-        "poema": """Mitad de semana, mi vida. Hoy no quiero hablarte de tareas ni de pendientes; hoy solo quiero usar este espacio para hacer un pausa y recordarte lo extraordinaria que eres. A veces, en medio del ajetreo diario, se nos olvida celebrar nuestras propias virtudes, y por eso estoy yo aquí: para recordártelas todos los días de la vida.
+        "titulo": "Un pausa para recordarte lo sublime e increíble que eres 🌟✨🌷",
+        "poema": """Mitad de semana, mi vida hermosa.
+Hoy no quiero hablarte de pendientes ni de tareas; hoy solo quiero aprovechar este mensaje
+para hacer una pausa y recordarte lo inmensamente valiosa que eres para mí y para el mundo.
 
-Eres bella por fuera con una gracia deslumbrante, pero eres aún más hermosa por dentro, con un corazón generoso, trabajador y noble. No dejes que ningún momento de estrés opaque la certeza de lo lejos que vas a llegar. Sigue adelante con paso firme, mi reina, que tu futuro está repleto de bendiciones gigantescas. Te amo de aquí al infinito."""
+A veces, por andar corriendo tras las responsabilidades, se nos olvida celebrar nuestras propias virtudes.
+Tú eres bella por fuera, pero tu belleza interior, tu nobleza y tu trabajo constante son aún mayores.
+
+No permitas que el estrés opaque la certeza de tus capacidades.
+Sigue caminando con la cabeza en alto que el futuro te tiene guardadas grandes recompensas.
+Te quiero con una intensidad profunda y sincera."""
     },
     "2026-08-27": {
         "fecha_str": "Jueves, 27 de Agosto",
-        "titulo": "Tu valentía no conoce fronteras ni cansancio 🛡️💖✨",
-        "poema": """Jueves de fortaleza, mi administradora estrella. Se acerca el final del mes y sé que los cierres en el trabajo y los compromisos de la universidad pueden intensificarse. Sin embargo, también conozco la madera de la que estás hecha: eres una mujer valiente, metódica y resiliente que sabe sobreponerse a cualquier cansancio con una sonrisa digna.
+        "titulo": "Tu valentía no conoce fronteras ni se rinde jamás 🛡️💖✨",
+        "poema": """Jueves de fortaleza y avance, mi administradora estrella.
+Se aproxima el cierre de mes y sé que los requerimientos laborales en TQ y los trabajos universitarios
+pueden acumularse un poco. Sin embargo, también conozco de sobra tu templanza y tu capacidad organizativa.
 
-No te presiones más de la cuenta; haz lo que esté en tus manos con la excelencia de siempre y confía en el proceso. Recuerda que no estás sola; aunque la geografía nos ponga en ciudades distintas, mi apoyo incondicional y mi cariño están a tu lado 24/7 para levantarte el ánimo cuando lo necesites. Falta muy poco para el fin de semana. ¡Ánimo, mi reina bella!"""
+Toma las tareas una a una, sin abrumarte; realiza lo que esté a tu alcance con la excelencia habitual
+y confía en tus conocimientos. Recuerda que no estás sola en este proceso:
+mi apoyo, mi escucha activa y mi cariño están disponibles para ti a cualquier hora.
+
+Ya casi llega el fin de semana para que puedas descansar.
+¡Mucho ánimo hoy, mi reina bella! Estoy orgulloso de ti."""
     },
     "2026-08-28": {
         "fecha_str": "Viernes, 28 de Agosto",
         "titulo": "Cerramos una semana impecable, mi administradora estrella 🎓💼👑",
-        "poema": """¡Llegó el viernes, mi reina adorada! Cerramos la última semana laboral de agosto y el balance no podría ser más positivo. Te entregaste con el alma a tus responsabilidades en TQ, avanzaste en tus materias de Administración de Empresas y mantuviste encendida la chispa de amor en tu hogar. ¡Eres un ejemplo viviente de triunfo y dedicación!
+        "poema": """¡Llegó el viernes, mi reina adorada!
+Cerramos la última semana laboral de agosto con un balance profundamente victorioso.
+Te entregaste con responsabilidad a tus labores en TQ, avanzaste en tu carrera de Administración
+y brindaste amor y seguridad en tu hogar. ¡Eres un ejemplo brillante de superación!
 
-Que las horas de hoy fluyan de manera impecable y sin contratiempos. Prepara el espíritu para disfrutar de un fin de semana reparador, libre de compromisos pesados y lleno de tiempo de calidad con tu hijita y tus seres queridos. Te envío un abrazo gigante lleno de ternura, estrellas y mariposas. ¡Te mereces el mejor fin de semana del mundo!"""
+Que las horas de trabajo de hoy transcurran con agilidad y ligereza.
+Prepárate para disfrutar de un fin de semana reparador, libre de tensiones y lleno de amor familiar.
+
+Te envío un abrazo envolvente cargado de mariposas, flores y buena energía.
+¡Te mereces el mejor descanso del mundo, mi vida!"""
     },
     "2026-08-29": {
         "fecha_str": "Sábado, 29 de Agosto",
-        "titulo": "El regalo de verte sonreír en tus momentos libres 🎈🧸🌸",
-        "poema": """Sábado de pura alegría y relajación, mi vida hermosa. Nada me genera más paz interna que saber que estás disfrutando de tu tiempo libre, desconectada de las obligaciones y dedicada por completo a lo que hace feliz a tu corazón. Tu sonrisa tiene el poder mágico de arreglarme cualquier día a la distancia.
+        "titulo": "El privilegio de contemplar tu felicidad en la calma 🎈🧸🌸",
+        "poema": """Sábado de pura serenidad y regocijo, mi vida hermosa.
+Saber que estás disfrutando de tu tiempo libre, desconectada de los compromisos de la oficina
+y dedicada a lo que llena de alegría tu corazón, me produce una paz gigante.
+Tu felicidad y tu bienestar son mi mayor tranquilidad a la distancia.
 
-Disfruta de este sábado sin prisas. Regálate un gusto gastronómico, ríe con tu pequeña, pasea o descansa profundamente en tu cama. Te mereces todas las cosas lindas que la vida tiene para ofrecer. Desde Medellín te mando todo mi amor, mis pensamientos más dulces y un abrazo rompe costillas. Te adoro con todo mi corazón, mi reina consen."""
+Disfruta de este día sin afanes: consiéntete con una comida rica, ríe con tu pequeña,
+pasea o simplemente descansa placenteramente en tu hogar.
+
+Gracias por brindarme tu cariño honesto y por ser esa presencia tan especial en mi vida.
+Disfruta tu sábado al máximo, mi reina hermosa. Te amo con toda mi alma."""
     },
     "2026-08-30": {
         "fecha_str": "Domingo, 30 de Agosto",
-        "titulo": "Casi cerramos Agosto rodeados de puro agradecimiento 🙏💖✨",
-        "poema": """Domingo de calma y agradecimiento profundo, mi reina adorada. Miramos hacia atrás y vemos cómo el mes de agosto se nos escapa entre las manos, dejando tras de sí un rastro hermoso de esfuerzos coronados, conversaciones compartidas, risas a la distancia y momentos inolvidables.
+        "titulo": "Agradecimiento desbordado al contemplar este mes juntos 🙏💖✨",
+        "poema": """Domingo de reflexión y agradecimiento profundo, mi reina adorada.
+Al mirar atrás y contemplar cómo ha transcurrido este mes de agosto,
+me llena de alegría ver cada logro que alcanzaste, cada conversación compartida y cada sonrisa.
 
-Gracias por permitirme ser parte de tus días durante todo este mes, por leer mis mensajitos, por compartir conmigo tus vivencias y por brindarme la ternura de tu afecto. Hoy domingo te pido que te consientas al máximo, recargues tus energías con amor de hogar y te prepares espiritualmente para recibir septiembre con la mejor actitud. Siempre estaré aquí para ti, mi reina. Te amo infinitamente."""
+Gracias por permitirme acompañarte a la distancia a través de este diario y de nuestros mensajes,
+por tu dulzura constante y por la confianza bonita que hemos construido.
+Hoy domingo regálate un descanso completo, recarga tus energías y prepara tu corazón para septiembre.
+
+Siempre estaré aquí para ti, apoyándote, celebrándote y admirándote.
+Que tengas un domingo repleto de paz, mi reina bella."""
     },
     "2026-08-31": {
         "fecha_str": "Lunes, 31 de Agosto",
-        "titulo": "Cierre de un mes mágico y el abrazo eterno a la distancia 👑🏆💖",
-        "poema": """Hoy se cierra el mes de agosto, mi reina hermosa, y no puedo sentirme más orgulloso de todo lo que conquistaste en estos 31 días. Te vi luchar con firmeza en Tecnoquímicas, avanzar a pasos agigantados en tu carrera de Administración de Empresas, entregar el corazón como madre amorosa y brillar con una luz propia que no deja de maravillarme.
+        "titulo": "El broche de oro para un mes inolvidable y el abrazo eterno 👑🏆💖",
+        "poema": """Hoy despedimos el mes de agosto, mi reina hermosa, y el sentimiento que prevalece es el orgullo.
+Orgullo de ver cómo enfrentaste cada día con valentía en Tecnoquímicas,
+cómo avanzaste en tus estudios de Administración de Empresas y cómo cuidaste con amor de tu princesa.
 
-Cerramos este mes con la certeza de que nuestro lazo, construido con respeto, admiración y cariño sincero desde Medellín a Bucaramanga, es cada día más fuerte y bonito. Recibe este último día de agosto con la frente en alto, con la alegría de la meta cumplida y con la convicción absoluta de que lo mejor está por venir. Gracias por ser mi reina, mi inspiración y mi lugar seguro. Te amo con toda mi alma y te sostengo siempre en mi corazón."""
+Cerramos este mes comprobando que la distancia entre Medellín y Bucaramanga es diminuta
+frente a la fuerza de nuestro afecto, nuestro respeto y nuestro apoyo incondicional.
+Gracias por ser esa mujer transparente, trabajadora y maravillosa que ilumina mi vida.
+
+Recibe este último día de agosto con la alegría del deber cumplido y con la certeza de que lo que viene será aún más brillante.
+Gracias por ser mi reina y mi inspiración. Te amo con todo mi ser y te abrazo apretado a la distancia."""
     }
 }
 
