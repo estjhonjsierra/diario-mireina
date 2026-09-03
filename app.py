@@ -120,6 +120,35 @@ font_family_css = FONTS_PRESETS.get(st.session_state["user_font"], FONTS_PRESETS
 particles_list = PARTICLE_SETS.get(st.session_state["user_particles"], PARTICLE_SETS["🦋 Mariposas & 🌸 Flores"])
 
 # ==============================================================================
+# 2B. ESCENOGRAFÍA DINÁMICA DEL CICLO SEPTIEMBRE-OCTUBRE 2026
+# ==============================================================================
+# El ciclo tiene EXACTAMENTE 61 días: septiembre (30) + octubre (31).
+# La página del día se determina automáticamente con la fecha de Colombia.
+CICLO_INICIO = date(2026, 9, 1)
+CICLO_FIN = date(2026, 10, 31)
+CICLO_TOTAL = (CICLO_FIN - CICLO_INICIO).days + 1  # 61
+
+ESCENAS_DIARIAS = [
+    {"nombre": "Amanecer Rosa", "emoji": "🌅", "gradiente": "linear-gradient(135deg,#fff7fb 0%,#ffdce8 45%,#f9c5d6 100%)", "acento": "#d63384"},
+    {"nombre": "Cielo Lavanda", "emoji": "🌌", "gradiente": "linear-gradient(135deg,#f8f2ff 0%,#e8ddff 48%,#d8c5ff 100%)", "acento": "#7e22ce"},
+    {"nombre": "Atardecer Dorado", "emoji": "🌇", "gradiente": "linear-gradient(135deg,#fff9ed 0%,#ffe0b2 48%,#ffc6a8 100%)", "acento": "#b45309"},
+    {"nombre": "Noche de Estrellas", "emoji": "✨", "gradiente": "linear-gradient(135deg,#f2f5ff 0%,#dce7ff 45%,#c9d4ff 100%)", "acento": "#3949ab"},
+    {"nombre": "Jardín de Primavera", "emoji": "🌸", "gradiente": "linear-gradient(135deg,#f3fff9 0%,#ddf7eb 45%,#ffdced 100%)", "acento": "#16825d"},
+    {"nombre": "Café y Calma", "emoji": "☕", "gradiente": "linear-gradient(135deg,#fffaf5 0%,#f5e7da 45%,#efd3c4 100%)", "acento": "#8b5e3c"},
+    {"nombre": "Cielo Azul Suave", "emoji": "🦋", "gradiente": "linear-gradient(135deg,#f4fbff 0%,#dff2ff 45%,#c9e7ff 100%)", "acento": "#1261a0"},
+]
+
+def escena_del_dia(fecha_obj):
+    if CICLO_INICIO <= fecha_obj <= CICLO_FIN:
+        posicion = (fecha_obj - CICLO_INICIO).days
+    else:
+        posicion = abs((fecha_obj - CICLO_INICIO).days)
+    return ESCENAS_DIARIAS[posicion % len(ESCENAS_DIARIAS)]
+
+fecha_escena_hoy = datetime.now(tz_colombia).date()
+escena_hoy = escena_del_dia(fecha_escena_hoy)
+
+# ==============================================================================
 # 3. ESTILOS CSS AVANZADOS, GOOGLE FONTS & 12 PARTICULAS DINÁMICAS
 # ==============================================================================
 st.markdown(f"""
@@ -858,6 +887,22 @@ html, body, [class*="css"], .stMarkdown, p, div, label, span {{
         scroll-behavior: auto !important;
     }}
 }}
+
+
+/* Escena diaria: el fondo cambia suavemente sin perder la identidad del diario */
+.stApp {
+    background: {escena_hoy['gradiente']} !important;
+    background-attachment: fixed !important;
+}
+.daily-scene-badge {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:8px 16px; border-radius:999px;
+    background:rgba(255,255,255,.82);
+    border:1px solid rgba(255,255,255,.95);
+    box-shadow:0 8px 24px rgba(0,0,0,.08);
+    font-weight:800; color:{escena_hoy['acento']};
+    backdrop-filter: blur(10px);
+}
 
 </style>
 
@@ -2030,6 +2075,8 @@ RETOS_NUEVOS = [
 ]
 
 CANCIONES_NUEVAS = [
+    ("Sin Miedo", "❤️ Una canción especial para escuchar cuando quieras sentir que esta página fue escrita solo para ti."),
+    ("Bésame", "💋 Una pausa romántica para acompañar una llamada, una noche tranquila o un recuerdo bonito."),
     ("Loco - Beéle", "Energía cálida para recordarte que también mereces disfrutar."),
     ("Bonito - Jarabe de Palo", "Una canción para mirar el día con gratitud."),
     ("Color Esperanza - Diego Torres", "Un empujoncito de optimismo para seguir."),
@@ -2230,6 +2277,7 @@ def etiqueta_momento():
 st.markdown("<h1 class='main-header'>👑 El Diario de Mi Reina 💖🧸🦋</h1>", unsafe_allow_html=True)
 st.markdown("<p class='sub-header'>De Medellín a Bucaramanga 🏔️✈️✨ | Un espacio lleno de magia, recuerdos y momentos especiales</p>", unsafe_allow_html=True)
 st.markdown(f"<div class='theme-badge'>🎨 Tema Activo: {st.session_state['user_theme']} | Tipografía: {st.session_state['user_font']}</div>", unsafe_allow_html=True)
+st.markdown(f"<div style='text-align:center; margin:-8px 0 18px 0;'><span class='daily-scene-badge'>{escena_hoy['emoji']} Escena de hoy: {escena_hoy['nombre']} · {fecha_escena_hoy.strftime('%d/%m/%Y')}</span></div>", unsafe_allow_html=True)
 
 
 # ==============================================================================
@@ -2308,14 +2356,32 @@ with col_mus1:
 with col_mus2:
     if st.session_state["reproduciendo_musica"]:
         st.markdown("""
-        <div style='background: white; border-radius: 18px; padding: 10px 18px; border: 2px solid #ff85a1; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center;'>
-            <span style='color: #d63384; font-weight: bold; font-size: 0.9em;'>🎶 Reproduciendo nuestra melodía de paz...</span>
-            <audio autoplay loop controls style='width: 100%; height: 32px; margin-top: 5px;'>
-                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-                Tu navegador no soporta el reproductor de audio.
-            </audio>
+        <div style='background: rgba(255,255,255,.92); border-radius: 20px; padding: 14px 18px; border: 2px solid #ff85a1; box-shadow: 0 10px 28px rgba(214,51,132,.12); text-align: center;'>
+            <div style='color: #d63384; font-weight: 900; font-size: 0.95em;'>🎶 Música especial de mi reina</div>
+            <div style='color:#6b5360; font-size:.82em; margin:4px 0 8px;'>
+                Coloca tus archivos <b>sin_miedo.mp3</b> y <b>besame.mp3</b> junto al archivo .py para reproducirlos dentro del diario.
+            </div>
+            <div style='display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom:10px;'>
+                <span style='background:#fff0f5; padding:5px 10px; border-radius:999px;'>❤️ Sin Miedo</span>
+                <span style='background:#f7f0ff; padding:5px 10px; border-radius:999px;'>💋 Bésame</span>
+            </div>
         </div>
         """, unsafe_allow_html=True)
+
+# Reproductores reales para archivos propios. Así no se incrusta ni descarga música con copyright.
+col_song1, col_song2 = st.columns(2, gap="medium")
+with col_song1:
+    if os.path.exists("sin_miedo.mp3"):
+        st.audio("sin_miedo.mp3", format="audio/mp3", start_time=0)
+        st.caption("❤️ Sin Miedo · archivo local")
+    else:
+        st.markdown("<div class='card' style='text-align:center;'>❤️ <b>Sin Miedo</b><br><small>Agrega <code>sin_miedo.mp3</code> para habilitar el reproductor.</small></div>", unsafe_allow_html=True)
+with col_song2:
+    if os.path.exists("besame.mp3"):
+        st.audio("besame.mp3", format="audio/mp3", start_time=0)
+        st.caption("💋 Bésame · archivo local")
+    else:
+        st.markdown("<div class='card' style='text-align:center;'>💋 <b>Bésame</b><br><small>Agrega <code>besame.mp3</code> para habilitar el reproductor.</small></div>", unsafe_allow_html=True)
 
 st.write("---")
 
@@ -2522,7 +2588,7 @@ with tab3:
     with col_cal1:
         fecha_seleccionada = st.date_input(
             "📆 Elige una fecha en el calendario:",
-            value=date.today(),
+            value=fecha_actual_colombia.date(),
             min_value=date(2026, 1, 1),
             max_value=date(2026, 12, 31)
         )
@@ -3248,48 +3314,104 @@ with tab17:
 
 # ==============================================================================
 # TAB 18: CIELO DE HOY — CONSTELACIÓN DEL MENSAJE
-# ==============================================================================
+# ------------------------------------------------------------------------------
+# IMPORTANTÍSIMO: esta sección usa components.html en vez de inyectar el
+# fragmento directamente como markdown. Así el HTML se renderiza como una
+# página visual y jamás aparece como texto plano en Streamlit.
 with tab18:
     st.markdown("<h3 style='color: #d63384;'>🌌 Cielo de Hoy — Tu Constelación</h3>", unsafe_allow_html=True)
     st.write("Una escena visual que convierte la fecha en una pequeña constelación simbólica.")
     st.write("---")
+
+    hoy_cielo = datetime.now(tz_colombia).date()
+    contenido_cielo = contenido_hoy()
 
     semillas = [
         (12, 18), (24, 35), (36, 14), (47, 42), (58, 24),
         (70, 12), (82, 32), (18, 64), (34, 80), (52, 70),
         (67, 58), (84, 72), (9, 82), (44, 56), (76, 86)
     ]
-    n_cielo = (datetime.now(tz_colombia).timetuple().tm_yday * 7) % 101
 
-    star_html = """
-    <div class="stars-canvas-wrap">
-        <div class="star-label">✨ Constelación del día · {fecha}</div>
-    """.format(fecha=fecha_es(datetime.now(tz_colombia).date()))
+    # La forma de la constelación cambia diariamente, pero siempre queda
+    # determinada por la fecha de Colombia para que sea reproducible.
+    semilla_fecha = hoy_cielo.toordinal()
+    rng_cielo = random.Random(semilla_fecha)
+    estrellas = []
 
-    for i, (x, y) in enumerate(semillas):
-        retraso = (i * 0.19) + ((n_cielo % 7) * 0.03)
-        size = 5 + ((n_cielo + i * 3) % 5)
-        star_html += f"""
-        <span class="glow-dot"
-              style="left:{x}%;top:{y}%;width:{size}px;height:{size}px;animation-delay:{retraso:.2f}s;">
-        </span>
-        """
+    for i, (base_x, base_y) in enumerate(semillas):
+        jitter_x = rng_cielo.uniform(-1.7, 1.7)
+        jitter_y = rng_cielo.uniform(-1.7, 1.7)
+        x = max(4, min(95, base_x + jitter_x))
+        y = max(7, min(92, base_y + jitter_y))
+        size = rng_cielo.randint(5, 10)
+        delay = rng_cielo.uniform(0.0, 2.8)
+        estrellas.append((x, y, size, delay))
 
-    for i in range(len(semillas) - 1):
-        x1, y1 = semillas[i]
-        x2, y2 = semillas[i + 1]
+    # Construimos un documento HTML AUTÓNOMO dentro del iframe.
+    # No dependemos del CSS de Streamlit y no hay riesgo de que el HTML se
+    # muestre literalmente en pantalla.
+    star_parts = [
+        "<!DOCTYPE html>",
+        "<html lang='es'>",
+        "<head>",
+        "<meta charset='utf-8'>",
+        "<meta name='viewport' content='width=device-width, initial-scale=1'>",
+        "<style>",
+        "*{box-sizing:border-box}",
+        "html,body{margin:0;padding:0;background:transparent;overflow:hidden;font-family:Segoe UI,Arial,sans-serif}",
+        ".sky{position:relative;width:100%;height:430px;overflow:hidden;border-radius:30px;",
+        "background:",
+        "radial-gradient(circle at 20% 18%,rgba(255,214,232,.18),transparent 18%),",
+        "radial-gradient(circle at 75% 30%,rgba(169,151,255,.20),transparent 23%),",
+        "radial-gradient(circle at 50% 80%,rgba(255,137,193,.12),transparent 28%),",
+        "linear-gradient(180deg,#090d24 0%,#171334 42%,#382044 74%,#57294d 100%);",
+        "border:1px solid rgba(255,255,255,.10);",
+        "box-shadow:0 24px 58px rgba(18,10,34,.30)","}",
+        ".sky:before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 10% 30%,rgba(255,255,255,.55) 0 1px,transparent 1.5px),radial-gradient(circle at 34% 62%,rgba(255,255,255,.38) 0 1px,transparent 1.5px),radial-gradient(circle at 81% 20%,rgba(255,255,255,.42) 0 1px,transparent 1.5px);background-size:130px 130px,170px 170px,210px 210px;opacity:.55}",
+        ".topline{position:absolute;left:24px;top:18px;z-index:20;color:rgba(255,255,255,.88);font-weight:800;font-size:.95rem;letter-spacing:.03em}",
+        ".subline{position:absolute;right:24px;top:18px;z-index:20;color:rgba(255,255,255,.68);font-size:.82rem}",
+        ".star{position:absolute;border-radius:50%;background:#fff;box-shadow:0 0 8px #fff,0 0 16px rgba(255,195,224,.9),0 0 28px rgba(255,117,175,.52);animation:twinkle 2.7s ease-in-out infinite;}",
+        "@keyframes twinkle{0%,100%{opacity:.42;transform:scale(.64)}50%{opacity:1;transform:scale(1.28)}}",
+        ".line{position:absolute;height:1px;transform-origin:left center;background:linear-gradient(90deg,rgba(255,255,255,.02),rgba(255,213,232,.52),rgba(255,255,255,.02));opacity:.72}",
+        ".planet{position:absolute;right:11%;bottom:9%;width:82px;height:82px;border-radius:50%;background:radial-gradient(circle at 33% 29%,#fff6fb 0 8%,#ffd2e4 21%,#e77ba9 45%,#742d5a 77%,#32142f 100%);box-shadow:0 0 30px rgba(255,136,189,.20),inset -12px -12px 25px rgba(0,0,0,.25)}",
+        ".planet:after{content:'';position:absolute;left:-18px;top:30px;width:118px;height:20px;border:2px solid rgba(255,224,239,.54);border-radius:50%;transform:rotate(-16deg)}",
+        ".love{position:absolute;left:10%;bottom:10%;z-index:20;color:rgba(255,255,255,.88);max-width:58%;font-size:.95rem;line-height:1.55}",
+        ".footer{position:absolute;left:50%;bottom:15px;transform:translateX(-50%);z-index:20;color:rgba(255,255,255,.42);font-size:.72rem;white-space:nowrap}",
+        "</style>",
+        "</head>",
+        "<body>",
+        f"<div class='sky'><div class='topline'>✨ Constelación del día · {fecha_es(hoy_cielo)}</div>",
+        f"<div class='subline'>Página {contenido_cielo.get('dia_n','—')} · {escena_hoy['emoji']} {escena_hoy['nombre']}</div>",
+    ]
+
+    for x, y, size, delay in estrellas:
+        star_parts.append(
+            f"<span class='star' style='left:{x:.2f}%;top:{y:.2f}%;width:{size}px;height:{size}px;animation-delay:{delay:.2f}s'></span>"
+        )
+
+    # Conectamos cada estrella con la siguiente. Calculamos el largo en %
+    # relativo al ancho del lienzo y el ángulo geométricamente.
+    for i in range(len(estrellas) - 1):
+        x1, y1 = estrellas[i][0], estrellas[i][1]
+        x2, y2 = estrellas[i + 1][0], estrellas[i + 1][1]
         dx = x2 - x1
         dy = y2 - y1
-        length = (dx * dx + dy * dy) ** 0.5
+        distance = (dx * dx + dy * dy) ** 0.5
         angle = math.degrees(math.atan2(dy, dx))
-        star_html += f"""
-        <span class="constellation-line"
-              style="left:{x1}%;top:{y1}%;width:{length}%;transform:rotate({angle}deg);">
-        </span>
-        """
+        star_parts.append(
+            f"<span class='line' style='left:{x1:.2f}%;top:{y1:.2f}%;width:{distance:.2f}%;transform:rotate({angle:.2f}deg)'></span>"
+        )
 
-    star_html += "</div>"
-    st.markdown(star_html, unsafe_allow_html=True)
+    star_parts.extend([
+        "<div class='planet'></div>",
+        f"<div class='love'>💖 {html_escape_simple(contenido_cielo.get('titulo','Hoy también hay una estrella para ti.'))}</div>",
+        "<div class='footer'>Hecha con cariño · cambia automáticamente con la fecha de Colombia 🇨🇴</div>",
+        "</div>",
+        "</body>",
+        "</html>"
+    ])
+
+    components.html("".join(star_parts), height=445, scrolling=False)
 
     st.write("")
     st.markdown(f"""
@@ -3298,10 +3420,9 @@ with tab18:
         Hoy la constelación lleva tu nombre simbólicamente. No importa que el día cambie;
         la intención detrás de esta página permanece: recordarte cuánto vales.
         <br><br>
-        <b>{contenido_hoy()['titulo']}</b>
+        <b>{html_escape_simple(contenido_cielo['titulo'])}</b>
     </div>
     """, unsafe_allow_html=True)
-
 
 
 # ==============================================================================
@@ -3312,13 +3433,16 @@ with tab18:
 #
 # 01. IDENTIDAD
 DIARIO_NOMBRE = "El Diario de Mi Reina"
-DIARIO_VERSION = "Deluxe 2.0"
+DIARIO_VERSION = "Deluxe 2.2 — Septiembre & Octubre 2026 · Corrección HTML Cielo"
 DIARIO_AUTOR = "Jhon"
 DIARIO_CIUDAD_ORIGEN = "Medellín"
 DIARIO_CIUDAD_DESTINO = "Bucaramanga"
 DIARIO_ICONO = "👑"
 DIARIO_CICLO_INICIO = "2026-09-01"
 DIARIO_CICLO_FIN = "2026-10-31"
+DIARIO_DIAS_SEPTIEMBRE = 30
+DIARIO_DIAS_OCTUBRE = 31
+DIARIO_TOTAL_DIAS = 61
 #
 # 02. REGLAS DE CONTENIDO
 REGLA_01 = "Un mensaje nuevo por fecha."
@@ -3548,9 +3672,13 @@ def _test_contenido_dos_meses():
     assert ejemplo["cancion"]["titulo"]
 
 def _test_ventana_61_dias():
+    assert DIARIO_DIAS_SEPTIEMBRE == 30
+    assert DIARIO_DIAS_OCTUBRE == 31
+    assert DIARIO_TOTAL_DIAS == 61
     assert len(MENSAJES_2_MESES) == 61
     assert "2026-09-01" in MENSAJES_2_MESES
     assert "2026-10-31" in MENSAJES_2_MESES
+    assert contenido_automatico_dos_meses(date(2026, 9, 2))["sello"] == "Página 02 de 61"
 
 # No se ejecutan automáticamente al desplegar; quedan disponibles para mantenimiento.
 #
