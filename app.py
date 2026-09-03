@@ -6,6 +6,7 @@ from datetime import datetime, timedelta, date
 import pytz
 import io
 import random
+import math
 
 # Librerías para generar el PDF elegante con ReportLab
 from reportlab.lib.pagesizes import letter
@@ -343,6 +344,521 @@ html, body, [class*="css"], .stMarkdown, p, div, label, span {{
     transform: scale(1.05) !important;
     box-shadow: 0 12px 28px rgba(255, 77, 109, 0.52) !important;
 }}
+
+/* ==========================================================================
+   EDICIÓN DELUXE 2.0 — CAPA VISUAL EXTRA
+   ========================================================================== */
+:root {{
+    --rose-50: #fff7fa;
+    --rose-100: #ffe8ef;
+    --rose-200: #ffd1df;
+    --rose-300: #ffabc3;
+    --rose-400: #ff7da0;
+    --rose-500: #ed4d83;
+    --rose-600: #cc2f69;
+    --rose-700: #a61d52;
+    --ink: #342332;
+    --muted: #6f6170;
+    --glass: rgba(255,255,255,0.78);
+    --glass-strong: rgba(255,255,255,0.93);
+}}
+
+.deluxe-shell {{
+    position: relative;
+    overflow: hidden;
+    border-radius: 34px;
+    padding: 30px;
+    margin: 8px 0 28px 0;
+    background:
+        radial-gradient(circle at 15% 15%, rgba(255,255,255,.95), transparent 28%),
+        radial-gradient(circle at 85% 20%, rgba(255,182,210,.38), transparent 26%),
+        radial-gradient(circle at 70% 85%, rgba(214,179,255,.28), transparent 30%),
+        linear-gradient(135deg, rgba(255,247,250,.96), rgba(255,232,239,.93));
+    border: 1px solid rgba(255,125,160,.45);
+    box-shadow:
+        0 28px 70px rgba(112,48,77,.13),
+        inset 0 1px 0 rgba(255,255,255,.96);
+}}
+
+.deluxe-shell::before {{
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    right: -180px;
+    top: -210px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,.86), rgba(255,255,255,0));
+    pointer-events: none;
+}}
+
+.deluxe-shell::after {{
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    left: -150px;
+    bottom: -180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,174,201,.32), rgba(255,174,201,0));
+    pointer-events: none;
+}}
+
+.deluxe-kicker {{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    color: #a61d52;
+    background: rgba(255,255,255,.74);
+    border: 1px solid rgba(237,77,131,.25);
+    font-size: 0.84rem;
+    font-weight: 800;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}}
+
+.deluxe-title {{
+    font-size: clamp(2rem, 4vw, 3.7rem);
+    font-weight: 900;
+    color: #9b1d4f;
+    margin: 12px 0 4px 0;
+    line-height: 1.06;
+    letter-spacing: -0.03em;
+}}
+
+.deluxe-subtitle {{
+    color: #604e5e;
+    max-width: 820px;
+    margin: 0;
+    font-size: 1.05rem;
+}}
+
+.daily-orbit {{
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: 1.25fr .9fr .9fr;
+    gap: 14px;
+}}
+
+.orbit-card {{
+    position: relative;
+    min-height: 140px;
+    padding: 20px;
+    border-radius: 24px;
+    background: rgba(255,255,255,.74);
+    border: 1px solid rgba(237,77,131,.17);
+    box-shadow: 0 12px 30px rgba(80,35,62,.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}}
+
+.orbit-card strong {{
+    color: #9b1d4f;
+}}
+
+.orbit-date {{
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #b02059;
+    line-height: 1.1;
+}}
+
+.orbit-label {{
+    font-size: .78rem;
+    color: #876f7e;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}}
+
+.progress-track {{
+    width: 100%;
+    height: 10px;
+    background: rgba(255,255,255,.74);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 12px;
+    border: 1px solid rgba(237,77,131,.14);
+}}
+
+.progress-fill {{
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #ff8fb0, #d83f78, #a61d52);
+    box-shadow: 0 0 18px rgba(216,63,120,.25);
+}}
+
+.quote-card {{
+    margin-top: 16px;
+    padding: 20px 22px;
+    border-radius: 24px;
+    border: 1px dashed rgba(166,29,82,.42);
+    background: rgba(255,255,255,.67);
+    color: #4d3a48;
+    box-shadow: 0 12px 26px rgba(80,35,62,.07);
+}}
+
+.quote-card .quote-mark {{
+    font-size: 3rem;
+    line-height: .7;
+    color: #e64c82;
+    vertical-align: middle;
+    margin-right: 8px;
+}}
+
+.mini-pill-row {{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}}
+
+.mini-pill {{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 11px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.72);
+    border: 1px solid rgba(237,77,131,.18);
+    color: #755f6d;
+    font-size: .86rem;
+    font-weight: 700;
+}}
+
+.letter-card {{
+    position: relative;
+    padding: 34px;
+    border-radius: 30px;
+    background:
+        linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,247,250,.98)),
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 30px,
+            rgba(218,177,195,.12) 31px,
+            transparent 32px
+        );
+    border: 1px solid rgba(166,29,82,.22);
+    box-shadow: 0 24px 50px rgba(80,35,62,.11);
+    overflow: hidden;
+}}
+
+.letter-card::before {{
+    content: "♥";
+    position: absolute;
+    right: 24px;
+    top: 13px;
+    font-size: 4.5rem;
+    color: rgba(237,77,131,.10);
+    transform: rotate(12deg);
+}}
+
+.letter-heading {{
+    color: #9b1d4f;
+    font-size: 1.85rem;
+    font-weight: 900;
+    margin-bottom: 6px;
+}}
+
+.letter-body {{
+    color: #413440;
+    font-size: 1.05rem;
+    line-height: 1.95;
+    white-space: pre-line;
+}}
+
+.signature {{
+    margin-top: 26px;
+    color: #a61d52;
+    font-family: "Dancing Script", cursive;
+    font-size: 1.9rem;
+    font-weight: 700;
+}}
+
+.ritual-grid {{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 16px;
+}}
+
+.ritual-card {{
+    padding: 22px;
+    border-radius: 24px;
+    background: rgba(255,255,255,.84);
+    border: 1px solid rgba(237,77,131,.18);
+    box-shadow: 0 12px 28px rgba(80,35,62,.07);
+    min-height: 160px;
+}}
+
+.ritual-number {{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #ffadc7, #d83f78);
+    color: white;
+    font-weight: 900;
+    box-shadow: 0 8px 16px rgba(216,63,120,.22);
+}}
+
+.ritual-card h4 {{
+    color: #9b1d4f;
+    margin: 14px 0 8px 0;
+}}
+
+.ritual-card p {{
+    color: #655262;
+    margin: 0;
+    line-height: 1.65;
+}}
+
+.secret-stage {{
+    position: relative;
+    min-height: 330px;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    border-radius: 32px;
+    background:
+        radial-gradient(circle at 50% 35%, rgba(255,255,255,.95), transparent 23%),
+        radial-gradient(circle at 25% 50%, rgba(248,152,190,.23), transparent 25%),
+        radial-gradient(circle at 80% 65%, rgba(157,131,255,.18), transparent 30%),
+        linear-gradient(145deg, #2f1931, #5e2849 52%, #22142d);
+    color: white;
+    box-shadow: 0 28px 60px rgba(38,18,39,.24);
+    overflow: hidden;
+}}
+
+.secret-stage::before,
+.secret-stage::after {{
+    content: "✦";
+    position: absolute;
+    color: rgba(255,255,255,.52);
+    animation: twinkle 3.4s ease-in-out infinite;
+}}
+
+.secret-stage::before {{
+    left: 8%;
+    top: 15%;
+    font-size: 2rem;
+}}
+
+.secret-stage::after {{
+    right: 10%;
+    bottom: 13%;
+    font-size: 2.4rem;
+    animation-delay: 1.2s;
+}}
+
+@keyframes twinkle {{
+    0%, 100% {{ opacity: .28; transform: scale(.82) rotate(0deg); }}
+    50% {{ opacity: 1; transform: scale(1.22) rotate(16deg); }}
+}}
+
+.secret-lock {{
+    width: 118px;
+    height: 118px;
+    border-radius: 34px;
+    display: grid;
+    place-items: center;
+    font-size: 4rem;
+    background: linear-gradient(145deg, rgba(255,255,255,.14), rgba(255,255,255,.04));
+    border: 1px solid rgba(255,255,255,.18);
+    box-shadow: 0 20px 45px rgba(0,0,0,.22);
+    backdrop-filter: blur(8px);
+    animation: lockFloat 5s ease-in-out infinite;
+}}
+
+@keyframes lockFloat {{
+    0%,100% {{ transform: translateY(0) rotate(-2deg); }}
+    50% {{ transform: translateY(-12px) rotate(2deg); }}
+}}
+
+.secret-title {{
+    text-align: center;
+    font-size: 1.7rem;
+    font-weight: 900;
+    margin-top: 16px;
+}}
+
+.secret-text {{
+    text-align: center;
+    max-width: 760px;
+    color: rgba(255,255,255,.86);
+    line-height: 1.8;
+}}
+
+.countdown-card {{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 18px;
+}}
+
+.countdown-item {{
+    text-align: center;
+    padding: 18px 10px;
+    border-radius: 20px;
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.12);
+}}
+
+.countdown-number {{
+    display: block;
+    font-size: 2.3rem;
+    font-weight: 900;
+    color: #ffd6e4;
+    line-height: 1;
+}}
+
+.countdown-label {{
+    font-size: .75rem;
+    margin-top: 8px;
+    color: rgba(255,255,255,.72);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}}
+
+.stars-canvas-wrap {{
+    position: relative;
+    border-radius: 28px;
+    overflow: hidden;
+    min-height: 380px;
+    background: linear-gradient(180deg, #111027 0%, #281838 48%, #5b2d50 100%);
+    box-shadow: 0 24px 54px rgba(30,18,43,.25);
+    border: 1px solid rgba(255,255,255,.08);
+}}
+
+.star-label {{
+    position: absolute;
+    left: 24px;
+    top: 20px;
+    z-index: 2;
+    color: rgba(255,255,255,.84);
+    font-weight: 800;
+    letter-spacing: .04em;
+}}
+
+.glow-dot {{
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow:
+        0 0 7px #fff,
+        0 0 14px rgba(255,189,218,.9),
+        0 0 24px rgba(255,111,168,.55);
+    animation: dotPulse 2.8s infinite ease-in-out;
+}}
+
+@keyframes dotPulse {{
+    0%,100% {{ transform: scale(.65); opacity: .44; }}
+    50% {{ transform: scale(1.25); opacity: 1; }}
+}}
+
+.constellation-line {{
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,196,223,.55), rgba(255,255,255,.06));
+    transform-origin: left center;
+}}
+
+.moment-card {{
+    padding: 22px;
+    border-radius: 26px;
+    background: linear-gradient(135deg, rgba(255,255,255,.94), rgba(255,243,248,.94));
+    border: 1px solid rgba(166,29,82,.18);
+    box-shadow: 0 14px 32px rgba(80,35,62,.08);
+}}
+
+.moment-card h4 {{
+    color: #9b1d4f;
+    margin: 0 0 8px 0;
+}}
+
+.moment-card p {{
+    color: #5d4d59;
+    margin: 0;
+}}
+
+.day-marker {{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #ff91b4, #d83f78);
+    color: white;
+    font-weight: 900;
+    box-shadow: 0 8px 18px rgba(216,63,120,.2);
+}}
+
+.retro-badge {{
+    display: inline-block;
+    padding: 5px 10px;
+    margin-left: 7px;
+    border-radius: 999px;
+    background: #fff0f4;
+    color: #a61d52;
+    border: 1px solid #ffd0df;
+    font-size: .76rem;
+    font-weight: 800;
+}}
+
+.fade-in {{
+    animation: deluxeFade .75s ease both;
+}}
+
+@keyframes deluxeFade {{
+    0% {{ opacity: 0; transform: translateY(12px); }}
+    100% {{ opacity: 1; transform: translateY(0); }}
+}}
+
+.lift {{
+    transition: transform .25s ease, box-shadow .25s ease;
+}}
+
+.lift:hover {{
+    transform: translateY(-5px);
+    box-shadow: 0 18px 38px rgba(80,35,62,.13);
+}}
+
+@media (max-width: 900px) {{
+    .daily-orbit {{
+        grid-template-columns: 1fr;
+    }}
+
+    .ritual-grid {{
+        grid-template-columns: 1fr;
+    }}
+
+    .countdown-card {{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }}
+
+    .deluxe-shell {{
+        padding: 20px;
+        border-radius: 26px;
+    }}
+}}
+
+@media (prefers-reduced-motion: reduce) {{
+    *,
+    *::before,
+    *::after {{
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+        scroll-behavior: auto !important;
+    }}
+}}
+
 </style>
 
 <!-- 12 Partículas flotantes decorativas configurables -->
@@ -1328,12 +1844,454 @@ def generar_pdf_carta(titulo, remitente, contenido, fecha_hora_str):
     buffer.seek(0)
     return buffer
 
+
+# ==============================================================================
+# 8A. MOTOR DE MENSAJES PROFUNDOS — 2 MESES AUTOMÁTICOS
+# ==============================================================================
+# Este motor genera un mensaje distinto para cada fecha, de forma determinista.
+# Así no depende de session_state ni de que Jhon deba actualizar el código cada día.
+# Ventana editorial principal: septiembre + octubre de 2026.
+DOS_MESES_INICIO = date(2026, 9, 1)
+DOS_MESES_FIN = date(2026, 10, 31)
+
+DIAS_ES = [
+    "lunes", "martes", "miércoles", "jueves",
+    "viernes", "sábado", "domingo"
+]
+
+MESES_ES = [
+    "", "enero", "febrero", "marzo", "abril", "mayo",
+    "junio", "julio", "agosto", "septiembre", "octubre",
+    "noviembre", "diciembre"
+]
+
+SALUDOS_PROFUNDOS = [
+    "Mi reina hermosa, hoy quiero que hagas una pausa y recuerdes algo que a veces la vida intenta hacernos olvidar: eres mucho más que todo lo que tienes pendiente.",
+    "Amor, antes de que el día te lleve de un lado para otro, quiero dejarte unas palabras que puedas guardar cerquita del corazón.",
+    "Mi vida, hoy no quiero hablarte solamente de lo que haces; quiero hablarte de la mujer que eres mientras haces todo eso.",
+    "Reina, hay días en los que uno avanza sin darse cuenta de lo valiente que está siendo. Hoy quiero que te mires con un poquito más de ternura.",
+    "Mi mujer bonita, este mensaje llega para recordarte que no tienes que ganarte el derecho a descansar ni a sentirte orgullosa de ti.",
+    "Mi cielo, ojalá estas palabras te encuentren en un momento de calma y te recuerden que, incluso en silencio, hay alguien que te piensa con cariño.",
+    "Reina mía, hoy quisiera regalarte un pequeño refugio hecho de palabras: un lugar donde puedas respirar, sonreír y volver a ti.",
+    "Mi amor, hay una belleza especial en la forma en que sigues avanzando aun cuando nadie está viendo el esfuerzo completo que hay detrás.",
+    "Mi reina, el mundo podrá medir resultados, pendientes y horarios; yo prefiero mirar tu corazón, tu manera de cuidar y la fuerza con la que persigues tus sueños.",
+    "Hoy quiero escribirte algo diferente: no para exigirte nada, sino para decirte que ya eres motivo suficiente de admiración.",
+    "Mi vida hermosa, algunas de las cosas más grandes se construyen despacio, con pequeños actos de constancia. Tú eres prueba de eso.",
+    "Reina, quiero que este nuevo día te encuentre sabiendo que no estás sola en tus luchas ni en tus sueños.",
+    "Mi cielo, cuando el cansancio aparezca, recuerda que descansar no borra lo que has logrado; al contrario, te ayuda a seguir construyendo.",
+    "Hoy te escribo desde la distancia, pero con una cercanía enorme: esa que existe cuando alguien aprende a alegrarse sinceramente por el bienestar del otro.",
+    "Mi amor, hoy mereces una pausa sin culpa y una sonrisa sin explicación.",
+    "Reina hermosa, nunca subestimes la huella que dejas en la vida de quienes te quieren.",
+    "Mi vida, hay una parte de mí que sonríe cada vez que te imagina cumpliendo una meta que un día parecía lejana.",
+    "Hoy quiero que recuerdes que tu historia no está definida por un día difícil, sino por todas las veces que has decidido seguir.",
+    "Mi reina, entre obligaciones, estudio, trabajo y vida familiar, también existe un espacio que te pertenece: el de sentirte orgullosa de ti.",
+    "Amor mío, esta página del diario es una pequeña prueba de que hay días que pasan y otros que merecen ser guardados."
+]
+
+REFLEXIONES_PROFUNDAS = [
+    "No tienes que demostrar tu valor todos los días. Tu valor no depende de cuántas tareas completes, cuántas respuestas des o cuántos problemas soluciones. Hay algo en ti que permanece intacto incluso cuando el día sale distinto a lo planeado.",
+    "A veces crecer no se siente como una victoria. Se siente como levantarse cansada, cumplir lo necesario, aprender algo nuevo y volver a intentarlo. Pero precisamente ahí está la grandeza: seguir construyendo aun cuando el aplauso no llega.",
+    "Tu carrera, tu trabajo y tus sueños importan, pero también importa la persona que está detrás de todo eso. Cuida tu mente, tu tiempo y tu paz. La versión de ti que llegará a grandes lugares también necesita que hoy la trates con cariño.",
+    "Hay esfuerzos que nadie fotografía. Las noches largas, las decisiones pequeñas, los momentos en que sigues a pesar de la pereza o del cansancio. Esos instantes silenciosos también cuentan como progreso y algún día serán parte de la historia que te hará sentir orgullosa.",
+    "La distancia puede separar ciudades, pero no tiene por qué separar la intención de cuidar. Desde Medellín quiero que recuerdes que hay alguien que celebra tus avances, respeta tus espacios y desea sinceramente que estés bien.",
+    "Tu sonrisa no necesita una razón extraordinaria. A veces basta una bebida caliente, una conversación bonita, una canción que te guste o una tarde tranquila en casa. La vida también se construye con estos pequeños momentos.",
+    "Ser fuerte no significa llevarlo todo sola. También es saber pedir ayuda, detenerse, respirar, reorganizarse y decir 'hoy necesito un poco de paz'. Eso también es valentía.",
+    "Tu futuro profesional no se está construyendo únicamente con materias aprobadas. Se está construyendo con criterio, disciplina, empatía, paciencia y la forma en que resuelves los días difíciles.",
+    "Hay una versión futura de ti que algún día mirará hacia atrás y agradecerá a la mujer que hoy siguió adelante. Hazle ese regalo: no necesitas tenerlo todo resuelto, solo necesitas cuidar el siguiente paso.",
+    "Que nadie te haga creer que avanzar despacio es quedarse atrás. Hay caminos que necesitan tiempo para tomar forma. Tu proceso merece respeto y tu ritmo merece paciencia.",
+    "Entre Bucaramanga y Medellín hay kilómetros; entre dos personas que se quieren bien puede existir una cercanía que no necesita carreteras. A veces un mensaje a tiempo puede sentirse como un abrazo.",
+    "Hay días para producir, días para aprender, días para celebrar y días para simplemente estar. No todos tienen que parecerse. Tu vida no pierde valor porque hoy necesites ir más despacio.",
+    "Tu hija también verá, de una forma u otra, el ejemplo de una mujer que aprende, trabaja, ama y sigue creciendo. Cada paso que das puede convertirse en una semilla para alguien que te mira con admiración.",
+    "El éxito no siempre hace ruido. A veces se parece a mantener la calma, cumplir con responsabilidad, cuidar a los tuyos y dormir con la tranquilidad de haber dado lo mejor posible.",
+    "Quiero que puedas reconocer tus avances sin esperar a llegar a la meta final. Hay mérito en cada capítulo, incluso en aquellos que todavía se sienten incompletos.",
+    "La ternura también es una forma de fortaleza. Esa capacidad tuya de cuidar, escuchar y estar presente dice muchísimo de la mujer que eres.",
+    "Tu inteligencia no es solamente saber respuestas; también es aprender de lo vivido, elegir mejor, escuchar y tener la humildad de seguir creciendo.",
+    "No conviertas un momento de cansancio en una sentencia sobre tu capacidad. Un día pesado es solamente eso: un día pesado. No define todo lo que eres.",
+    "Tienes derecho a celebrar tus pequeñas victorias. No esperes a graduarte, ascender o alcanzar una gran meta para decirte: 'lo estoy haciendo bien'.",
+    "Ojalá hoy puedas verte con los mismos ojos con los que alguien que te ama te mira: con paciencia, admiración y la certeza de que todavía tienes muchísimo por vivir."
+]
+
+BENDICIONES_PROFUNDAS = [
+    "Que Dios cuide tus pasos, ponga serenidad en tu mente y te acompañe en cada decisión.",
+    "Que Dios te regale paz en lo que no puedes controlar y fortaleza para lo que sí está en tus manos.",
+    "Que el cielo bendiga tu hogar, tus sueños, tu trabajo, tus estudios y cada paso que das por tu futuro.",
+    "Que nunca te falte una razón para agradecer, una persona que te escuche y un lugar donde sentirte en paz.",
+    "Que tu día encuentre pequeñas señales de esperanza justo cuando más las necesites.",
+    "Que Dios proteja a quienes amas y te dé sabiduría para seguir construyendo una vida bonita.",
+    "Que tus esfuerzos encuentren frutos, que tus cansancios encuentren descanso y que tu corazón encuentre calma.",
+    "Que cada puerta correcta se abra a su debido tiempo y que tengas claridad para reconocerla.",
+    "Que la paz llegue primero a tu corazón y después se refleje en todo lo que hagas.",
+    "Que hoy tengas motivos para sonreír incluso en medio de las cosas pendientes.",
+    "Que el amor, la fe y la serenidad acompañen cada parte de tu jornada.",
+    "Que Dios te dé fuerzas nuevas cuando sientas que las anteriores se agotaron.",
+    "Que tu hogar sea refugio, tu trabajo sea aprendizaje y tus sueños sean una brújula.",
+    "Que el cansancio no te haga olvidar la cantidad de cosas bonitas que ya has logrado.",
+    "Que tengas protección en cada camino y calma en cada regreso.",
+    "Que tu corazón conserve la ternura mientras tu mente conquista grandes metas.",
+    "Que hoy recibas una noticia bonita, una conversación sincera o una pequeña sorpresa que te alegre.",
+    "Que la vida te devuelva en oportunidades todo el esfuerzo que estás sembrando.",
+    "Que nunca pierdas la capacidad de asombrarte por las cosas sencillas.",
+    "Que esta página del diario sea apenas una de muchas historias felices que todavía nos quedan por escribir."
+]
+
+CIERRES_AMOROSOS = [
+    "Desde Medellín te mando un abrazo enorme. Te pienso, te respeto y te quiero muchísimo. 💖",
+    "Quédate con estas palabras durante el día y recuerda que alguien está orgulloso de ti. 🦋",
+    "Y cuando llegue la noche, descansa con una certeza: hoy también hiciste suficiente. 🌙",
+    "Te mando un beso hasta Bucaramanga y toda mi buena energía para esta nueva página. ✈️💗",
+    "No olvides sonreír aunque sea una vez por este mensaje. Yo ya sonreí al escribirlo. 😊",
+    "Aquí termina la carta de hoy, pero no el cariño que hay detrás de ella. 👑",
+    "Que tengas un día bonito, de esos que luego uno guarda en la memoria sin darse cuenta. 🌸",
+    "Estoy contigo en pensamiento, con admiración sincera y con un cariño que sigue creciendo. 💕",
+    "Cuando leas esto, imagina que te estoy diciendo bajito: 'vas muy bien, mi reina'. ✨",
+    "Te quiero de una manera tranquila, respetuosa y profundamente agradecida por tenerte en mi vida. ❤️",
+    "Guarda esta fecha. No por obligación, sino porque quizá dentro de unos años nos dé ternura recordar que también soñamos hoy.",
+    "El mensaje termina aquí, pero todavía quedan muchas páginas por llenar de momentos bonitos.",
+    "Descansa cuando puedas, ríe cuando aparezca la oportunidad y nunca te olvides de ti.",
+    "Que la distancia sea solamente un dato del mapa y nunca una medida del cariño.",
+    "Te abrazo desde lejos, pero con todo el corazón.",
+    "Mi reina, que hoy la vida sea amable contigo. Y si no lo es, aquí estoy para recordarte que no estás sola.",
+    "Nos separan kilómetros; nos acercan las ganas, la complicidad y todo lo bueno que todavía podemos construir.",
+    "Que tu día termine con paz y con ese orgullo silencioso de saber que estás creciendo.",
+    "Te mando mariposas, una sonrisa y un pedacito de cielo para que acompañen tu día. 🦋✨",
+    "Fin de la página de hoy. Mañana habrá otra, y quiero que también tenga razones para sonreír."
+]
+
+TITULOS_PROFUNDOS = [
+    "Una página para respirar y recordar quién eres 🌷",
+    "El valor de todo lo que haces en silencio ✨",
+    "Hoy también mereces sentirte orgullosa de ti 👑",
+    "Un abrazo escrito entre dos ciudades 🏔️💖",
+    "La mujer detrás de todos tus pendientes 🌸",
+    "Pequeñas victorias que merecen un lugar en el corazón 🏆",
+    "No todo tiene que resolverse hoy 🌿",
+    "Tu futuro también se construye con descanso ☕",
+    "La ternura de seguir creciendo 💕",
+    "Una carta para los días que pesan un poquito más 🌙",
+    "Lo bonito de caminar a tu propio ritmo 🦋",
+    "Cuando la distancia no alcanza para separar el cariño ✈️",
+    "El orgullo de verte avanzar 🎓",
+    "Una pausa antes de volver a conquistar el mundo 💫",
+    "La fuerza tranquila que hay en ti 🌺",
+    "La belleza de tus procesos, incluso los imperfectos 🌈",
+    "Hoy el mensaje es simplemente: gracias por existir 💗",
+    "Una página para guardar cuando necesites ánimo 📖",
+    "La mujer que estás construyendo día tras día 👑",
+    "Un recordatorio de fe, paciencia y amor 🙏",
+    "Tu sonrisa también es una forma de luz ☀️",
+    "Para la reina que no siempre reconoce todo lo que hace 💎",
+    "Un pequeño refugio en medio del día 🕊️",
+    "La historia que todavía nos falta por vivir 🌅",
+    "Donde termina el cansancio y empieza la calma 🌿",
+    "Un mensaje para cuidar tu corazón 💖",
+    "No subestimes los pasos pequeños 👣",
+    "La administradora de sus sueños 🎓✨",
+    "Un día más para elegirte también a ti 🌷",
+    "Un capítulo nuevo, escrito con esperanza 📚",
+    "Agosto terminó; septiembre trae nuevas páginas 🌸",
+    "Septiembre también puede ser suave contigo 🫶",
+    "La magia de empezar de nuevo sin dejar de ser tú ✨",
+    "Octubre, y todavía hay mucho por soñar 🍂💖",
+    "Un mensaje para cuando necesites bajar el ritmo 🌙",
+    "Hoy no tienes que ser perfecta, solo estar presente 🌿"
+]
+
+RETOS_NUEVOS = [
+    "Respira tres veces antes de comenzar una tarea importante y empieza solamente por el primer paso.",
+    "Mírate al espejo durante cinco segundos y reconoce una cualidad tuya que no tenga nada que ver con el trabajo.",
+    "Regálate diez minutos sin pantalla y escucha una canción que te haga sonreír.",
+    "Toma una bebida que disfrutes lentamente, sin hacer otra cosa al mismo tiempo.",
+    "Escribe mentalmente tres cosas que sí salieron bien hoy.",
+    "Haz una pausa breve y mueve hombros, cuello y espalda antes de continuar.",
+    "Manda un mensaje cariñoso a alguien que forme parte de tu hogar.",
+    "Guarda una foto de un momento bonito de hoy; no tiene que ser perfecta.",
+    "Haz una sola cosa pendiente que llevas aplazando y celebra haberla terminado.",
+    "Apaga por quince minutos las notificaciones que no sean urgentes.",
+    "Antes de dormir, agradece por una persona, una oportunidad y un momento de paz.",
+    "Busca un rincón tranquilo y quédate allí dos minutos respirando despacio.",
+    "Haz algo pequeño que normalmente dejas para 'después' por falta de tiempo.",
+    "Escribe una frase que te gustaría leer cuando estés cansada.",
+    "Pregúntate: '¿qué necesito hoy, de verdad?' y escucha la respuesta sin juzgarla.",
+    "Tómate una fotografía donde te sientas tú misma, no para compartirla sino para guardarla.",
+    "Haz una lista de una sola línea con tu prioridad real del día.",
+    "Cuando algo te salga bien, no lo minimices: di 'esto lo hice bien'.",
+    "Reserva un momento de la noche para hablar, reír o simplemente estar en paz.",
+    "Haz una pausa para agradecer que sigues avanzando, incluso si el avance es lento.",
+    "Dale un abrazo a tu niña si el momento se presta y guarda esa sensación en el corazón.",
+    "Escucha una canción alegre durante el trayecto o mientras haces una tarea repetitiva.",
+    "Mira el cielo unos segundos y recuerda que el día no es únicamente una lista de pendientes.",
+    "Permítete decir 'hoy hasta aquí' cuando realmente hayas dado todo lo que podías.",
+    "Escribe una meta pequeña para mañana, no diez.",
+    "Haz algo bonito por ti que cueste muy poco o nada.",
+    "Antes de responder a algo que te estrese, cuenta lentamente hasta cinco.",
+    "Celebra un avance académico, por pequeño que sea.",
+    "Ordena un espacio pequeño; la sensación de cierre también cuenta.",
+    "Cierra el día con música suave en lugar de seguir pensando en pendientes."
+]
+
+CANCIONES_NUEVAS = [
+    ("Loco - Beéle", "Energía cálida para recordarte que también mereces disfrutar."),
+    ("Bonito - Jarabe de Palo", "Una canción para mirar el día con gratitud."),
+    ("Color Esperanza - Diego Torres", "Un empujoncito de optimismo para seguir."),
+    ("Vivir Mi Vida - Marc Anthony", "Porque algunas jornadas se viven mejor bailando."),
+    ("Destino o Casualidad - Melendi", "Para acompañar una reflexión sobre las vueltas bonitas de la vida."),
+    ("La Promesa - Melendi", "Una melodía para hablar de cariño y compañía."),
+    ("Volví a Nacer - Carlos Vives", "Ritmo y alegría para un día con buena vibra."),
+    ("Mi Persona Favorita - Alejandro Sanz", "Un detalle musical para una reina especial."),
+    ("Qué Bonito - Rosario", "Para celebrar los detalles sencillos."),
+    ("Celebra la Vida - Axel", "Recordatorio de que cada día merece ser vivido."),
+    ("Inolvidable - Beéle", "Una vibra romántica, fresca y luminosa."),
+    ("A Dios le Pido - Juanes", "Un momento de fe, gratitud y buenos deseos."),
+    ("Bendita Tu Luz - Maná", "Para una noche de cariño y calma."),
+    ("Todo Cambia - Mercedes Sosa", "Una canción para acompañar los procesos."),
+    ("Creo en Ti - Reik", "Para recordarte que alguien confía en ti."),
+    ("Me Enamora - Juanes", "Un toque alegre para levantar el ánimo."),
+    ("Tabaco y Chanel - Bacilos", "Nostalgia suave para una tarde tranquila."),
+    ("Rayando el Sol - Maná", "Clásico para acompañar recuerdos y pensamientos."),
+    ("Eres - Café Tacvba", "Un detalle tierno para una página especial."),
+    ("Universos Paralelos - Jorge Drexler", "Ideal para pensar en dos caminos que se acercan."),
+    ("Te Vi Venir - Sin Bandera", "Romántica y cercana para una noche de conversación."),
+    ("Cuando Nadie Ve - Morat", "Para esos pensamientos que uno guarda en silencio."),
+    ("Besos en Guerra - Morat & Juanes", "Energía emocional para una página intensa."),
+    ("Vuelve - Ricky Martin", "Un guiño musical para extrañar menos la distancia."),
+    ("Bailando - Enrique Iglesias", "Una dosis de alegría cuando el día pide movimiento."),
+    ("La Vida Es un Carnaval - Celia Cruz", "Para no perder la sonrisa en medio de la rutina."),
+    ("Tú Sí Sabes Quererme - Natalia Lafourcade", "Calidez para una noche de gratitud."),
+    ("Andar Conmigo - Julieta Venegas", "Una canción sobre compañía y caminos compartidos."),
+    ("Hasta la Raíz - Natalia Lafourcade", "Para una reflexión más profunda y emocional."),
+    ("Me Gusta - Anitta & Cardi B", "Un toque moderno, divertido y diferente.")
+]
+
+def fecha_es(fecha_obj):
+    """Devuelve la fecha en español sin depender del locale del servidor."""
+    return f"{DIAS_ES[fecha_obj.weekday()].capitalize()}, {fecha_obj.day:02d} de {MESES_ES[fecha_obj.month]} de {fecha_obj.year}"
+
+def indice_ciclico(lista, numero):
+    return lista[numero % len(lista)]
+
+def dia_editorial(fecha_obj):
+    return (fecha_obj - DOS_MESES_INICIO).days
+
+def contenido_automatico_dos_meses(fecha_obj):
+    """
+    Construye una entrada completa para cualquier fecha.
+    Durante la ventana septiembre-octubre se utiliza el ciclo de dos meses.
+    Fuera de la ventana se mantiene el motor, evitando que el diario quede sin contenido.
+    """
+    n = dia_editorial(fecha_obj)
+    if n < 0:
+        n = n % 61
+
+    saludo = indice_ciclico(SALUDOS_PROFUNDOS, n)
+    reflexion = indice_ciclico(REFLEXIONES_PROFUNDAS, n * 3 + 1)
+    bendicion = indice_ciclico(BENDICIONES_PROFUNDAS, n * 5 + 2)
+    cierre = indice_ciclico(CIERRES_AMOROSOS, n * 7 + 3)
+    titulo = indice_ciclico(TITULOS_PROFUNDOS, n * 11 + 4)
+    reto = indice_ciclico(RETOS_NUEVOS, n * 13 + 5)
+    cancion_titulo, cancion_desc = indice_ciclico(CANCIONES_NUEVAS, n * 17 + 6)
+
+    # Pequeños detalles que hacen visible que el diario reconoce el momento real.
+    if fecha_obj.weekday() == 0:
+        enfoque = "💼 Lunes de nuevo comienzo"
+    elif fecha_obj.weekday() == 1:
+        enfoque = "🌸 Martes para avanzar"
+    elif fecha_obj.weekday() == 2:
+        enfoque = "✨ Miércoles para respirar"
+    elif fecha_obj.weekday() == 3:
+        enfoque = "🌷 Jueves para confiar"
+    elif fecha_obj.weekday() == 4:
+        enfoque = "🎉 Viernes para celebrar"
+    elif fecha_obj.weekday() == 5:
+        enfoque = "🧸 Sábado para disfrutar"
+    else:
+        enfoque = "🕊️ Domingo para agradecer"
+
+    poema = (
+        f"{saludo}\n\n"
+        f"{reflexion}\n\n"
+        f"{bendicion}\n\n"
+        f"{cierre}"
+    )
+
+    return {
+        "fecha_str": fecha_es(fecha_obj),
+        "titulo": f"{enfoque} · {titulo}",
+        "poema": poema,
+        "reto": f"🌸 Reto especial: {reto}",
+        "cancion": {
+            "titulo": f"{cancion_titulo} 🎶",
+            "desc": cancion_desc
+        },
+        "dia_n": n + 1 if 0 <= n < 61 else None,
+        "periodo": "Septiembre — Octubre 2026",
+        "sello": f"Página {n + 1:02d} de 61"
+    }
+
+# Construimos las 61 fechas para que el calendario, la portada y las nuevas pestañas
+# consulten exactamente el mismo contenido.
+MENSAJES_2_MESES = {}
+RETOS_2_MESES = {}
+CANCIONES_2_MESES = {}
+
+cursor_fecha = DOS_MESES_INICIO
+while cursor_fecha <= DOS_MESES_FIN:
+    contenido = contenido_automatico_dos_meses(cursor_fecha)
+    clave_cursor = cursor_fecha.strftime("%Y-%m-%d")
+    MENSAJES_2_MESES[clave_cursor] = contenido
+    RETOS_2_MESES[clave_cursor] = contenido["reto"]
+    CANCIONES_2_MESES[clave_cursor] = contenido["cancion"]
+    cursor_fecha += timedelta(days=1)
+
+# En septiembre y octubre el motor nuevo tiene prioridad sobre los mensajes antiguos.
+MENSAJES_DIARIOS.update(MENSAJES_2_MESES)
+RETOS_DIARIOS.update(RETOS_2_MESES)
+CANCIONES_DIARIAS.update(CANCIONES_2_MESES)
+
+def contenido_hoy():
+    """Contenido sincronizado con la fecha real de Colombia."""
+    hoy = datetime.now(tz_colombia).date()
+    clave = hoy.strftime("%Y-%m-%d")
+    if clave in MENSAJES_2_MESES:
+        return MENSAJES_2_MESES[clave]
+    base = MENSAJES_DIARIOS.get(clave)
+    if base:
+        return {
+            "fecha_str": base.get("fecha_str", fecha_es(hoy)),
+            "titulo": base.get("titulo", "✨ Una página especial para ti"),
+            "poema": base.get("poema", ""),
+            "reto": RETOS_DIARIOS.get(clave, "🌸 Regálate diez minutos de calma."),
+            "cancion": CANCIONES_DIARIAS.get(
+                clave,
+                {"titulo": "Inolvidable - Beéle 🎶", "desc": "Una melodía bonita para acompañarte."}
+            ),
+            "dia_n": None,
+            "periodo": "Diario del corazón",
+            "sello": "Página especial"
+        }
+    return contenido_automatico_dos_meses(hoy)
+
+def porcentaje_dos_meses(fecha_obj):
+    total = (DOS_MESES_FIN - DOS_MESES_INICIO).days + 1
+    pos = (fecha_obj - DOS_MESES_INICIO).days + 1
+    pos = max(1, min(total, pos))
+    return int(round((pos / total) * 100))
+
+def dias_restantes_dos_meses(fecha_obj):
+    if fecha_obj < DOS_MESES_INICIO:
+        return (DOS_MESES_FIN - DOS_MESES_INICIO).days + 1
+    if fecha_obj > DOS_MESES_FIN:
+        return 0
+    return (DOS_MESES_FIN - fecha_obj).days
+
+def mensaje_corto_de_hora(fecha_hora_obj):
+    hora = fecha_hora_obj.hour
+    if 5 <= hora < 12:
+        return "☀️ Buenos días, mi reina. Que el comienzo de esta página sea suave y luminoso."
+    if 12 <= hora < 18:
+        return "🌤️ Buenas tardes, mi reina. Haz una pausa y recuerda que no todo tiene que resolverse de una vez."
+    if 18 <= hora < 23:
+        return "🌙 Buenas noches, mi reina. El día ya hizo su parte; ahora también mereces descansar."
+    return "✨ En esta hora tranquila, recuerda que tu corazón también necesita descanso."
+
+def html_escape_simple(texto):
+    """Escapado mínimo para textos escritos por ella antes de renderizar HTML."""
+    return (
+        str(texto)
+        .replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace('"', "&quot;")
+        .replace("'", "&#39;")
+    )
+
+def calcular_contador_relacion():
+    """
+    Contador simbólico desde el 26 de julio de 2026, fecha que ya forma parte
+    del concepto original del diario.
+    """
+    inicio = date(2026, 7, 26)
+    hoy = datetime.now(tz_colombia).date()
+    return max(0, (hoy - inicio).days)
+
+def etiqueta_momento():
+    hora = datetime.now(tz_colombia).hour
+    if 5 <= hora < 12:
+        return "Mañana ☀️"
+    if 12 <= hora < 18:
+        return "Tarde 🌤️"
+    if 18 <= hora < 23:
+        return "Noche 🌙"
+    return "Madrugada ✨"
+
+
 # ==============================================================================
 # 8. ENCABEZADO PRINCIPAL, BARRA DE MÚSICA & BANNER SORPRESA
 # ==============================================================================
 st.markdown("<h1 class='main-header'>👑 El Diario de Mi Reina 💖🧸🦋</h1>", unsafe_allow_html=True)
 st.markdown("<p class='sub-header'>De Medellín a Bucaramanga 🏔️✈️✨ | Un espacio lleno de magia, recuerdos y momentos especiales</p>", unsafe_allow_html=True)
 st.markdown(f"<div class='theme-badge'>🎨 Tema Activo: {st.session_state['user_theme']} | Tipografía: {st.session_state['user_font']}</div>", unsafe_allow_html=True)
+
+
+# ==============================================================================
+# 8B. PORTADA DELUXE — "HOY ES UNA PÁGINA NUEVA"
+# ==============================================================================
+contenido_hoy_actual = contenido_hoy()
+fecha_hora_actual = datetime.now(tz_colombia)
+hoy_real = fecha_hora_actual.date()
+progreso_60 = porcentaje_dos_meses(hoy_real)
+restantes_60 = dias_restantes_dos_meses(hoy_real)
+paginas_relacion = calcular_contador_relacion()
+momento_actual = etiqueta_momento()
+
+st.markdown(f"""
+<div class="deluxe-shell fade-in">
+    <div class="deluxe-kicker">✨ EDICIÓN DELUXE · {contenido_hoy_actual['sello']}</div>
+    <div class="deluxe-title">Hoy también escribí algo para ti, mi reina. 👑</div>
+    <p class="deluxe-subtitle">
+        Una página que cambia sola cada día, reconoce la fecha de Colombia y guarda una nueva reflexión
+        para acompañarte durante septiembre y octubre.
+    </p>
+
+    <div class="daily-orbit">
+        <div class="orbit-card lift">
+            <div class="orbit-label">Fecha de hoy</div>
+            <div class="orbit-date">{fecha_es(hoy_real)}</div>
+            <div class="mini-pill-row">
+                <span class="mini-pill">🕰️ {momento_actual}</span>
+                <span class="mini-pill">🇨🇴 Hora Colombia</span>
+            </div>
+        </div>
+
+        <div class="orbit-card lift">
+            <div class="orbit-label">Maratón de 2 meses</div>
+            <strong style="font-size:1.6rem;">{progreso_60}%</strong>
+            <div class="progress-track">
+                <div class="progress-fill" style="width:{progreso_60}%;"></div>
+            </div>
+            <div style="margin-top:10px;color:#6f6170;">
+                Quedan <b>{restantes_60}</b> días dentro de este ciclo.
+            </div>
+        </div>
+
+        <div class="orbit-card lift">
+            <div class="orbit-label">Nuestro contador</div>
+            <strong style="font-size:1.6rem;">{paginas_relacion} días</strong>
+            <div style="margin-top:8px;color:#6f6170;">
+                de páginas, conversaciones, risas y recuerdos.
+            </div>
+        </div>
+    </div>
+
+    <div class="quote-card">
+        <span class="quote-mark">“</span>
+        <strong>{mensaje_corto_de_hora(fecha_hora_actual)}</strong>
+        <div style="margin-top:8px;color:#5d4d59;">
+            El diario no espera a que alguien lo actualice: cambia con la fecha automáticamente.
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
 
 # Ejecución de efectos si se solicitaron
 if st.session_state["efecto_fiesta_actual"]:
@@ -1364,7 +2322,7 @@ st.write("---")
 # ==============================================================================
 # 9. MENÚ PRINCIPAL DE 14 PESTAÑAS INTERACTIVAS
 # ==============================================================================
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11, tab12, tab13, tab14 = st.tabs([
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11, tab12, tab13, tab14, tab15, tab16, tab17, tab18 = st.tabs([
     "🏠 Portada",
     "⏳ Línea del Tiempo",
     "📅 Calendario",
@@ -1378,7 +2336,11 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11, tab12, tab13
     "🏺 Frasco Fortuna",
     "🔒 Cápsula Tiempo",
     "🧠 Trivia",
-    "✈️ Contador"
+    "✈️ Contador",
+    "💌 Carta de Hoy",
+    "🌙 Ritual Diario",
+    "🎁 Caja Secreta",
+    "🌌 Cielo de Hoy"
 ])
 
 # ------------------------------------------------------------------------------
@@ -2128,3 +3090,636 @@ with tab14:
             </p>
         </div>
         """, unsafe_allow_html=True)
+
+
+# ==============================================================================
+# TAB 15: CARTA DE HOY — UNA CARTA QUE NACE DE LA FECHA
+# ==============================================================================
+with tab15:
+    carta = contenido_hoy()
+    st.markdown("<h3 style='color: #d63384;'>💌 Carta de Hoy — escrita por la fecha</h3>", unsafe_allow_html=True)
+    st.write("Esta sección toma el día real de Colombia y transforma el mensaje automático en una carta más íntima.")
+    st.write("---")
+
+    st.markdown(f"""
+    <div class="letter-card fade-in">
+        <div class="day-marker">📅 {carta['fecha_str']}</div>
+        <span class="retro-badge">{carta['sello']}</span>
+        <div class="letter-heading">{carta['titulo']}</div>
+        <div class="letter-body">{html_escape_simple(carta['poema'])}</div>
+        <div class="signature">Con amor, desde Medellín. 💖</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.write("")
+    col_carta1, col_carta2 = st.columns(2, gap="large")
+
+    with col_carta1:
+        st.markdown("#### ✨ La intención de hoy")
+        st.info(
+            "No tienes que resolver tu vida hoy. Esta carta existe para acompañar un día concreto, "
+            "reconocer el esfuerzo que ya hiciste y regalarte una razón para respirar."
+        )
+
+    with col_carta2:
+        st.markdown("#### 🎵 Banda sonora")
+        st.success(
+            f"**{carta['cancion']['titulo']}**\n\n{carta['cancion']['desc']}"
+        )
+
+    if st.button("💖 Volver a leer la carta con otra energía", key="releer_carta_hoy"):
+        st.balloons()
+        st.toast("Guarda esta página en el corazón. 🌷")
+
+
+# ==============================================================================
+# TAB 16: RITUAL DIARIO — MAÑANA, TARDE Y NOCHE
+# ==============================================================================
+with tab16:
+    st.markdown("<h3 style='color: #d63384;'>🌙 Ritual Diario de Mi Reina</h3>", unsafe_allow_html=True)
+    st.write("Una rutina emocional de tres momentos para que el diario se sienta distinto durante todo el día.")
+    st.write("---")
+
+    ahora_ritual = datetime.now(tz_colombia)
+    hora_ritual = ahora_ritual.hour
+
+    if 5 <= hora_ritual < 12:
+        momento_destacado = "☀️ Mañana"
+        mensaje_momento = "Comienza sin cargar todo el día en la cabeza. Hoy solo necesitas dar el siguiente paso."
+    elif 12 <= hora_ritual < 18:
+        momento_destacado = "🌤️ Tarde"
+        mensaje_momento = "Haz una pausa. No eres una máquina y tampoco tienes que vivir corriendo para demostrar nada."
+    elif 18 <= hora_ritual < 23:
+        momento_destacado = "🌙 Noche"
+        mensaje_momento = "Baja el ritmo. Lo pendiente puede esperar; tu descanso también forma parte de tus metas."
+    else:
+        momento_destacado = "✨ Madrugada"
+        mensaje_momento = "Esta página encontró una hora silenciosa. Que la calma te acompañe y mañana sea más amable."
+
+    st.markdown(f"""
+    <div class="moment-card fade-in">
+        <h4>{momento_destacado} · Tu mensaje especial ahora</h4>
+        <p>{mensaje_momento}</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    rituales = [
+        ("☀️", "Inicio", "Respira profundo y elige una prioridad real. No diez."),
+        ("🌤️", "Pausa", "Mira lejos de la pantalla, estira el cuerpo y toma agua."),
+        ("🌙", "Cierre", "Reconoce una cosa que hiciste bien y deja el resto para mañana.")
+    ]
+
+    ritual_html = '<div class="ritual-grid">'
+    for num, (icono, titulo, texto) in enumerate(rituales, start=1):
+        ritual_html += f"""
+        <div class="ritual-card lift">
+            <div class="ritual-number">{num}</div>
+            <h4>{icono} {titulo}</h4>
+            <p>{texto}</p>
+        </div>
+        """
+    ritual_html += "</div>"
+    st.markdown(ritual_html, unsafe_allow_html=True)
+
+    st.write("")
+    st.markdown("#### 💭 Pregunta del día")
+    preguntas_ritual = [
+        "¿Qué parte de mí necesita hoy un poco más de paciencia?",
+        "¿Qué pequeño logro estoy olvidando celebrar?",
+        "¿Qué puedo soltar esta noche para descansar mejor?",
+        "¿Qué quiero que mi yo del futuro agradezca de este día?",
+        "¿Cuál fue mi momento más bonito de hoy?"
+    ]
+    q_actual = preguntas_ritual[(ahora_ritual.timetuple().tm_yday + ahora_ritual.year) % len(preguntas_ritual)]
+    st.markdown(f"""
+    <div class="quote-card">
+        <span class="quote-mark">?</span>
+        <strong>{q_actual}</strong>
+    </div>
+    """, unsafe_allow_html=True)
+
+
+# ==============================================================================
+# TAB 17: CAJA SECRETA — SORPRESA INTERACTIVA
+# ==============================================================================
+with tab17:
+    st.markdown("<h3 style='color: #d63384;'>🎁 Caja Secreta de Mi Reina</h3>", unsafe_allow_html=True)
+    st.write("Una pequeña experiencia sorpresa. El contenido cambia según el número del día.")
+    st.write("---")
+
+    numero_dia_sorpresa = (datetime.now(tz_colombia).date() - date(2026, 1, 1)).days
+    sorpresas = [
+        "Hoy eres oficialmente la protagonista de esta página. 👑",
+        "Hay personas que inspiran sin proponérselo. Tú eres una de ellas. 🌷",
+        "La sorpresa de hoy es un recordatorio: también mereces que te cuiden. 💖",
+        "No todo regalo viene en una caja. Algunos llegan escritos. ✉️",
+        "Hoy el diario te manda una misión: sonreír antes de terminar de leer. 😊",
+        "Hay un abrazo escondido en estas palabras. Imagina que acaba de llegar. 🫂",
+        "Tu contraseña secreta de hoy: 'voy a confiar en mi proceso'. ✨",
+        "Premio simbólico del día: cinco minutos de paz sin sentir culpa. 🕊️",
+        "Sorpresa: alguien está muy orgulloso de ti. Sí, otra vez. 😌",
+        "Hoy la caja trae una promesa: no minimizar tus propios logros. 🏆",
+        "Tu misión secreta: hacer algo pequeño que te haga feliz.",
+        "La caja de hoy contiene una dosis de fe y otra de paciencia.",
+        "Hoy está permitido no tener todas las respuestas.",
+        "Tu regalo escondido es una frase: 'vas mejor de lo que crees'.",
+        "No abras la caja con prisa. Léela despacio. 🌙"
+    ]
+    sorpresa = sorpresas[numero_dia_sorpresa % len(sorpresas)]
+
+    st.markdown(f"""
+    <div class="secret-stage fade-in">
+        <div>
+            <div style="display:grid;place-items:center;">
+                <div class="secret-lock">🎁</div>
+                <div class="secret-title">Caja secreta · {fecha_es(datetime.now(tz_colombia).date())}</div>
+                <div class="secret-text">{sorpresa}</div>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.write("")
+    if st.button("🎉 Abrir la caja con efectos", key="abrir_caja_deluxe"):
+        st.balloons()
+        lanzar_efecto_fiesta_js("lluvia_corazones_3d")
+        st.success("¡Sorpresa desbloqueada! Hoy también hay motivos para sonreír. 💖")
+
+
+# ==============================================================================
+# TAB 18: CIELO DE HOY — CONSTELACIÓN DEL MENSAJE
+# ==============================================================================
+with tab18:
+    st.markdown("<h3 style='color: #d63384;'>🌌 Cielo de Hoy — Tu Constelación</h3>", unsafe_allow_html=True)
+    st.write("Una escena visual que convierte la fecha en una pequeña constelación simbólica.")
+    st.write("---")
+
+    semillas = [
+        (12, 18), (24, 35), (36, 14), (47, 42), (58, 24),
+        (70, 12), (82, 32), (18, 64), (34, 80), (52, 70),
+        (67, 58), (84, 72), (9, 82), (44, 56), (76, 86)
+    ]
+    n_cielo = (datetime.now(tz_colombia).timetuple().tm_yday * 7) % 101
+
+    star_html = """
+    <div class="stars-canvas-wrap">
+        <div class="star-label">✨ Constelación del día · {fecha}</div>
+    """.format(fecha=fecha_es(datetime.now(tz_colombia).date()))
+
+    for i, (x, y) in enumerate(semillas):
+        retraso = (i * 0.19) + ((n_cielo % 7) * 0.03)
+        size = 5 + ((n_cielo + i * 3) % 5)
+        star_html += f"""
+        <span class="glow-dot"
+              style="left:{x}%;top:{y}%;width:{size}px;height:{size}px;animation-delay:{retraso:.2f}s;">
+        </span>
+        """
+
+    for i in range(len(semillas) - 1):
+        x1, y1 = semillas[i]
+        x2, y2 = semillas[i + 1]
+        dx = x2 - x1
+        dy = y2 - y1
+        length = (dx * dx + dy * dy) ** 0.5
+        angle = math.degrees(math.atan2(dy, dx))
+        star_html += f"""
+        <span class="constellation-line"
+              style="left:{x1}%;top:{y1}%;width:{length}%;transform:rotate({angle}deg);">
+        </span>
+        """
+
+    star_html += "</div>"
+    st.markdown(star_html, unsafe_allow_html=True)
+
+    st.write("")
+    st.markdown(f"""
+    <div class="quote-card">
+        <span class="quote-mark">✦</span>
+        Hoy la constelación lleva tu nombre simbólicamente. No importa que el día cambie;
+        la intención detrás de esta página permanece: recordarte cuánto vales.
+        <br><br>
+        <b>{contenido_hoy()['titulo']}</b>
+    </div>
+    """, unsafe_allow_html=True)
+
+
+
+# ==============================================================================
+# APÉNDICE DE CONFIGURACIÓN DELUXE — GUÍA EMBEBIDA DEL PROYECTO
+# ==============================================================================
+# Esta sección deja parámetros y catálogos listos para ampliar el diario sin
+# tocar el núcleo. Se mantiene deliberadamente separada de la lógica principal.
+#
+# 01. IDENTIDAD
+DIARIO_NOMBRE = "El Diario de Mi Reina"
+DIARIO_VERSION = "Deluxe 2.0"
+DIARIO_AUTOR = "Jhon"
+DIARIO_CIUDAD_ORIGEN = "Medellín"
+DIARIO_CIUDAD_DESTINO = "Bucaramanga"
+DIARIO_ICONO = "👑"
+DIARIO_CICLO_INICIO = "2026-09-01"
+DIARIO_CICLO_FIN = "2026-10-31"
+#
+# 02. REGLAS DE CONTENIDO
+REGLA_01 = "Un mensaje nuevo por fecha."
+REGLA_02 = "Nunca depender de un clic para actualizar el mensaje diario."
+REGLA_03 = "Usar hora Colombia para el contenido del día."
+REGLA_04 = "Mostrar día, fecha y mes en español."
+REGLA_05 = "Mantener un tono cariñoso, respetuoso y personal."
+REGLA_06 = "Alternar trabajo, estudio, hogar, descanso, fe y relación."
+REGLA_07 = "No convertir el diario en una lista rígida de obligaciones."
+REGLA_08 = "Incluir pausas y autocuidado."
+REGLA_09 = "Conservar el concepto de distancia Medellín–Bucaramanga."
+REGLA_10 = "Permitir que el contenido siga generándose después del ciclo."
+#
+# 03. ESTADOS POSIBLES
+ESTADOS_DIARIO = [
+    "😴 Cansada",
+    "🌿 Tranquila",
+    "🔥 Motivada",
+    "✨ Excelente",
+    "🚀 Imparable",
+    "🤯 Abrumada / Estresada",
+    "💖 Enamorada",
+    "🧘‍♀️ Necesito calma",
+    "🎉 De celebración",
+    "🌙 Lista para descansar",
+]
+#
+# 04. CATEGORÍAS DE MEMORIA
+CATEGORIAS_MEMORIA = [
+    "💼 Trabajo TQ",
+    "🎓 Universidad / Administración",
+    "🏡 Hogar / Familia",
+    "💭 Pensamientos",
+    "☕ Tiempo Libre / Descanso",
+    "💖 Nosotros",
+    "🙏 Fe / Gratitud",
+    "🌱 Metas Personales",
+    "📸 Momentos",
+    "🎁 Sorpresas",
+]
+#
+# 05. ÍCONOS DE APOYO
+ICONOS_APOYO = [
+    "👑", "💖", "🧸", "🦋", "🌸", "🌷", "🌺", "✨", "🌙", "☀️",
+    "🙏", "🕊️", "🎓", "💼", "🏡", "✈️", "🏔️", "☕", "📖", "🎁",
+]
+#
+# 06. FASES EMOCIONALES DEL AÑO EDITORIAL
+FASES_EDITORIALES = {
+    "septiembre": "Renacer, ordenar, comenzar de nuevo y creer.",
+    "octubre": "Consolidar, agradecer, celebrar avances y mirar adelante.",
+}
+#
+# 07. MENSAJES CORTOS PARA TOAST
+TOASTS_CORTOS = [
+    "Tu sonrisa acaba de activar el modo reina. 👑",
+    "Página guardada en el corazón. 💖",
+    "Una pausa también es progreso. 🌿",
+    "Hoy también cuenta. ✨",
+    "Respira: vas avanzando. 🕊️",
+    "Tu historia todavía tiene muchísimas páginas bonitas. 📖",
+    "Medellín manda un abrazo a Bucaramanga. ✈️",
+    "Modo ternura activado. 🧸",
+    "Hoy merece ser recordado. 🌸",
+    "El diario te vio sonreír. 😊",
+]
+#
+# 08. RESPUESTAS AUTOMÁTICAS A ESTADOS
+RESPUESTAS_ESTADO_DELUXE = {
+    "💖 Enamorada": "Guarda esa sensación bonita; no hay que explicarla todo el tiempo.",
+    "🧘‍♀️ Necesito calma": "Entonces hoy la prioridad es reducir el ruido y darte espacio.",
+    "🎉 De celebración": "Celebra sin culpa. Las pequeñas victorias también merecen fiesta.",
+    "🌙 Lista para descansar": "Perfecto. El descanso también protege tus sueños.",
+}
+#
+# 09. MENSAJES PARA NOTIFICACIONES INTERNAS
+NOTIFICACIONES_DELUXE = [
+    "✨ El mensaje de hoy ya está listo.",
+    "📅 La fecha cambió y el diario escribió una nueva página.",
+    "💌 Hay una carta esperándote en 'Carta de Hoy'.",
+    "🌙 El ritual de esta noche ya está preparado.",
+    "🎁 La caja secreta tiene una sorpresa distinta hoy.",
+    "🌌 El cielo de hoy dibujó una constelación nueva.",
+]
+#
+# 10. MICRO-FRASES PARA LOS ENCABEZADOS
+MICRO_FRASES = [
+    "Un día más, un recuerdo más.",
+    "Hoy también vale la pena sonreír.",
+    "Lo bonito también merece espacio.",
+    "Descansar no borra tus sueños.",
+    "Tu proceso no necesita comparación.",
+    "Las palabras también abrazan.",
+    "La distancia no decide el cariño.",
+    "Una vida bonita se construye en detalles.",
+    "Tu futuro agradece tu constancia.",
+    "Tu corazón merece ternura.",
+]
+#
+# 11. EVENTOS SIMBÓLICOS
+EVENTOS_SIMBOLICOS = [
+    {"icono": "🌅", "nombre": "Amanecer", "idea": "Comenzar de nuevo."},
+    {"icono": "☀️", "nombre": "Luz", "idea": "Reconocer lo bueno."},
+    {"icono": "🌤️", "nombre": "Pausa", "idea": "Bajar el ritmo."},
+    {"icono": "🌇", "nombre": "Atardecer", "idea": "Cerrar pendientes."},
+    {"icono": "🌙", "nombre": "Noche", "idea": "Descansar."},
+    {"icono": "⭐", "nombre": "Estrella", "idea": "Recordar un sueño."},
+]
+#
+# 12. REGLAS PARA FUTURAS MEJORAS
+FUTURA_MEJORA_01 = "Integrar almacenamiento externo para no depender del disco local."
+FUTURA_MEJORA_02 = "Permitir álbum de fotos cargadas por ella."
+FUTURA_MEJORA_03 = "Añadir una página de 'primer encuentro' cuando ocurra."
+FUTURA_MEJORA_04 = "Añadir un mapa emocional de recuerdos."
+FUTURA_MEJORA_05 = "Añadir modo oscuro romántico."
+FUTURA_MEJORA_06 = "Añadir exportación anual del diario."
+FUTURA_MEJORA_07 = "Añadir un resumen mensual automático."
+FUTURA_MEJORA_08 = "Añadir una galería con leyendas."
+FUTURA_MEJORA_09 = "Añadir una sección de metas compartidas."
+FUTURA_MEJORA_10 = "Añadir un reproductor con archivos musicales propios."
+#
+# 13. CATÁLOGO DE MENSAJES MUY CORTOS
+MENSAJES_MINI = [
+    "Hoy también estoy orgulloso de ti. 💖",
+    "No olvides lo lejos que has llegado. ✨",
+    "Tu paz también es una meta. 🌿",
+    "Respira, reina. 👑",
+    "Paso a paso también se llega lejos. 👣",
+    "Eres más fuerte de lo que recuerdas. 🦋",
+    "La calma también cuenta como productividad. ☕",
+    "Celebra el pequeño avance. 🌸",
+    "Lo estás haciendo bien. 💗",
+    "Hoy mereces ternura. 🧸",
+    "No todo pendiente es urgente. 🌙",
+    "Tu sonrisa cambia el ambiente. ☀️",
+    "Tu historia no termina en un día difícil. 📖",
+    "También puedes parar. 🕊️",
+    "Aquí hay un abrazo escondido. 🫂",
+    "Fe, paciencia y paso siguiente. 🙏",
+    "Una página más, mi reina. 💌",
+    "Todo proceso tiene su ritmo. 🌷",
+    "Lo bonito se construye despacio. 🏡",
+    "Hoy también cuenta. ⭐",
+]
+#
+# 14. FRASES PARA EL PIE DEL DIARIO
+PIES_DIARIO = [
+    "Hecho con amor, paciencia y un poquito de magia.",
+    "Una página por día para no olvidar lo bonito.",
+    "La historia cambia; el cariño permanece.",
+    "Escrito desde Medellín, recibido donde estés.",
+    "Para mi reina, porque cada día merece una palabra bonita.",
+    "No es un diario perfecto. Es un diario sincero.",
+    "Hoy también hay una razón para sonreír.",
+    "Las páginas más bonitas todavía no se han escrito.",
+    "Entre montañas y kilómetros, seguimos encontrándonos.",
+    "Fin de página. No fin de historia.",
+]
+#
+# 15. IDEAS PARA DÍAS ESPECIALES
+IDEAS_DIA_ESPECIAL = {
+    1: "Primer día del mes: una nueva etapa.",
+    2: "Recordatorio de gratitud.",
+    3: "Día para reconocer una fortaleza.",
+    4: "Día de autocuidado.",
+    5: "Día de música.",
+    6: "Día de recuerdos.",
+    7: "Día de descanso.",
+    8: "Día de metas.",
+    9: "Día de conexión.",
+    10: "Día de celebración.",
+    11: "Día de paciencia.",
+    12: "Día de conversación.",
+    13: "Día de lectura.",
+    14: "Día de ternura.",
+    15: "Día de familia.",
+    16: "Día de fe.",
+    17: "Día de sonreír.",
+    18: "Día de confiar.",
+    19: "Día de avanzar.",
+    20: "Día de respirar.",
+    21: "Día de agradecer.",
+    22: "Día de recordar.",
+    23: "Día de descansar.",
+    24: "Día de soñar.",
+    25: "Día de celebrar.",
+    26: "Día de nosotros.",
+    27: "Día de esperanza.",
+    28: "Día de orgullo.",
+    29: "Día de ternura.",
+    30: "Día de cierre.",
+    31: "Día de nueva página.",
+}
+#
+# 16. COLECCIÓN DE PALABRAS CLAVE
+PALABRAS_CLAVE_DIARIO = [
+    "fe", "paz", "familia", "hogar", "estudio", "trabajo",
+    "disciplina", "ternura", "respeto", "distancia", "sonrisa",
+    "futuro", "calma", "sueños", "gratitud", "valentía",
+    "descanso", "esperanza", "amor", "propósito", "confianza",
+]
+#
+# 17. ESTRUCTURA DE UN MENSAJE DELUXE
+ESTRUCTURA_MENSAJE_DELUXE = [
+    "encabezado_fecha",
+    "titulo",
+    "saludo",
+    "reflexion",
+    "bendicion",
+    "reto",
+    "cancion",
+    "cierre",
+]
+#
+# 18. PRUEBAS RÁPIDAS INTERNAS
+def _test_fecha_es():
+    ejemplo = date(2026, 9, 2)
+    assert "miércoles" in fecha_es(ejemplo).lower()
+    assert "septiembre" in fecha_es(ejemplo).lower()
+
+def _test_contenido_dos_meses():
+    ejemplo = contenido_automatico_dos_meses(date(2026, 9, 2))
+    assert ejemplo["fecha_str"]
+    assert ejemplo["titulo"]
+    assert ejemplo["poema"]
+    assert ejemplo["reto"]
+    assert ejemplo["cancion"]["titulo"]
+
+def _test_ventana_61_dias():
+    assert len(MENSAJES_2_MESES) == 61
+    assert "2026-09-01" in MENSAJES_2_MESES
+    assert "2026-10-31" in MENSAJES_2_MESES
+
+# No se ejecutan automáticamente al desplegar; quedan disponibles para mantenimiento.
+#
+# 19. NOTA DE DESPLIEGUE
+NOTA_DEPLOY_01 = "Mantén diario_laura.json y capsulas_laura.json en el entorno persistente."
+NOTA_DEPLOY_02 = "Conserva portada.jpg, portada.jpeg o portada.png si deseas la foto propia."
+NOTA_DEPLOY_03 = "El motor automático no requiere que actualices el contenido cada mañana."
+NOTA_DEPLOY_04 = "El archivo puede crecer con nuevas secciones sin romper las pestañas originales."
+#
+# 20. FIN DEL APÉNDICE
+DELUXE_LISTO = True
+
+# CHECKLIST DELUXE 001: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 002: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 003: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 004: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 005: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 006: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 007: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 008: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 009: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 010: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 011: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 012: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 013: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 014: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 015: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 016: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 017: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 018: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 019: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 020: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 021: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 022: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 023: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 024: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 025: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 026: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 027: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 028: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 029: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 030: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 031: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 032: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 033: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 034: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 035: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 036: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 037: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 038: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 039: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 040: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 041: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 042: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 043: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 044: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 045: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 046: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 047: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 048: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 049: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 050: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 051: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 052: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 053: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 054: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 055: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 056: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 057: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 058: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 059: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 060: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 061: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 062: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 063: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 064: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 065: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 066: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 067: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 068: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 069: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 070: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 071: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 072: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 073: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 074: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 075: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 076: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 077: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 078: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 079: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 080: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 081: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 082: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 083: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 084: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 085: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 086: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 087: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 088: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 089: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 090: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 091: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 092: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 093: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 094: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 095: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 096: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 097: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 098: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 099: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 100: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 101: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 102: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 103: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 104: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 105: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 106: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 107: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 108: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 109: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 110: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 111: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 112: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 113: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 114: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 115: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 116: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 117: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 118: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 119: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 120: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 121: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 122: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 123: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 124: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 125: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 126: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 127: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 128: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 129: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 130: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 131: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 132: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 133: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 134: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 135: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 136: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 137: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 138: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 139: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 140: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 141: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 142: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 143: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 144: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 145: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 146: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 147: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 148: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 149: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 150: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 151: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 152: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 153: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 154: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 155: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 156: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 157: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 158: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 159: Este punto queda reservado para futuras mejoras visuales o de contenido.
+# CHECKLIST DELUXE 160: Este punto queda reservado para futuras mejoras visuales o de contenido.
