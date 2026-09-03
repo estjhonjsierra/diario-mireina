@@ -8,6 +8,8 @@ import io
 import random
 import math
 
+# Este archivo está pensado para ejecutarse como app.py en Streamlit Cloud.
+
 # Librerías para generar el PDF elegante con ReportLab
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, HRFlowable
@@ -146,7 +148,15 @@ def escena_del_dia(fecha_obj):
     return ESCENAS_DIARIAS[posicion % len(ESCENAS_DIARIAS)]
 
 fecha_escena_hoy = datetime.now(tz_colombia).date()
+
+# Resolver SIEMPRE la escena antes de construir cualquier bloque HTML/CSS.
+# Se usan variables simples para evitar NameError si este archivo se ejecuta
+# en una recarga temprana de Streamlit Cloud.
 escena_hoy = escena_del_dia(fecha_escena_hoy)
+ESCENA_GRADIENTE_CSS = escena_hoy.get("gradiente", theme_cfg.get("gradient", "linear-gradient(135deg,#fff0f5,#fff5f8)"))
+ESCENA_ACENTO_CSS = escena_hoy.get("acento", theme_cfg.get("accent", "#d63384"))
+ESCENA_EMOJI = escena_hoy.get("emoji", "✨")
+ESCENA_NOMBRE = escena_hoy.get("nombre", "Escena especial")
 
 # ==============================================================================
 # 3. ESTILOS CSS AVANZADOS, GOOGLE FONTS & 12 PARTICULAS DINÁMICAS
@@ -891,7 +901,7 @@ html, body, [class*="css"], .stMarkdown, p, div, label, span {{
 
 /* Escena diaria: el fondo cambia suavemente sin perder la identidad del diario */
 .stApp {
-    background: {escena_hoy['gradiente']} !important;
+    background: {ESCENA_GRADIENTE_CSS} !important;
     background-attachment: fixed !important;
 }
 .daily-scene-badge {
@@ -900,7 +910,7 @@ html, body, [class*="css"], .stMarkdown, p, div, label, span {{
     background:rgba(255,255,255,.82);
     border:1px solid rgba(255,255,255,.95);
     box-shadow:0 8px 24px rgba(0,0,0,.08);
-    font-weight:800; color:{escena_hoy['acento']};
+    font-weight:800; color:{ESCENA_ACENTO_CSS};
     backdrop-filter: blur(10px);
 }
 
@@ -2277,7 +2287,7 @@ def etiqueta_momento():
 st.markdown("<h1 class='main-header'>👑 El Diario de Mi Reina 💖🧸🦋</h1>", unsafe_allow_html=True)
 st.markdown("<p class='sub-header'>De Medellín a Bucaramanga 🏔️✈️✨ | Un espacio lleno de magia, recuerdos y momentos especiales</p>", unsafe_allow_html=True)
 st.markdown(f"<div class='theme-badge'>🎨 Tema Activo: {st.session_state['user_theme']} | Tipografía: {st.session_state['user_font']}</div>", unsafe_allow_html=True)
-st.markdown(f"<div style='text-align:center; margin:-8px 0 18px 0;'><span class='daily-scene-badge'>{escena_hoy['emoji']} Escena de hoy: {escena_hoy['nombre']} · {fecha_escena_hoy.strftime('%d/%m/%Y')}</span></div>", unsafe_allow_html=True)
+st.markdown(f"<div style='text-align:center; margin:-8px 0 18px 0;'><span class='daily-scene-badge'>{ESCENA_EMOJI} Escena de hoy: {ESCENA_NOMBRE} · {fecha_escena_hoy.strftime('%d/%m/%Y')}</span></div>", unsafe_allow_html=True)
 
 
 # ==============================================================================
@@ -3381,7 +3391,7 @@ with tab18:
         "</head>",
         "<body>",
         f"<div class='sky'><div class='topline'>✨ Constelación del día · {fecha_es(hoy_cielo)}</div>",
-        f"<div class='subline'>Página {contenido_cielo.get('dia_n','—')} · {escena_hoy['emoji']} {escena_hoy['nombre']}</div>",
+        f"<div class='subline'>Página {contenido_cielo.get('dia_n','—')} · {ESCENA_EMOJI} {ESCENA_NOMBRE}</div>",
     ]
 
     for x, y, size, delay in estrellas:
