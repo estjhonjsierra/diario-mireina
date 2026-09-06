@@ -39,6 +39,7 @@ PORTADA_CANDIDATAS = [
     ruta_asset("portada.png"),
 ]
 PORTADA_PATH = next((p for p in PORTADA_CANDIDATAS if p.is_file()), None)
+PORTADA_RELATIVA = PORTADA_PATH.relative_to(BASE_DIR).as_posix() if PORTADA_PATH is not None else None
 
 # Control de primera visita y bienvenida
 if "bienvenida" not in st.session_state:
@@ -1437,7 +1438,9 @@ CANCIONES_DIARIAS.update(CANCIONES_61_MAP)
 FECHA_HOY_CO = datetime.now(tz_colombia)
 HOY_CO = FECHA_HOY_CO.date()
 CLAVE_HOY = HOY_CO.strftime("%Y-%m-%d")
-CONTENIDO_HOY_61 = MENSAJES_61.get(CLAVE_HOY, contenido_61_dias(HOY_CO))
+CONTENIDO_HOY_61 = MENSAJES_61.get(CLAVE_HOY)
+if CONTENIDO_HOY_61 is None:
+    CONTENIDO_HOY_61 = contenido_61_dias(HOY_CO)
 ESCENA_HOY_61 = CONTENIDO_HOY_61["escena"]
 DIAS_CICLO_TRANSCURRIDOS = CONTENIDO_HOY_61["dia_n"]
 DIAS_RESTANTES_61 = max(CICLO_TOTAL_61 - DIAS_CICLO_TRANSCURRIDOS, 0)
@@ -1456,6 +1459,17 @@ def momento_del_dia_61(hora):
     return "✨ Madrugada"
 
 MOMENTO_HOY_61 = momento_del_dia_61(FECHA_HOY_CO.hour)
+
+def mensaje_corto_de_hora(fecha_hora_obj):
+    """Devuelve un mensaje breve según la hora de Colombia."""
+    hora = fecha_hora_obj.hour
+    if 5 <= hora < 12:
+        return "☀️ Buenos días, mi reina. Que hoy recuerdes desde el primer momento lo increíble y valiosa que eres."
+    if 12 <= hora < 18:
+        return "🌤️ Buenas tardes, mi reina. Haz una pausa, respira y recuerda que no todo tiene que resolverse de una vez."
+    if 18 <= hora < 23:
+        return "🌙 Buenas noches, mi reina. El día ya hizo su parte; ahora también mereces descansar y sentirte orgullosa de ti."
+    return "✨ En esta hora tranquila, mi reina, deja por un momento los pendientes y regálale paz a tu corazón."
 
 # ==============================================================================
 # 6E. AUDIO OPCIONAL SIN ROMPER LA APP
@@ -2550,3 +2564,4 @@ with tabs[18]:
         st.markdown("<div class='card'><b>💋 Bésame</b><br><small>Reproductor disponible cuando exista besame.mp3 / wav / ogg.</small></div>", unsafe_allow_html=True)
         if AUDIO_BESAME:
             st.audio(str(AUDIO_BESAME))
+
