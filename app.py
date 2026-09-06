@@ -7,6 +7,7 @@ import pytz
 import io
 import random
 from pathlib import Path
+import math  # <--- AGREGADO para el cielo estrellado
 
 # Librerías para generar el PDF elegante con ReportLab
 from reportlab.lib.pagesizes import letter
@@ -1460,6 +1461,7 @@ def momento_del_dia_61(hora):
 
 MOMENTO_HOY_61 = momento_del_dia_61(FECHA_HOY_CO.hour)
 
+# (Esta función ya no se usa, pero la mantenemos por si acaso)
 def mensaje_corto_de_hora(fecha_hora_obj):
     """Devuelve un mensaje breve según la hora de Colombia."""
     hora = fecha_hora_obj.hour
@@ -1602,7 +1604,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ==============================================================================
-# 8B. BANNER DELUXE SEGURO — SIN JAVASCRIPT EMBEBIDO EN F-STRINGS
+# 8B. BANNER DELUXE SEGURO — AHORA CON MENSAJE MÁS PROFUNDO
 # ==============================================================================
 st.markdown(f"""
 <div class="deluxe-shell">
@@ -1632,8 +1634,8 @@ st.markdown(f"""
     </div>
     <div class="quote-card">
         <span class="quote-mark">“</span>
-        <strong>{mensaje_corto_de_hora(FECHA_HOY_CO)}</strong>
-        <div style="margin-top:8px;color:#5d4d59;">{CONTENIDO_HOY_61['titulo']}</div>
+        <strong>"{CONTENIDO_HOY_61['titulo']}"</strong>
+        <div style="margin-top:8px;color:#5d4d59;">{CONTENIDO_HOY_61['fecha_str']}</div>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -1707,11 +1709,11 @@ with tabs[0]:
         reto_hoy = RETOS_DIARIOS.get(fecha_hoy_key, "🌸 Reto de Hoy: Tómate 10 minutos para consentirte y tomar tu bebida favorita en calma.")
         cancion_hoy = CANCIONES_DIARIAS.get(fecha_hoy_key, {"titulo": "Inolvidable - Beéle 🎶", "desc": "Una melodía llena de sol y buena vibra para ti."})
 
-        # TARJETA DEL MENSAJE DIARIO CAMBIANTE AUTOMÁTICO
+        # TARJETA DEL MENSAJE DIARIO CAMBIANTE AUTOMÁTICO (SIN "Actualización Automática")
         st.markdown(f"""
         <div class='daily-card'>
             <span style='background-color: #ff85a1; color: white; padding: 8px 18px; border-radius: 16px; font-weight: bold; font-size: 1.05em;'>
-                📅 {mensaje_hoy['fecha_str']} (Actualización Automática 🇨🇴)
+                📅 {mensaje_hoy['fecha_str']} · Un día especial para ti, mi reina 💖
             </span>
             <h3 style='color: #c2185b; margin-top: 18px; margin-bottom: 14px; font-size: 1.5em;'>{mensaje_hoy['titulo']}</h3>
             <p style='color: #222; font-size: 1.15em; line-height: 1.85; white-space: pre-line;'>
@@ -2523,7 +2525,7 @@ with tabs[17]:
         x1,y1=puntos[i][0],puntos[i][1]; x2,y2=puntos[i+1][0],puntos[i+1][1]
         dx=x2-x1; dy=y2-y1
         dist=(dx*dx+dy*dy)**0.5
-        angle=math.degrees(math.atan2(dy,dx))
+        angle=math.degrees(math.atan2(dy,dx))   # <--- AHORA math ESTÁ IMPORTADO
         html_parts.append(f"<span class='line' style='left:{x1}%;top:{y1}%;width:{dist:.2f}%;transform:rotate({angle:.2f}deg)'></span>")
     html_parts += ["</div></body></html>"]
     components.html("".join(html_parts), height=455, scrolling=False)
@@ -2564,4 +2566,3 @@ with tabs[18]:
         st.markdown("<div class='card'><b>💋 Bésame</b><br><small>Reproductor disponible cuando exista besame.mp3 / wav / ogg.</small></div>", unsafe_allow_html=True)
         if AUDIO_BESAME:
             st.audio(str(AUDIO_BESAME))
-
