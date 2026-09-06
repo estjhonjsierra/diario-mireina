@@ -6,6 +6,7 @@ from datetime import datetime, timedelta, date
 import pytz
 import io
 import random
+from pathlib import Path
 
 # Librerías para generar el PDF elegante con ReportLab
 from reportlab.lib.pagesizes import letter
@@ -17,11 +18,27 @@ from reportlab.lib import colors
 # 1. CONFIGURACIÓN DE PÁGINA Y ESTADO INICIAL COMPLETO
 # ==============================================================================
 st.set_page_config(
-    page_title="El Diario de Mi Reina 👑 | Edición Deluxe Septiembre-Octubre 2026",
+    page_title="El Diario de Mi Reina 👑 | Edición Mágica Deluxe 2026",
     page_icon="👑",
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# ==============================================================================
+# 1B. RUTAS ROBUSTAS PARA GITHUB / STREAMLIT CLOUD
+# ==============================================================================
+BASE_DIR = Path(__file__).resolve().parent
+
+def ruta_asset(nombre: str) -> Path:
+    """Devuelve la ruta absoluta de un archivo que vive junto a app.py."""
+    return BASE_DIR / nombre
+
+PORTADA_CANDIDATAS = [
+    ruta_asset("portada.jpg"),
+    ruta_asset("portada.jpeg"),
+    ruta_asset("portada.png"),
+]
+PORTADA_PATH = next((p for p in PORTADA_CANDIDATAS if p.is_file()), None)
 
 # Control de primera visita y bienvenida
 if "bienvenida" not in st.session_state:
@@ -343,6 +360,7 @@ html, body, [class*="css"], .stMarkdown, p, div, label, span {{
     transform: scale(1.05) !important;
     box-shadow: 0 12px 28px rgba(255, 77, 109, 0.52) !important;
 }}
+
 </style>
 
 <!-- 12 Partículas flotantes decorativas configurables -->
@@ -1260,6 +1278,208 @@ FORTUNAS = [
 ]
 
 # ==============================================================================
+# 6B. MOTOR DEFINITIVO DE SEPTIEMBRE + OCTUBRE 2026 (61 DÍAS EXACTOS)
+# ==============================================================================
+CICLO_INICIO_61 = date(2026, 9, 1)
+CICLO_FIN_61 = date(2026, 10, 31)
+CICLO_TOTAL_61 = (CICLO_FIN_61 - CICLO_INICIO_61).days + 1  # 61
+
+TEMAS_61 = [
+    "La mujer que no se rinde", "Pequeñas victorias", "La calma también es progreso", "Orgullo por tu camino",
+    "La fuerza de seguir", "Tu sonrisa como refugio", "Sueños que toman forma", "Tu manera de cuidar",
+    "Elegancia para afrontar el día", "Lo que haces sí importa", "Un respiro para el alma", "Confianza en tus capacidades",
+    "La belleza de tu constancia", "Una pausa merecida", "Coraje para los días difíciles", "Tu luz en medio de la rutina",
+    "Celebrar sin culpa", "Una página para agradecer", "La distancia no borra el cariño", "Tu futuro empieza hoy",
+    "El valor de ser auténtica", "Una noche para soltar", "Todo lo que ya has logrado", "Tu corazón también necesita descanso",
+    "Un abrazo convertido en palabras", "Tu esfuerzo silencioso", "La magia de lo cotidiano", "Fe para continuar",
+    "No tienes que poder con todo", "La mujer detrás de los logros", "Una razón para sonreír", "Tu historia merece ternura",
+    "Serenidad para tomar decisiones", "Tu próxima victoria", "Cuidarte también es avanzar", "El orgullo de lo construido",
+    "Una mirada amable hacia ti", "Lo que hoy parece pequeño", "Tu disciplina tiene frutos", "La esperanza de lo que viene",
+    "Tu hogar, tu refugio", "La alegría de compartir", "Una meta a la vez", "La fuerza de volver a empezar",
+    "Tu talento merece reconocimiento", "Un día con intención", "La ternura de los detalles", "No olvides celebrar tu proceso",
+    "Un futuro que se acerca", "Tu mejor versión no necesita prisa", "Paz para cerrar el día", "Una sonrisa desde la distancia",
+    "Tu constancia habla por ti", "Hay belleza en perseverar", "Lo que mereces escuchar", "La tranquilidad de confiar",
+    "Un capítulo nuevo", "Tu corazón sabe el camino", "La mujer que admiro", "Un último impulso",
+    "Cierre de un ciclo maravilloso"
+]
+
+SALUDOS_61 = [
+    "Mi reina hermosa, hoy quiero recordarte algo sencillo pero inmenso: no tienes que demostrar tu valor cada minuto; ya eres valiosa.",
+    "Mi vida, abre esta página despacio. Hoy no viene a exigirte nada, viene a acompañarte.",
+    "Reina, hay días para conquistar el mundo y otros para respirar. Ambos días cuentan.",
+    "Hoy pensé en ti y en todo lo que haces sin hacer ruido. Por eso esta página lleva tu nombre.",
+    "Mi reina, cuando la rutina corra demasiado, vuelve aquí un momento y recuerda quién eres.",
+    "Hoy quiero celebrar a la mujer que sigue adelante incluso cuando nadie ve todo el esfuerzo que hay detrás.",
+    "Esta página es un abrazo convertido en palabras, escrito para acompañarte en el momento exacto en que la abras.",
+    "Reina hermosa, tu historia no se mide solo por resultados; también por la valentía con la que atraviesas cada día.",
+]
+
+REFLEXIONES_61 = [
+    "Tu vida está hecha de decisiones pequeñas que, juntas, están construyendo algo grande. Sigue a tu ritmo.",
+    "No minimices el cansancio ni los logros. Ambos cuentan una parte real de tu historia y ambos merecen respeto.",
+    "Hay una versión de ti en el futuro que un día agradecerá muchísimo que hoy hayas decidido no rendirte.",
+    "La verdadera fortaleza no siempre se ve como correr. A veces se parece más a detenerse, respirar y volver a empezar.",
+    "Todo lo que estás aprendiendo, trabajando y cuidando está formando una vida que merece ser celebrada.",
+    "No necesitas tener todo resuelto para estar avanzando. Basta con seguir dando un paso honesto cada día.",
+    "Cuando dudes de ti, recuerda cuántas veces ya has superado jornadas que alguna vez parecieron demasiado grandes.",
+    "Tu ternura no contradice tu fuerza. Precisamente esa mezcla tan tuya es una de las cosas más bonitas que admiro.",
+]
+
+BENDICIONES_61 = [
+    "Que Dios bendiga tus decisiones, proteja tu hogar y multiplique las oportunidades bonitas que lleguen a tu vida.",
+    "Que hoy encuentres serenidad en medio de la rutina, personas que sumen y motivos sinceros para sonreír.",
+    "Que tu camino tenga luz cuando necesites escoger una dirección, y paciencia cuando las cosas tarden un poco más.",
+    "Que la paz llegue primero a tu corazón y después a todo aquello que tengas que resolver.",
+    "Que nunca te falte una razón para volver a creer en tus sueños, incluso cuando el día se sienta pesado.",
+    "Que esta noche puedas cerrar los ojos con la tranquilidad de saber que hiciste lo mejor que pudiste.",
+    "Que tu hogar siga siendo un lugar de amor, risas, descanso y recuerdos bonitos.",
+    "Que el futuro te sorprenda con oportunidades que hoy todavía no imaginas.",
+]
+
+CIERRES_61 = [
+    "Y desde Medellín te mando un abrazo enorme hasta Bucaramanga. ❤️",
+    "No importa cuántos kilómetros marque el mapa: hoy también estoy cerquita de ti en pensamiento. ✈️💖",
+    "Descansa, sonríe y sigue siendo esa mujer increíble que admiro tanto. 👑",
+    "Te quiero, te respeto y me encanta poder acompañarte aunque sea a través de estas páginas. 🌷",
+    "Qué bonito sería poder decirte esto frente a frente; mientras llega ese momento, aquí queda escrito. 💌",
+    "Cierra esta página sabiendo que alguien está profundamente orgulloso de ti. ✨",
+    "Mañana habrá una nueva página. Por hoy, quédate con esta: eres muchísimo más capaz de lo que a veces crees. 🌙",
+    "Con todo mi cariño, admiración y un pedacito de mi corazón en cada palabra. 💖",
+]
+
+RETOS_61 = [
+    "Regálate diez minutos sin celular y toma tu bebida favorita con calma.",
+    "Anota mentalmente tres cosas que hiciste bien hoy.",
+    "Haz una pausa, estira los hombros y respira profundamente tres veces.",
+    "Escucha una canción que te haga sonreír y deja que el día baje de velocidad.",
+    "Antes de dormir, di en voz alta una meta que te emocione.",
+    "Haz algo pequeño por ti sin sentir que tienes que merecerlo primero.",
+    "Mira una foto que te haga feliz y agradece ese recuerdo.",
+    "Cierra el día perdonándote cualquier pendiente que no haya podido salir perfecto.",
+]
+
+CANCIONES_61 = [
+    ("Sin Miedo 🎶", "Canción especial para recordarte que tus sueños merecen valentía."),
+    ("Bésame 💋", "Una dedicatoria romántica para una tarde o noche tranquila."),
+    ("Inolvidable - Beéle 🌴", "Una vibra cálida para acompañar una sonrisa."),
+    ("Destino o Casualidad - Melendi ✨", "Porque algunas historias llegan cuando uno menos lo espera."),
+    ("Bonito - Jarabe de Palo 🌸", "Para recordarte que lo bonito también vive en los días sencillos."),
+    ("Color Esperanza - Diego Torres 🌈", "Un empujoncito de optimismo para seguir adelante."),
+    ("Vivir Mi Vida - Marc Anthony 💃", "Para celebrar que cada día trae una oportunidad nueva."),
+]
+
+ESCENAS_61 = [
+    ("🌅", "Amanecer de Rosas", "linear-gradient(135deg,#fff8fb 0%,#ffd7e6 45%,#f5afc8 100%)", "#c2185b"),
+    ("🌌", "Noche Lavanda", "linear-gradient(135deg,#f6f0ff 0%,#e4d7ff 45%,#cdb9ff 100%)", "#6d28d9"),
+    ("🌇", "Atardecer Dorado", "linear-gradient(135deg,#fffaf0 0%,#ffe2b8 45%,#ffc5a3 100%)", "#a9550a"),
+    ("🌸", "Jardín Suave", "linear-gradient(135deg,#f5fff9 0%,#ddf7ea 48%,#ffdcea 100%)", "#167a56"),
+    ("☕", "Café y Calma", "linear-gradient(135deg,#fffaf6 0%,#f3e3d5 48%,#e9cbbb 100%)", "#7b5135"),
+    ("🦋", "Cielo Azul", "linear-gradient(135deg,#f5fcff 0%,#ddf2ff 48%,#c7e4fb 100%)", "#145c97"),
+    ("✨", "Cielo de Estrellas", "linear-gradient(135deg,#f2f4ff 0%,#dce6ff 48%,#c6d1ff 100%)", "#3046a0"),
+]
+
+def contenido_61_dias(fecha_obj):
+    if CICLO_INICIO_61 <= fecha_obj <= CICLO_FIN_61:
+        idx = (fecha_obj - CICLO_INICIO_61).days
+    else:
+        idx = (fecha_obj - CICLO_INICIO_61).days % CICLO_TOTAL_61
+    weekday = fecha_obj.weekday()
+    enfoques = [
+        "💼 Lunes de nuevo comienzo", "🌸 Martes para avanzar", "✨ Miércoles para respirar",
+        "🌷 Jueves para confiar", "🎉 Viernes para celebrar", "🧸 Sábado para disfrutar", "🕊️ Domingo para agradecer"
+    ]
+    escena = ESCENAS_61[idx % len(ESCENAS_61)]
+    cancion = CANCIONES_61[idx % len(CANCIONES_61)]
+    texto = "\n\n".join([
+        SALUDOS_61[idx % len(SALUDOS_61)],
+        REFLEXIONES_61[(idx * 3 + 1) % len(REFLEXIONES_61)],
+        BENDICIONES_61[(idx * 5 + 2) % len(BENDICIONES_61)],
+        CIERRES_61[(idx * 7 + 3) % len(CIERRES_61)],
+    ])
+    reto = RETOS_61[(idx * 11 + 1) % len(RETOS_61)]
+    return {
+        "fecha_str": fecha_es_61(fecha_obj),
+        "titulo": f"{enfoques[weekday]} · {TEMAS_61[idx % len(TEMAS_61)]}",
+        "poema": texto,
+        "reto": f"🌸 {reto}",
+        "cancion": {"titulo": cancion[0], "desc": cancion[1]},
+        "dia_n": idx + 1,
+        "porcentaje": int(round(((idx + 1) / CICLO_TOTAL_61) * 100)),
+        "escena": escena,
+        "sello": f"Página {idx + 1:02d} de 61",
+    }
+
+def fecha_es_61(fecha_obj):
+    dias = ["lunes","martes","miércoles","jueves","viernes","sábado","domingo"]
+    meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"]
+    return f"{dias[fecha_obj.weekday()].capitalize()}, {fecha_obj.day:02d} de {meses[fecha_obj.month - 1]} de {fecha_obj.year}"
+
+MENSAJES_61 = {}
+RETOS_61_MAP = {}
+CANCIONES_61_MAP = {}
+FECHA_CURSOR_61 = CICLO_INICIO_61
+while FECHA_CURSOR_61 <= CICLO_FIN_61:
+    c = contenido_61_dias(FECHA_CURSOR_61)
+    k = FECHA_CURSOR_61.strftime("%Y-%m-%d")
+    MENSAJES_61[k] = c
+    RETOS_61_MAP[k] = c["reto"]
+    CANCIONES_61_MAP[k] = c["cancion"]
+    FECHA_CURSOR_61 += timedelta(days=1)
+
+# El motor de septiembre-octubre tiene prioridad.
+MENSAJES_DIARIOS.update(MENSAJES_61)
+RETOS_DIARIOS.update(RETOS_61_MAP)
+CANCIONES_DIARIAS.update(CANCIONES_61_MAP)
+
+# ==============================================================================
+# 6C. VARIABLES DEL DÍA PARA TODA LA APLICACIÓN
+# ==============================================================================
+FECHA_HOY_CO = datetime.now(tz_colombia)
+HOY_CO = FECHA_HOY_CO.date()
+CLAVE_HOY = HOY_CO.strftime("%Y-%m-%d")
+CONTENIDO_HOY_61 = MENSAJES_61.get(CLAVE_HOY, contenido_61_dias(HOY_CO))
+ESCENA_HOY_61 = CONTENIDO_HOY_61["escena"]
+DIAS_CICLO_TRANSCURRIDOS = CONTENIDO_HOY_61["dia_n"]
+DIAS_RESTANTES_61 = max(CICLO_TOTAL_61 - DIAS_CICLO_TRANSCURRIDOS, 0)
+PAGINA_PORCENTAJE_61 = CONTENIDO_HOY_61["porcentaje"]
+
+# ==============================================================================
+# 6D. HORA / MOMENTO DEL DÍA
+# ==============================================================================
+def momento_del_dia_61(hora):
+    if 5 <= hora < 12:
+        return "☀️ Buenos días"
+    if 12 <= hora < 18:
+        return "🌤️ Buenas tardes"
+    if 18 <= hora < 23:
+        return "🌙 Buenas noches"
+    return "✨ Madrugada"
+
+MOMENTO_HOY_61 = momento_del_dia_61(FECHA_HOY_CO.hour)
+
+# ==============================================================================
+# 6E. AUDIO OPCIONAL SIN ROMPER LA APP
+# ==============================================================================
+AUDIO_CANDIDATAS = {
+    "Sin Miedo": [ruta_asset("sin_miedo.mp3"), ruta_asset("sin_miedo.wav"), ruta_asset("sin_miedo.ogg")],
+    "Bésame": [ruta_asset("besame.mp3"), ruta_asset("besame.wav"), ruta_asset("besame.ogg")],
+}
+
+def encontrar_audio(nombre):
+    for candidato in AUDIO_CANDIDATAS[nombre]:
+        if candidato.is_file():
+            return candidato
+    return None
+
+AUDIO_SIN_MIEDO = encontrar_audio("Sin Miedo")
+AUDIO_BESAME = encontrar_audio("Bésame")
+
+
+# Helper seguro para insertar texto del usuario/mensajes en HTML sin romper el marcado.
+def html_escape_61(texto):
+    return (str(texto).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;").replace("'", "&#39;"))
+
+# ==============================================================================
 # 7. GENERADOR DE PDF ELEGANTE CON REPORTLAB
 # ==============================================================================
 def generar_pdf_carta(titulo, remitente, contenido, fecha_hora_str):
@@ -1328,251 +1548,11 @@ def generar_pdf_carta(titulo, remitente, contenido, fecha_hora_str):
     buffer.seek(0)
     return buffer
 
-
-# ============================================================================
-# 8A. MOTOR DELUXE AUTOMÁTICO — 61 DÍAS (SEPTIEMBRE + OCTUBRE 2026)
-# ============================================================================
-# Este motor es 100% Python/Streamlit: no depende de JavaScript para cambiar
-# mensajes, fechas, progreso ni escenas. Así se evita el SyntaxError causado
-# por mezclar código JS dentro de f-strings de Python.
-
-CICLO_INICIO = date(2026, 9, 1)
-CICLO_FIN = date(2026, 10, 31)
-CICLO_TOTAL = (CICLO_FIN - CICLO_INICIO).days + 1  # 61 días exactos
-
-DIAS_ES_DELUXE = [
-    "lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"
-]
-MESES_ES_DELUXE = [
-    "enero", "febrero", "marzo", "abril", "mayo", "junio",
-    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
-]
-
-ESCENAS_DELUXE = [
-    ("🌅", "Amanecer de Rosas", "linear-gradient(135deg,#fff8fb 0%,#ffdbe8 45%,#f7bfd2 100%)", "#b51f58"),
-    ("🌸", "Jardín de Primavera", "linear-gradient(135deg,#f7fff9 0%,#def8ea 48%,#ffdceb 100%)", "#16825d"),
-    ("☕", "Café y Calma", "linear-gradient(135deg,#fffaf5 0%,#f3e5d7 48%,#e9c9b8 100%)", "#8b5e3c"),
-    ("🌇", "Atardecer Dorado", "linear-gradient(135deg,#fffaf0 0%,#ffe1bd 48%,#ffc7b4 100%)", "#a85b16"),
-    ("🌌", "Noche de Estrellas", "linear-gradient(135deg,#f5f5ff 0%,#e2e7ff 48%,#cfd7ff 100%)", "#4652a5"),
-    ("🦋", "Cielo Azul Suave", "linear-gradient(135deg,#f5fcff 0%,#ddf1ff 48%,#c8e5ff 100%)", "#1261a0"),
-    ("💜", "Lavanda Imperial", "linear-gradient(135deg,#faf6ff 0%,#eadfff 48%,#d6c4ff 100%)", "#7136a5"),
-]
-
-TITULOS_61 = [
-    "Hoy quiero recordarte lo mucho que vales.",
-    "Tu esfuerzo también merece ser celebrado.",
-    "Hay una mujer extraordinaria detrás de cada uno de tus días.",
-    "No olvides mirar todo lo que ya has conquistado.",
-    "Tu sonrisa también es una forma de vencer.",
-    "Paso a paso, estás construyendo algo hermoso.",
-    "Hoy el mundo necesita un poquito de tu luz.",
-    "Que nunca te falte fe en la mujer que eres.",
-    "También mereces descansar después de darlo todo.",
-    "Tu futuro se está escribiendo con pequeños esfuerzos de hoy.",
-    "Lo bonito de ti no cabe en una sola palabra.",
-    "Tu corazón merece palabras bonitas también.",
-    "No subestimes la fuerza de una mujer constante.",
-    "Hay días para luchar y días para respirar.",
-    "Que hoy encuentres una razón sencilla para sonreír.",
-]
-
-REFLEXIONES_61 = [
-    "No necesitas tener resuelto todo para estar avanzando. A veces crecer significa simplemente continuar, incluso cuando no ves todavía el resultado.",
-    "Tu valor no depende de cuántas tareas termines hoy. Está en la forma en que sigues adelante, en tu manera de cuidar, aprender y construir.",
-    "Hay esfuerzos que nadie aplaude, pero que algún día explicarán la mujer fuerte que llegaste a ser. Esos esfuerzos silenciosos también cuentan.",
-    "Cuando el día se vuelva pesado, recuerda que una pausa no significa rendirse. Significa darle al corazón el espacio que necesita para volver a intentarlo.",
-    "Tu historia no se escribe solamente con grandes momentos. También se construye con cafés tranquilos, llamadas, pequeños logros y noches en las que decidiste no abandonar.",
-    "El futuro que sueñas no aparece de repente. Se acerca cada vez que estudias, trabajas, cuidas de los tuyos y vuelves a levantarte.",
-    "No tengas miedo de reconocer tus propias fortalezas. Ser consciente de lo que vales no es orgullo; es aprender a tratarte con el mismo cariño que entregas a otros.",
-    "Hay una versión futura de ti que agradecerá cada decisión paciente que tomaste hoy. Sigue construyendo sin prisa, pero sin detenerte.",
-    "Tu ternura y tu disciplina pueden convivir. No tienes que escoger entre ser sensible y ser fuerte; precisamente esa mezcla es parte de tu belleza.",
-    "Aunque la distancia cambie la geografía, no cambia la intención de estar presente. Hay afectos que encuentran la manera de llegar.",
-    "Hoy no necesitas ser perfecta. Necesitas ser real, respirar profundo y reconocer que ya has superado días que alguna vez parecieron imposibles.",
-    "Las metas grandes se sostienen con hábitos pequeños. Cada página que estudias y cada jornada que cumples es una pieza de esa vida que estás construyendo.",
-    "Permítete disfrutar lo que sí salió bien. La mente suele contar los problemas con facilidad; hoy también cuenta tus victorias.",
-    "Tu corazón también necesita descanso, no únicamente tus ojos. Baja el ritmo cuando sea necesario y recuerda que cuidarte es parte del proceso.",
-    "Hoy hay una página nueva esperando tu nombre. No tiene que ser extraordinaria para ser importante; basta con que sea auténticamente tuya.",
-]
-
-BENDICIONES_61 = [
-    "Que Dios te regale serenidad para tus decisiones, fuerza para tus retos y motivos sinceros para sonreír.",
-    "Que esta jornada esté acompañada de paz en tu hogar y claridad en cada paso que des.",
-    "Que nunca te falte salud, compañía bonita, sabiduría y fe en los días difíciles.",
-    "Que todo esfuerzo bueno encuentre su recompensa en el momento correcto.",
-    "Que el cansancio no consiga hacerte olvidar la mujer valiosa que eres.",
-    "Que tu familia, tus sueños y tu camino profesional estén rodeados de bendiciones.",
-    "Que hoy encuentres una pequeña señal de que vale la pena continuar.",
-    "Que la noche te traiga calma y el nuevo amanecer te encuentre con esperanza.",
-    "Que tengas manos que te ayuden, palabras que te cuiden y personas que sepan valorar tu corazón.",
-    "Que tus proyectos crezcan con paciencia y que cada meta conquistada te recuerde tu propia capacidad.",
-    "Que Dios cuide tus pasos y te dé discernimiento para elegir aquello que realmente te haga bien.",
-    "Que tengas un día liviano, con menos preocupaciones y más momentos que valgan la pena recordar.",
-    "Que nunca te falte una razón para agradecer y otra para volver a intentarlo.",
-    "Que el cariño que entregas regrese a ti multiplicado en formas inesperadas.",
-    "Que cierres este día sabiendo que hiciste suficiente y que mañana podrás continuar.",
-]
-
-CIERRES_61 = [
-    "Te abrazo con el pensamiento y te recuerdo que estoy orgulloso de ti. 💖",
-    "Guarda estas palabras para cuando necesites una dosis de confianza. 👑",
-    "Descansa, mi reina. Mañana será otra oportunidad para brillar. 🌙",
-    "Sigue caminando con esa fuerza tranquila que tanto admiro de ti. 🌷",
-    "Que nunca se te olvide: eres profundamente valiosa. 🦋",
-    "Una página termina, pero el cariño detrás de ella permanece. ✨",
-    "Te mando un abrazo inmenso desde Medellín hasta donde estés. 🫂",
-    "Hoy también celebro a la mujer que eres, no solo a todo lo que haces. 💕",
-    "Respira, sonríe y sigue. Tu historia todavía guarda capítulos hermosos. 📖",
-    "Con admiración, ternura y todo mi cariño: para ti, siempre. 💗",
-    "No cambies tu esencia por encajar en ningún lugar. Tu autenticidad ya es una fortaleza. 🌸",
-    "Que esta pequeña página sea un refugio para tu corazón. ☕",
-    "Estoy feliz de poder dejarte una palabra bonita justo hoy. 💌",
-    "Tu luz merece espacio. No la escondas para hacer sentir cómodos a otros. ⭐",
-    "Fin de la página de hoy; comienzo de otro pedacito de nuestra historia. 👑💖",
-]
-
-RETOS_61 = [
-    "Tómate diez minutos sin celular y disfruta una bebida que te guste.",
-    "Anota un logro reciente y date permiso de sentir orgullo por él.",
-    "Haz una pausa de respiración lenta antes de continuar con tus pendientes.",
-    "Escucha una canción que te ponga de buen humor y déjate disfrutarla completa.",
-    "Regálate una comida o antojo que hayas querido durante la semana.",
-    "Escribe una cosa que quieras aprender antes de terminar el año.",
-    "Antes de dormir, piensa en tres cosas por las que hoy valió la pena sonreír.",
-    "Ordena durante cinco minutos un pequeño espacio que te dé tranquilidad.",
-    "Mírate al espejo y di en voz alta una cualidad que admires de ti.",
-    "Haz algo pequeño que normalmente aplazas por estar pendiente de todo lo demás.",
-    "Apaga la pantalla unos minutos y escucha cómo se siente el silencio.",
-    "Envía un mensaje bonito a alguien que quieras mucho.",
-    "Celebra una tarea terminada antes de correr hacia la siguiente.",
-    "Haz una caminata corta y observa algo bonito a tu alrededor.",
-    "Cierra el día sin juzgarte: reconoce lo que hiciste y suelta lo que quedó para mañana.",
-]
-
-CANCIONES_TEXTO_61 = [
-    ("Inolvidable", "Para acompañar un momento alegre del día."),
-    ("Bésame", "Una opción romántica para una noche tranquila."),
-    ("Sin Miedo", "Para recordar que tus sueños merecen valentía."),
-    ("Vivir Mi Vida", "Energía para comenzar con actitud positiva."),
-    ("Color Esperanza", "Un recordatorio de que siempre hay un siguiente paso."),
-    ("Bonito", "Porque hoy toca mirar lo sencillo y agradecerlo."),
-    ("La Promesa", "Para una tarde de pensamientos bonitos."),
-    ("Mi Persona Favorita", "Para un momento de cariño familiar."),
-    ("Destino o Casualidad", "Para pensar en las coincidencias bonitas de la vida."),
-    ("Aprender a Volar", "Para recuperar impulso cuando el día pese."),
-]
-
-
-def fecha_es_deluxe(fecha_obj):
-    return f"{DIAS_ES_DELUXE[fecha_obj.weekday()].capitalize()}, {fecha_obj.day:02d} de {MESES_ES_DELUXE[fecha_obj.month-1]} de {fecha_obj.year}"
-
-
-def ciclo_info(fecha_obj):
-    """Devuelve posición 1..61 y porcentaje, manteniendo límites seguros."""
-    if fecha_obj < CICLO_INICIO:
-        posicion = 1
-    elif fecha_obj > CICLO_FIN:
-        posicion = CICLO_TOTAL
-    else:
-        posicion = (fecha_obj - CICLO_INICIO).days + 1
-    porcentaje = int(round((posicion / CICLO_TOTAL) * 100))
-    restantes = max(CICLO_TOTAL - posicion, 0)
-    return posicion, porcentaje, restantes
-
-
-def contenido_ciclo(fecha_obj):
-    posicion, porcentaje, restantes = ciclo_info(fecha_obj)
-    idx = (posicion - 1) % 15
-    escena_idx = (posicion - 1) % len(ESCENAS_DELUXE)
-    escena = ESCENAS_DELUXE[escena_idx]
-
-    bloques = [
-        SALUDOS_PROFUNDOS_ORIG,
-        REFLEXIONES_61,
-        BENDICIONES_61,
-        CIERRES_61,
-    ]
-
-    # El saludo utiliza varios textos originales cuando existen; así no se pierde
-    # el espíritu del diario previo.
-    saludo = bloques[0][(posicion - 1) % len(bloques[0])]
-    reflexion = bloques[1][(posicion * 3 - 1) % len(bloques[1])]
-    bendicion = bloques[2][(posicion * 5 - 1) % len(bloques[2])]
-    cierre = bloques[3][(posicion * 7 - 1) % len(bloques[3])]
-    titulo = TITULOS_61[idx]
-    reto = RETOS_61[(posicion * 2 - 1) % len(RETOS_61)]
-    cancion = CANCIONES_TEXTO_61[(posicion * 3 - 1) % len(CANCIONES_TEXTO_61)]
-
-    texto = f"{saludo}\n\n{reflexion}\n\n{bendicion}\n\n{cierre}"
-    return {
-        "fecha_str": fecha_es_deluxe(fecha_obj),
-        "titulo": titulo,
-        "poema": texto,
-        "reto": f"🌸 {reto}",
-        "cancion": {"titulo": f"{cancion[0]} 🎶", "desc": cancion[1]},
-        "dia_ciclo": posicion,
-        "porcentaje": porcentaje,
-        "restantes": restantes,
-        "escena": escena,
-    }
-
-# Sembramos un bloque de mensajes nuevos sin depender de listas vacías.
-# Copiamos los mensajes originales disponibles de forma segura.
-SALUDOS_PROFUNDOS_ORIG = [
-    item.get("poema", "Mi reina hermosa, hoy también quiero recordarte lo valiosa que eres.").split("\n")[0]
-    for item in MENSAJES_DIARIOS.values()
-    if isinstance(item, dict) and item.get("poema")
-]
-if not SALUDOS_PROFUNDOS_ORIG:
-    SALUDOS_PROFUNDOS_ORIG = [
-        "Mi reina hermosa, hoy quiero recordarte que eres mucho más que todo lo que tienes pendiente.",
-        "Hoy quiero que mires con cariño a la mujer que has llegado a ser.",
-        "Mi vida, esta página existe para recordarte que tu esfuerzo sí vale la pena.",
-    ]
-
-# Diccionarios independientes para septiembre y octubre.
-CICLO_MENSAJES = {}
-CICLO_RETOS = {}
-CICLO_CANCIONES = {}
-_cursor = CICLO_INICIO
-while _cursor <= CICLO_FIN:
-    _contenido = contenido_ciclo(_cursor)
-    _key = _cursor.strftime("%Y-%m-%d")
-    CICLO_MENSAJES[_key] = _contenido
-    CICLO_RETOS[_key] = _contenido["reto"]
-    CICLO_CANCIONES[_key] = _contenido["cancion"]
-    _cursor += timedelta(days=1)
-
-# Para el día real en Colombia.
-FECHA_REAL_COLOMBIA = datetime.now(tz_colombia).date()
-CLAVE_REAL_COLOMBIA = FECHA_REAL_COLOMBIA.strftime("%Y-%m-%d")
-CONTENIDO_DIA_REAL = CICLO_MENSAJES.get(CLAVE_REAL_COLOMBIA)
-if CONTENIDO_DIA_REAL is None:
-    base = MENSAJES_DIARIOS.get(CLAVE_REAL_COLOMBIA)
-    CONTENIDO_DIA_REAL = {
-        "fecha_str": fecha_es_deluxe(FECHA_REAL_COLOMBIA),
-        "titulo": base.get("titulo", "✨ Una página especial para ti") if base else "✨ Una página especial para ti",
-        "poema": base.get("poema", "Mi reina hermosa, que hoy tengas un día bonito y tranquilo.") if base else "Mi reina hermosa, que hoy tengas un día bonito y tranquilo.",
-        "reto": RETOS_DIARIOS.get(CLAVE_REAL_COLOMBIA, "🌸 Regálate diez minutos de calma."),
-        "cancion": CANCIONES_DIARIAS.get(CLAVE_REAL_COLOMBIA, {"titulo": "Inolvidable 🎶", "desc": "Una melodía bonita para acompañarte."}),
-        "dia_ciclo": None,
-        "porcentaje": 0,
-        "restantes": 0,
-        "escena": ESCENAS_DELUXE[0],
-    }
-
-ESCENA_HOY = CONTENIDO_DIA_REAL.get("escena", ESCENAS_DELUXE[0])
-ESCENA_HOY_EMOJI, ESCENA_HOY_NOMBRE, ESCENA_HOY_GRADIENTE, ESCENA_HOY_ACENTO = ESCENA_HOY
-
-# ============================================================================
-# FIN DEL MOTOR DELUXE AUTOMÁTICO
-# ============================================================================
-
 # ==============================================================================
 # 8. ENCABEZADO PRINCIPAL, BARRA DE MÚSICA & BANNER SORPRESA
 # ==============================================================================
 st.markdown("<h1 class='main-header'>👑 El Diario de Mi Reina 💖🧸🦋</h1>", unsafe_allow_html=True)
 st.markdown("<p class='sub-header'>De Medellín a Bucaramanga 🏔️✈️✨ | Un espacio lleno de magia, recuerdos y momentos especiales</p>", unsafe_allow_html=True)
-st.markdown(f"<div style='text-align:center; margin:-8px 0 18px 0;'><span style='display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;background:rgba(255,255,255,.84);border:1px solid rgba(255,255,255,.95);box-shadow:0 8px 24px rgba(0,0,0,.08);font-weight:800;color:{ESCENA_HOY_ACENTO};'>{ESCENA_HOY_EMOJI} Escena de hoy: {ESCENA_HOY_NOMBRE} · {FECHA_REAL_COLOMBIA.strftime("%d/%m/%Y")}</span></div>", unsafe_allow_html=True)
 st.markdown(f"<div class='theme-badge'>🎨 Tema Activo: {st.session_state['user_theme']} | Tipografía: {st.session_state['user_font']}</div>", unsafe_allow_html=True)
 
 # Ejecución de efectos si se solicitaron
@@ -1580,31 +1560,76 @@ if st.session_state["efecto_fiesta_actual"]:
     lanzar_efecto_fiesta_js(st.session_state["efecto_fiesta_actual"])
     st.session_state["efecto_fiesta_actual"] = None
 
-# 🎵 REPRODUCTOR DE MÚSICA OPCIONAL (NO AUTOMÁTICO)
-st.write("")
-col_mus1, col_mus2 = st.columns([1.2, 0.8])
-with col_mus1:
-    if st.button("🎵 Reproducir / Pausar nuestra canción especial"):
-        st.session_state["reproduciendo_musica"] = not st.session_state["reproduciendo_musica"]
+st.write("---")
 
-with col_mus2:
-    if st.session_state["reproduciendo_musica"]:
-        st.markdown("""
-        <div style='background: white; border-radius: 18px; padding: 10px 18px; border: 2px solid #ff85a1; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center;'>
-            <span style='color: #d63384; font-weight: bold; font-size: 0.9em;'>🎶 Reproduciendo nuestra melodía de paz...</span>
-            <audio autoplay loop controls style='width: 100%; height: 32px; margin-top: 5px;'>
-                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-                Tu navegador no soporta el reproductor de audio.
-            </audio>
+# ==============================================================================
+# ESTILOS DELUXE ADICIONALES — BLOQUE SEPARADO, SIN F-STRING
+# ==============================================================================
+st.markdown("""
+<style>
+.deluxe-shell { position:relative; overflow:hidden; border-radius:32px; padding:30px; margin:10px 0 24px 0; background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(255,232,240,.92)); border:1px solid rgba(216,63,120,.22); box-shadow:0 24px 60px rgba(80,35,62,.12); }
+.deluxe-kicker { display:inline-flex; padding:7px 13px; border-radius:999px; background:#fff4f8; color:#a61d52; font-size:.82rem; font-weight:800; }
+.deluxe-title { color:#9b1d4f; font-size:clamp(2rem,4vw,3.5rem); font-weight:900; line-height:1.08; margin:14px 0 6px; }
+.deluxe-subtitle { color:#604e5e; font-size:1.02rem; max-width:860px; }
+.daily-orbit { display:grid; grid-template-columns:1.35fr .9fr .85fr; gap:14px; margin-top:20px; }
+.orbit-card { min-height:145px; padding:20px; border-radius:24px; background:rgba(255,255,255,.78); border:1px solid rgba(216,63,120,.16); box-shadow:0 12px 28px rgba(80,35,62,.08); transition:transform .25s ease,box-shadow .25s ease; }
+.orbit-card:hover { transform:translateY(-4px); box-shadow:0 18px 36px rgba(80,35,62,.13); }
+.orbit-label { color:#876f7e; font-size:.74rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
+.orbit-date { color:#b02059; font-size:1.55rem; font-weight:900; margin-top:7px; line-height:1.2; }
+.orbit-card strong { color:#9b1d4f; }
+.mini-pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.mini-pill { padding:6px 10px; border-radius:999px; background:#fff7fa; border:1px solid #f4d2df; color:#765f6d; font-size:.82rem; font-weight:700; }
+.progress-track { width:100%; height:10px; background:#fff; border-radius:999px; overflow:hidden; margin-top:11px; border:1px solid #f0d5df; }
+.progress-fill { height:100%; border-radius:999px; background:linear-gradient(90deg,#ff96b6,#d83f78,#a61d52); }
+.quote-card { margin-top:16px; padding:20px 22px; border-radius:24px; border:1px dashed rgba(166,29,82,.38); background:rgba(255,255,255,.7); color:#4d3a48; }
+.quote-mark { font-size:3rem; line-height:.6; color:#e64c82; vertical-align:middle; margin-right:7px; }
+@media(max-width:900px) { .daily-orbit { grid-template-columns:1fr; } }
+</style>
+""", unsafe_allow_html=True)
+
+# ==============================================================================
+# 8B. BANNER DELUXE SEGURO — SIN JAVASCRIPT EMBEBIDO EN F-STRINGS
+# ==============================================================================
+st.markdown(f"""
+<div class="deluxe-shell">
+    <div class="deluxe-kicker">{ESCENA_HOY_61[0]} EDICIÓN ESPECIAL · {CONTENIDO_HOY_61['sello']}</div>
+    <div class="deluxe-title">Hoy también escribí algo para ti, mi reina. 👑</div>
+    <p class="deluxe-subtitle">Una página nueva cada día durante septiembre y octubre. El contenido se actualiza solo con la fecha de Colombia.</p>
+    <div class="daily-orbit">
+        <div class="orbit-card lift">
+            <div class="orbit-label">Fecha de hoy</div>
+            <div class="orbit-date">{CONTENIDO_HOY_61['fecha_str']}</div>
+            <div class="mini-pill-row">
+                <span class="mini-pill">{MOMENTO_HOY_61}</span>
+                <span class="mini-pill">🇨🇴 Colombia · {FECHA_HOY_CO.strftime('%H:%M:%S')}</span>
+            </div>
         </div>
-        """, unsafe_allow_html=True)
+        <div class="orbit-card lift">
+            <div class="orbit-label">Maratón septiembre + octubre</div>
+            <strong style="font-size:1.6rem;">{PAGINA_PORCENTAJE_61}%</strong>
+            <div class="progress-track"><div class="progress-fill" style="width:{PAGINA_PORCENTAJE_61}%;"></div></div>
+            <div style="margin-top:10px;color:#6f6170;">Quedan <b>{DIAS_RESTANTES_61}</b> días dentro del ciclo.</div>
+        </div>
+        <div class="orbit-card lift">
+            <div class="orbit-label">Página de hoy</div>
+            <strong style="font-size:1.6rem;">{DIAS_CICLO_TRANSCURRIDOS} / 61</strong>
+            <div style="margin-top:8px;color:#6f6170;">Una página diferente, una razón más para sonreír.</div>
+        </div>
+    </div>
+    <div class="quote-card">
+        <span class="quote-mark">“</span>
+        <strong>{mensaje_corto_de_hora(FECHA_HOY_CO)}</strong>
+        <div style="margin-top:8px;color:#5d4d59;">{CONTENIDO_HOY_61['titulo']}</div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 st.write("---")
 
 # ==============================================================================
-# 9. MENÚ PRINCIPAL DE 14 PESTAÑAS INTERACTIVAS
+# 9. MENÚ PRINCIPAL DE 19 PESTAÑAS — LISTA INDEXABLE, SIN UNPACKING
 # ==============================================================================
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11, tab12, tab13, tab14 = st.tabs([
+tabs = st.tabs([
     "🏠 Portada",
     "⏳ Línea del Tiempo",
     "📅 Calendario",
@@ -1619,13 +1644,17 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11, tab12, tab13
     "🔒 Cápsula Tiempo",
     "🧠 Trivia",
     "✈️ Contador",
-    "✨ Experiencia de Hoy"
+    "💌 Carta de Hoy",
+    "🌙 Ritual Diario",
+    "🎁 Caja Secreta",
+    "🌌 Cielo de Hoy",
+    "💝 Sorpresa"
 ])
 
 # ------------------------------------------------------------------------------
 # TAB 1: PORTADA & BIENVENIDA CON FOTOS FLOTANTES Y FRASES SORPRESA
 # ------------------------------------------------------------------------------
-with tab1:
+with tabs[0]:
     col_texto, col_foto = st.columns([1.15, 0.85], gap="large")
     
     with col_texto:
@@ -1655,18 +1684,14 @@ with tab1:
         fecha_colombia = datetime.now(tz_colombia)
         fecha_hoy_key = fecha_colombia.strftime("%Y-%m-%d")
         
-        if fecha_hoy_key in CICLO_MENSAJES:
-            mensaje_hoy = CICLO_MENSAJES[fecha_hoy_key]
-            reto_hoy = CICLO_RETOS[fecha_hoy_key]
-            cancion_hoy = CICLO_CANCIONES[fecha_hoy_key]
-        else:
-            mensaje_hoy = MENSAJES_DIARIOS.get(fecha_hoy_key, {
-                "fecha_str": fecha_colombia.strftime("%A, %d de %B"),
-                "titulo": "✨ Un mensaje especial para ti",
-                "poema": "Mi reina hermosa, recuerda siempre lo increíble, inteligente y hermosa que eres. Cada día y cada noche es una nueva oportunidad para acercarte a tus sueños. ¡Te quiero con todo mi corazón!"
-            })
-            reto_hoy = RETOS_DIARIOS.get(fecha_hoy_key, "🌸 Reto de Hoy: Tómate 10 minutos para consentirte y tomar tu bebida favorita en calma.")
-            cancion_hoy = CANCIONES_DIARIAS.get(fecha_hoy_key, {"titulo": "Inolvidable - Beéle 🎶", "desc": "Una melodía llena de sol y buena vibra para ti."})
+        mensaje_hoy = MENSAJES_DIARIOS.get(fecha_hoy_key, {
+            "fecha_str": fecha_colombia.strftime("%A, %d de %B"),
+            "titulo": "✨ Un mensaje especial para ti",
+            "poema": "Mi reina hermosa, recuerda siempre lo increíble, inteligente y hermosa que eres. Cada día y cada noche es una nueva oportunidad para acercarte a tus sueños. ¡Te quiero con todo mi corazón!"
+        })
+
+        reto_hoy = RETOS_DIARIOS.get(fecha_hoy_key, "🌸 Reto de Hoy: Tómate 10 minutos para consentirte y tomar tu bebida favorita en calma.")
+        cancion_hoy = CANCIONES_DIARIAS.get(fecha_hoy_key, {"titulo": "Inolvidable - Beéle 🎶", "desc": "Una melodía llena de sol y buena vibra para ti."})
 
         # TARJETA DEL MENSAJE DIARIO CAMBIANTE AUTOMÁTICO
         st.markdown(f"""
@@ -1748,17 +1773,16 @@ with tab1:
         """, unsafe_allow_html=True)
         st.write("")
         
-        if os.path.exists("portada.jpg"):
-            st.image("portada.jpg", caption="¡Siempre juntos, mi reina hermosa! ❤️", use_container_width=True)
-        elif os.path.exists("portada.jpeg"):
-            st.image("portada.jpeg", caption="¡Siempre juntos, mi reina hermosa! ❤️", use_container_width=True)
-        elif os.path.exists("portada.png"):
-            st.image("portada.png", caption="¡Siempre juntos, mi reina hermosa! ❤️", use_container_width=True)
-        else:
+        if PORTADA_PATH is not None:
             st.image(
-                "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
-                caption="¡Brillando con tu luz propia donde vayas! ✨",
-                use_container_width=True
+                str(PORTADA_PATH),
+                caption="¡Siempre juntos, mi reina hermosa! ❤️",
+                use_container_width=True,
+            )
+        else:
+            st.warning(
+                "No encontré portada.jpg, portada.jpeg ni portada.png junto a app.py. "
+                "Sube la foto al mismo nivel que app.py en GitHub."
             )
 
         st.markdown("""
@@ -1773,7 +1797,7 @@ with tab1:
 # ------------------------------------------------------------------------------
 # TAB 2: LÍNEA DEL TIEMPO DE NUESTROS RECUERDOS
 # ------------------------------------------------------------------------------
-with tab2:
+with tabs[1]:
     st.markdown("<h3 style='color: #d63384;'>⏳ Línea del Tiempo de Nuestros Recuerdos Inolvidables</h3>", unsafe_allow_html=True)
     st.write("Un recorrido cronológico por los hitos más bonitos que hemos construido juntos.")
     st.write("---")
@@ -1795,7 +1819,7 @@ with tab2:
 # ------------------------------------------------------------------------------
 # TAB 3: CALENDARIO INTERACTIVO CON COLORES
 # ------------------------------------------------------------------------------
-with tab3:
+with tabs[2]:
     st.markdown("<h3 style='color: #d63384;'>📅 Calendario Interactivo de Recuerdos & Vivencias</h3>", unsafe_allow_html=True)
     st.write("Selecciona cualquier fecha para consultar lo que se escribió o los mensajes asignados a ese día.")
     st.write("---")
@@ -1805,7 +1829,7 @@ with tab3:
     with col_cal1:
         fecha_seleccionada = st.date_input(
             "📆 Elige una fecha en el calendario:",
-            value=datetime.now(tz_colombia).date(),
+            value=date.today(),
             min_value=date(2026, 1, 1),
             max_value=date(2026, 12, 31)
         )
@@ -1853,7 +1877,7 @@ with tab3:
 # ------------------------------------------------------------------------------
 # TAB 4: ESTADÍSTICAS BONITAS
 # ------------------------------------------------------------------------------
-with tab4:
+with tabs[3]:
     st.markdown("<h3 style='color: #d63384;'>📊 Estadísticas Bonitas & Logros de Nuestra Reina</h3>", unsafe_allow_html=True)
     st.write("Un resumen interactivo y en tiempo real de todo lo que has construido en tu diario.")
     st.write("---")
@@ -1922,7 +1946,7 @@ with tab4:
 # ------------------------------------------------------------------------------
 # TAB 5: CENTRO DE PERSONALIZACIÓN COMPLETO
 # ------------------------------------------------------------------------------
-with tab5:
+with tabs[4]:
     st.markdown("<h3 style='color: #d63384;'>🎨 Centro de Personalización Mágica</h3>", unsafe_allow_html=True)
     st.write("Cambia los colores, las tipografías y las partículas flotantes del diario en tiempo real.")
     st.write("---")
@@ -1965,7 +1989,7 @@ with tab5:
 # ------------------------------------------------------------------------------
 # TAB 6: MI DIARIO INTERACTIVO
 # ------------------------------------------------------------------------------
-with tab6:
+with tabs[5]:
     st.markdown("<h3 style='color: #d63384;'>📝 Mi Diario Personal e Interactivo</h3>", unsafe_allow_html=True)
     st.write("Escribe lo que viviste hoy, desahógate o guarda un lindo recuerdo de tu día o de tu noche.")
     fecha_hoy = datetime.now(tz_colombia).strftime("%d/%m/%Y %I:%M%p")
@@ -2027,7 +2051,7 @@ with tab6:
 # ------------------------------------------------------------------------------
 # TAB 7: HISTÓRICO DE MEMORIAS
 # ------------------------------------------------------------------------------
-with tab7:
+with tabs[6]:
     st.markdown("<h3 style='color: #d63384;'>📚 Histórico de Memorias & Gestión de Notas</h3>", unsafe_allow_html=True)
     st.write("Aquí se guardan todas tus entradas pasadas. Puedes buscarlas, leerlas o eliminar las que no desees guardar.")
     
@@ -2077,7 +2101,7 @@ with tab7:
 # ------------------------------------------------------------------------------
 # TAB 8: PLANIFICADOR & HÁBITOS
 # ------------------------------------------------------------------------------
-with tab8:
+with tabs[7]:
     st.markdown("<h3 style='color: #d63384;'>🎯 Planificador & Hábitos Diarios de Mi Reina</h3>", unsafe_allow_html=True)
     st.write("Un organizador sencillo para cuidar tu salud, tus estudios en Administración y tus metas en TQ.")
     st.write("---")
@@ -2115,7 +2139,7 @@ with tab8:
 # ------------------------------------------------------------------------------
 # TAB 9: ANTOJITOS & CUPONES
 # ------------------------------------------------------------------------------
-with tab9:
+with tabs[8]:
     st.markdown("<h3 style='color: #d63384;'>🎟️ Antojitos, Gustos & Cupones Especiales</h3>", unsafe_allow_html=True)
     st.write("¡Canjea tus cupones simbólicos cuando quieras consentirte en tus momentos libres!")
     
@@ -2168,7 +2192,7 @@ with tab9:
 # ------------------------------------------------------------------------------
 # TAB 10: GENERADOR DE CARTAS PDF
 # ------------------------------------------------------------------------------
-with tab10:
+with tabs[9]:
     st.markdown("<h3 style='color: #d63384;'>📄 Generador de Cartas en PDF</h3>", unsafe_allow_html=True)
     st.write("Crea y descarga cartas elegantes en formato PDF para guardar tus momentos o imprimirlos.")
 
@@ -2199,7 +2223,7 @@ with tab10:
 # ------------------------------------------------------------------------------
 # TAB 11: FRASCO DE RECUERDOS & FORTUNA
 # ------------------------------------------------------------------------------
-with tab11:
+with tabs[10]:
     st.markdown("<h3 style='color: #d63384;'>🏺 Frasco de Recuerdos & Galleta de la Fortuna</h3>", unsafe_allow_html=True)
     st.write("Saca una notita del frasco virtual o abre una galleta de la fortuna para recargar tu día o noche.")
 
@@ -2246,7 +2270,7 @@ with tab11:
 # ------------------------------------------------------------------------------
 # TAB 12: CÁPSULA DEL TIEMPO SECRETA
 # ------------------------------------------------------------------------------
-with tab12:
+with tabs[11]:
     st.markdown("<h3 style='color: #d63384;'>⏳ Cápsula del Tiempo & Mensajes Candado</h3>", unsafe_allow_html=True)
     st.write("¡Guarda o descubre mensajes con candado que solo se pueden abrir en fechas futuras específicas!")
 
@@ -2275,3 +2299,254 @@ with tab12:
             st.warning("Completa el título y el mensaje antes de guardar.")
 
     st.write("---")
+    st.markdown("<h4 style='color: #c2185b;'>🔑 Abrir Cápsulas Guardadas</h4>", unsafe_allow_html=True)
+    
+    capsulas_existentes = cargar_capsulas()
+    fecha_hoy_str = datetime.now(tz_colombia).strftime("%Y-%m-%d")
+
+    if capsulas_existentes:
+        for idx, cap in enumerate(capsulas_existentes):
+            es_alcanzada = fecha_hoy_str >= cap['fecha_desbloqueo']
+            
+            if es_alcanzada:
+                with st.expander(f"🔓 DESBLOQUEADA: {cap['titulo']} (Guardada el {cap['creado']})"):
+                    st.success("¡Esta cápsula ya se puede abrir!")
+                    st.markdown(f"**Mensaje Secreto:**\n\n*{cap['mensaje']}*")
+            else:
+                with st.expander(f"🔒 BLOQUEADA: {cap['titulo']} (Se abre el: {cap['fecha_desbloqueo']})"):
+                    st.warning(f"⏰ Esta cápsula está bajo candado. Regresa el {cap['fecha_desbloqueo']} para leer su contenido.")
+    else:
+        st.info("Aún no hay cápsulas creadas. ¡Crea la primera para guardar una sorpresa hacia el futuro!")
+
+# ------------------------------------------------------------------------------
+# TAB 13: TRIVIA DE NUESTRO AMOR & TEST
+# ------------------------------------------------------------------------------
+with tabs[12]:
+    st.markdown("<h3 style='color: #d63384;'>🧠 Minijuego: Trivia Especial de Nuestra Reina</h3>", unsafe_allow_html=True)
+    st.write("Responde estas preguntas interactivas para poner a prueba tus logros y detalles favoritos.")
+
+    score = 0
+    st.write("---")
+
+    for i, q in enumerate(PREGUNTAS_TRIVIA):
+        st.markdown(f"**Pregunta {i+1}: {q['pregunta']}**")
+        resp = st.radio(f"Selecciona tu respuesta para la pregunta {i+1}:", options=q['opciones'], key=f"triv_{i}")
+        
+        if resp == q['correcta']:
+            st.markdown(f"<span style='color: #2e7d32; font-weight: bold;'>✅ {q['explicacion']}</span>", unsafe_allow_html=True)
+            score += 1
+        else:
+            st.caption("💡 Intenta otra respuesta o confirma tu favorita.")
+        st.write("")
+
+    st.write("---")
+    if st.button("🏆 Validar Puntaje de Trivia"):
+        st.balloons()
+        if score == len(PREGUNTAS_TRIVIA):
+            lanzar_efecto_fiesta_js("fuegos_artificiales")
+            st.success(f"¡PUNTAJE PERFECTO! {score}/{len(PREGUNTAS_TRIVIA)} 👑 Eres la reina indiscutible de este lugar.")
+        else:
+            st.info(f"Obtuviste {score}/{len(PREGUNTAS_TRIVIA)} correctas. ¡Eres increíble de todas formas!")
+
+# ------------------------------------------------------------------------------
+# TAB 14: CONTADOR DE DISTANCIA & CALCULADORA
+# ------------------------------------------------------------------------------
+with tabs[13]:
+    st.markdown("<h3 style='color: #d63384;'>✈️ Medellín - Bucaramanga: Contador & Calculadora</h3>", unsafe_allow_html=True)
+    st.write("Estadísticas divertidas de la ruta espacial que une nuestros pensamientos.")
+
+    col_m1, col_m2, col_m3 = st.columns(3)
+
+    with col_m1:
+        st.markdown("""
+        <div class='card' style='text-align: center;'>
+            <h2 style='color: #c2185b; margin: 0;'>📍 390 KM</h2>
+            <p style='margin-top: 5px; color: #555;'>Distancia aproximada entre Medellín y Bucaramanga</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col_m2:
+        st.markdown("""
+        <div class='card' style='text-align: center;'>
+            <h2 style='color: #c2185b; margin: 0;'>✈️ 55 MIN</h2>
+            <p style='margin-top: 5px; color: #555;'>Tiempo de vuelo que nos conecta en un abrir y cerrar de ojos</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col_m3:
+        st.markdown("""
+        <div class='card' style='text-align: center;'>
+            <h2 style='color: #c2185b; margin: 0;'>💯 1000%</h2>
+            <p style='margin-top: 5px; color: #555;'>Nivel de admiración y cariño diario hacia mi reina</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.write("---")
+    st.markdown("<h4 style='color: #c2185b;'>💖 Calculadora Mágica de Compatibilidad</h4>", unsafe_allow_html=True)
+    nombre1 = st.text_input("Tu Nombre:", value="Laura (Mi Reina)")
+    nombre2 = st.text_input("El Nombre de quien te piensa:", value="Tu admirador de Medellín")
+
+    if st.button("🔮 Calcular Compatibilidad Mágica"):
+        st.balloons()
+        lanzar_efecto_fiesta_js("confetti_boom")
+        st.markdown("""
+        <div style='background: #fdf2f8; border-radius: 24px; padding: 22px; border: 3px solid #f472b6; text-align: center;'>
+            <h2 style='color: #d63384; margin: 0;'>✨ Resultado: 100% COMPATIBILIDAD PERFECTION ✨</h2>
+            <p style='color: #333; margin-top: 10px; font-size: 1.15em;'>
+                Los astros, las montañas y los corazones confirman que no hay combinación más bonita. 🧸🦋
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+
+# ============================================================================== 
+# TAB 15: CARTA DE HOY
+# ============================================================================== 
+with tabs[14]:
+    st.markdown("<h3 style='color:#d63384;'>💌 Carta de Hoy</h3>", unsafe_allow_html=True)
+    st.write("Una carta que cambia automáticamente cada día del ciclo de 61 días.")
+    st.write("---")
+    st.markdown(f"""
+    <div class='card'>
+        <div style='font-weight:900;color:#a61d52;font-size:1.2rem;'>{CONTENIDO_HOY_61['titulo']}</div>
+        <div style='margin-top:14px;white-space:pre-line;color:#3f3440;line-height:1.95;'>{html_escape_61(CONTENIDO_HOY_61['poema'])}</div>
+        <div style='margin-top:22px;color:#a61d52;font-family:cursive;font-size:1.5rem;'>Con cariño, desde Medellín. 💖</div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.info(f"🎯 Reto de hoy: {CONTENIDO_HOY_61['reto']}")
+    st.success(f"🎵 Banda sonora: {CONTENIDO_HOY_61['cancion']['titulo']} — {CONTENIDO_HOY_61['cancion']['desc']}")
+
+# ============================================================================== 
+# TAB 16: RITUAL DIARIO
+# ============================================================================== 
+with tabs[15]:
+    st.markdown("<h3 style='color:#d63384;'>🌙 Ritual Diario</h3>", unsafe_allow_html=True)
+    st.write("Tres pequeños momentos para que el diario acompañe tu mañana, tu tarde y tu noche.")
+    st.write("---")
+    rituales = [
+        ("☀️", "Mañana", "Elige una prioridad. No diez. Una sola que haga que hoy valga la pena."),
+        ("🌤️", "Tarde", "Mira lejos de la pantalla, estira los hombros y regálate unos minutos de calma."),
+        ("🌙", "Noche", "Nombra una cosa que hiciste bien y deja el resto para mañana."),
+    ]
+    cols = st.columns(3)
+    for i, (icono, titulo, texto_ritual) in enumerate(rituales):
+        with cols[i]:
+            st.markdown(f"""
+            <div class='card' style='text-align:center;min-height:180px;'>
+                <div style='font-size:2.3rem;'>{icono}</div>
+                <h4 style='color:#9b1d4f;'>{titulo}</h4>
+                <p style='color:#5d4d59;'>{texto_ritual}</p>
+            </div>
+            """, unsafe_allow_html=True)
+    preguntas = [
+        "¿Qué pequeño logro estoy olvidando celebrar?",
+        "¿Qué puedo soltar esta noche para descansar mejor?",
+        "¿Qué quiero agradecer de hoy?",
+        "¿Qué parte de mí necesita más paciencia?",
+        "¿Cuál fue mi momento más bonito del día?",
+    ]
+    q = preguntas[HOY_CO.toordinal() % len(preguntas)]
+    st.markdown(f"<div class='quote-card'><span class='quote-mark'>?</span><strong>{q}</strong></div>", unsafe_allow_html=True)
+
+# ============================================================================== 
+# TAB 17: CAJA SECRETA
+# ============================================================================== 
+with tabs[16]:
+    st.markdown("<h3 style='color:#d63384;'>🎁 Caja Secreta</h3>", unsafe_allow_html=True)
+    st.write("La sorpresa cambia con la fecha para que cada entrada se sienta diferente.")
+    st.write("---")
+    cajas = [
+        "Hoy eres oficialmente la protagonista de esta página. 👑",
+        "Tu regalo de hoy es una certeza: vas mejor de lo que crees.",
+        "Hay un abrazo escondido en estas palabras. Imagina que acaba de llegar. 🫂",
+        "Hoy está permitido no tener todas las respuestas.",
+        "Tu misión secreta: hacer algo pequeño que te haga feliz.",
+        "No minimices un logro solo porque ya te acostumbraste a ser excelente.",
+        "Esta caja contiene cinco minutos de paz sin culpa. 🕊️",
+        "Sorpresa: alguien está profundamente orgulloso de ti. 💖",
+    ]
+    sorpresa = cajas[HOY_CO.toordinal() % len(cajas)]
+    st.markdown(f"""
+    <div style='padding:42px 26px;border-radius:30px;background:linear-gradient(145deg,#2e1730,#5e294b 55%,#22142d);color:#fff;text-align:center;box-shadow:0 24px 55px rgba(38,18,39,.23);'>
+        <div style='font-size:4rem;'>🎁</div>
+        <div style='font-size:1.6rem;font-weight:900;'>Caja del día · {CONTENIDO_HOY_61['sello']}</div>
+        <p style='font-size:1.1rem;max-width:760px;margin:16px auto;line-height:1.8;color:rgba(255,255,255,.88);'>{sorpresa}</p>
+    </div>
+    """, unsafe_allow_html=True)
+    if st.button("🎉 Abrir con magia", key="caja_secreta_final"):
+        st.balloons()
+        lanzar_efecto_fiesta_js("lluvia_corazones_3d")
+        st.success("¡Sorpresa abierta! Guarda este momento en el corazón. 💖")
+
+# ============================================================================== 
+# TAB 18: CIELO DE HOY
+# ============================================================================== 
+with tabs[17]:
+    st.markdown("<h3 style='color:#d63384;'>🌌 Cielo de Hoy</h3>", unsafe_allow_html=True)
+    st.write("Una constelación simbólica distinta según la fecha. Este bloque se renderiza con components.html separado del Python.")
+    st.write("---")
+    seed = HOY_CO.toordinal()
+    rng = random.Random(seed)
+    puntos = []
+    for _ in range(18):
+        puntos.append((rng.randint(5,95), rng.randint(10,90), rng.randint(4,9), round(rng.uniform(0,2.6),2)))
+    html_parts = [
+        "<html><head><style>",
+        "html,body{margin:0;background:transparent;overflow:hidden;font-family:Segoe UI,Arial,sans-serif}",
+        ".sky{position:relative;height:440px;width:100%;overflow:hidden;border-radius:30px;background:radial-gradient(circle at 22% 20%,rgba(255,255,255,.18),transparent 18%),radial-gradient(circle at 75% 28%,rgba(177,159,255,.2),transparent 24%),linear-gradient(180deg,#090c22 0%,#17122f 46%,#42204a 100%);box-shadow:0 24px 56px rgba(25,12,40,.3)}",
+        ".sky:after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.72) 0 1px,transparent 1.5px);background-size:120px 120px;opacity:.42}",
+        ".star{position:absolute;border-radius:50%;background:#fff;box-shadow:0 0 8px #fff,0 0 16px rgba(255,197,224,.85),0 0 26px rgba(255,112,173,.42);animation:pulse 2.8s ease-in-out infinite}",
+        ".line{position:absolute;height:1px;transform-origin:left center;background:linear-gradient(90deg,rgba(255,255,255,.03),rgba(255,207,229,.5),rgba(255,255,255,.03));opacity:.68}",
+        ".caption{position:absolute;z-index:5;left:22px;top:18px;color:rgba(255,255,255,.9);font-weight:800}.footer{position:absolute;z-index:5;left:22px;bottom:18px;color:rgba(255,255,255,.66);font-size:.82rem}.moon{position:absolute;right:9%;bottom:9%;width:78px;height:78px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff9fc 0 10%,#ffd9ea 25%,#e77eaa 55%,#6d2856 100%);box-shadow:0 0 34px rgba(255,142,195,.24)}",
+        "@keyframes pulse{0%,100%{opacity:.4;transform:scale(.65)}50%{opacity:1;transform:scale(1.25)}}",
+        "</style></head><body><div class='sky'>",
+        f"<div class='caption'>✨ {CONTENIDO_HOY_61['fecha_str']} · {CONTENIDO_HOY_61['sello']}</div>",
+        f"<div class='footer'>{ESCENA_HOY_61[0]} {ESCENA_HOY_61[1]} · una constelación que cambia con cada día.</div>",
+        "<div class='moon'></div>",
+    ]
+    for x,y,size,delay in puntos:
+        html_parts.append(f"<span class='star' style='left:{x}%;top:{y}%;width:{size}px;height:{size}px;animation-delay:{delay}s'></span>")
+    for i in range(len(puntos)-1):
+        x1,y1=puntos[i][0],puntos[i][1]; x2,y2=puntos[i+1][0],puntos[i+1][1]
+        dx=x2-x1; dy=y2-y1
+        dist=(dx*dx+dy*dy)**0.5
+        angle=math.degrees(math.atan2(dy,dx))
+        html_parts.append(f"<span class='line' style='left:{x1}%;top:{y1}%;width:{dist:.2f}%;transform:rotate({angle:.2f}deg)'></span>")
+    html_parts += ["</div></body></html>"]
+    components.html("".join(html_parts), height=455, scrolling=False)
+    st.markdown(f"<div class='quote-card'><span class='quote-mark'>✦</span><strong>{html_escape_61(CONTENIDO_HOY_61['titulo'])}</strong><div style='margin-top:8px;'>Hoy el cielo también tiene una página escrita para ti.</div></div>", unsafe_allow_html=True)
+
+# ============================================================================== 
+# TAB 19: SORPRESA DEL DÍA + AUDIO OPCIONAL
+# ============================================================================== 
+with tabs[18]:
+    st.markdown("<h3 style='color:#d63384;'>💝 Sorpresa del Día</h3>", unsafe_allow_html=True)
+    st.write("Nada de archivos obligatorios. La música solo aparece como reproductor si algún día subes tus propios archivos al repositorio.")
+    st.write("---")
+    mensajes_sorpresa_2 = [
+        "La distancia no impide que una palabra llegue exactamente donde debe. 💌",
+        "Hoy el diario te recuerda que descansar también es una forma de avanzar.",
+        "Tu sonrisa sigue siendo una de mis imágenes favoritas del día. 😊",
+        "Hay cosas que no necesitan explicación; solo necesitan tiempo, respeto y cariño.",
+        "Esta página existe porque tú mereces detalles que duren más que un instante. 👑",
+        "Hoy la sorpresa es simple: alguien cree muchísimo en ti. ✨",
+    ]
+    msg = mensajes_sorpresa_2[HOY_CO.toordinal() % len(mensajes_sorpresa_2)]
+    st.markdown(f"""
+    <div class='card' style='text-align:center;padding:38px;'>
+        <div style='font-size:3rem;'>💌</div>
+        <div style='font-size:1.45rem;color:#c2185b;font-weight:900;'>{msg}</div>
+        <div style='margin-top:14px;color:#6f6170;'>{CONTENIDO_HOY_61['fecha_str']}</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("#### 🎵 Canciones especiales")
+    st.write("Las canciones **no son necesarias para que la app funcione**. Cuando quieras agregarlas, solo sube tus propios archivos a GitHub.")
+    c1, c2 = st.columns(2)
+    with c1:
+        st.markdown("<div class='card'><b>❤️ Sin Miedo</b><br><small>Reproductor disponible cuando exista sin_miedo.mp3 / wav / ogg.</small></div>", unsafe_allow_html=True)
+        if AUDIO_SIN_MIEDO:
+            st.audio(str(AUDIO_SIN_MIEDO))
+    with c2:
+        st.markdown("<div class='card'><b>💋 Bésame</b><br><small>Reproductor disponible cuando exista besame.mp3 / wav / ogg.</small></div>", unsafe_allow_html=True)
+        if AUDIO_BESAME:
+            st.audio(str(AUDIO_BESAME))
